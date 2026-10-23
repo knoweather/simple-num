@@ -350,6 +350,24 @@ func init() {
 		},
 		"pinv": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
 			return num.Pinv(ins[0])
+		}, // —— 形状/索引小工具(Step 36)——
+		"resize": func(ins []*num.Array, args caseArgs) (*num.Array, error) {
+			return num.Resize(ins[0], args.Axis)
+		},
+		"choose": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.Choose(ins[0], ins[1:])
+		},
+		"fftshift": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.FFTShift(ins[0])
+		},
+		"ifftshift": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.IFFTShift(ins[0])
+		},
+		"exp2": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.Exp2(ins[0])
+		},
+		"nancumprod": func(ins []*num.Array, args caseArgs) (*num.Array, error) {
+			return num.NanCumprod(ins[0], args.Axis)
 		}, // —— ufunc 补充批(Step 31)——
 		"negative": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
 			return num.Negative(ins[0])
@@ -771,7 +789,9 @@ func init() {
 		"qr": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
 			return num.QR(ins[0])
 		},
-		"lstsq": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
+		"unravel_index": func(ins []*num.Array, args caseArgs) ([]*num.Array, error) {
+			return num.UnravelIndex(ins[0], args.Axis)
+		}, "lstsq": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
 			return num.Lstsq(ins[0], ins[1])
 		}, "slogdet": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
 			sign, logdet, err := num.Slogdet(ins[0])

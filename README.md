@@ -140,7 +140,7 @@ our result against those saved bytes. Where an operation is not bit-exact by
 nature (an FFT or an LU solve can differ in the last bits), the case declares a
 relative tolerance instead.
 
-- **NumPy reference cross-check** (`xcheck/`): **496 cases / 503 subtests**
+- **NumPy reference cross-check** (`xcheck/`): **503 cases / 510 subtests**
   produced by `xcheck/gen_reference.py`, covering integers/floats/complex,
   broadcasting, ±0/NaN/Inf, integer overflow, axis reductions, gather/mask
   indexing, multi-output ops and the whole function surface. Two comparison
@@ -192,18 +192,18 @@ Legend: ✅ available · ⚠️ partial (see the note) · 🚧 not yet, planned.
 | dtypes | `bool`, `int8…int64`, `uint8…uint64`, `float16/32/64`, `complex64/128`, fixed-width `S`/`U`, `datetime64` | `float128` 🚧, `timedelta64` 🚧, structured/record dtypes 🚧, `object` 🚧 |
 | creation | `FromSlice`, `Zeros`, `Ones`, `Empty`, `Full`, `Eye`, `Identity`, `Arange`, `LinSpace`, `LogSpace`, `GeomSpace`, `MeshGrid`, `Diag`, `Diagflat` | `FromIter` 🚧, `FromString` 🚧, `Vander` 🚧, `Tri` 🚧 |
 | shape & views | `Reshape`, `Ravel`, `Transpose`, `Squeeze`, `ExpandDims`, `SwapAxes`, `BroadcastTo`, `Sub` (all zero-copy where possible) | `Moveaxis` 🚧, `Resize` 🚧, `BroadcastArrays` 🚧 |
-| manipulation | `Concatenate`, `Stack`/`VStack`/`HStack`/`ColumnStack`/`DStack`, `Split`/`ArraySplit`/`SplitAt`/`H·V·DSplit`, `Append`/`Insert`/`Delete`, `Flip`/`FlipUD`/`FlipLR`, `Roll`, `Rot90`, `Repeat`, `Tile`, `Pad` (10 modes incl. `stat_length`), `Atleast1D/2D/3D` | `Triu`/`Tril` indices helpers 🚧 |
-| indexing | basic slices, fancy indexing, boolean masks, `Take`, `TakeAlongAxis`, `Put`, `PutAlongAxis`, `PutMask`, `Place`, `FillDiagonal`, `Compress`, `Nonzero`, `Argwhere`, `Flatnonzero`, `CountNonzero` | `Choose` 🚧, `TrilIndices` 🚧, `Unravel` 🚧 |
+| manipulation | `Concatenate`, `Stack`/`VStack`/`HStack`/`ColumnStack`/`DStack`, `Split`/`ArraySplit`/`SplitAt`/`H·V·DSplit`, `Append`/`Insert`/`Delete`, `Flip`/`FlipUD`/`FlipLR`, `Roll`, `Rot90`, `Moveaxis`, `Resize`, `BroadcastArrays`, `Repeat`, `Tile`, `Pad` (10 modes incl. `stat_length`), `Atleast1D/2D/3D` | — |
+| indexing | basic slices, fancy indexing, boolean masks, `Take`, `TakeAlongAxis`, `Put`, `PutAlongAxis`, `PutMask`, `Place`, `FillDiagonal`, `Compress`, `Choose`, `TrilIndices`/`TriuIndices`, `UnravelIndex`, `Nonzero`, `Argwhere`, `Flatnonzero`, `CountNonzero` | — |
 | arithmetic | `Add`/`Subtract`/`Multiply`/`Div`/`FloorDivide`/`Remainder`/`Power`, `Negative`/`Positive`/`Abs`/`Fabs`/`Square`/`Reciprocal`, `Maximum`/`Minimum`, `Clip`, `Round`/`Around`, `Where`/`Select`/`Piecewise` | — |
 | comparison & logic | `Equal`/`NotEqual`/`Less`/`LessEqual`/`Greater`/`GreaterEqual`, `LogicalAnd/Or/Xor/Not`, `AllTrue`/`Any`, `IsNan`/`IsInf`/`IsFinite`/`IsReal`, `IsClose`/`AllClose` | — |
 | bitwise & shifts | `BitwiseAnd`/`BitwiseOr`/`BitwiseXor`/`LeftShift`/`RightShift`/`Invert` (integers and bool; invalid shift counts yield 0 like NumPy) | — |
-| transcendental | `Exp`/`Log`/`Log2`/`Log10`/`Expm1`/`Log1p`/`Sqrt`/`Cbrt`/`Sin`/`Cos`/`Tan`/`Arcsin`/`Arccos`/`Arctan`/`Arctan2`/`Sinh`/`Cosh`/`Tanh`/`Arcsinh`/`Arccosh`/`Arctanh`/`Sinc`, `Deg2Rad`/`Rad2Deg`, `Sign`, `Floor`/`Ceil`/`Trunc`/`Rint` | `Exp2` 🚧 |
+| transcendental | `Exp`/`Exp2`/`Log`/`Log2`/`Log10`/`Expm1`/`Log1p`/`Sqrt`/`Cbrt`/`Sin`/`Cos`/`Tan`/`Arcsin`/`Arccos`/`Arctan`/`Arctan2`/`Sinh`/`Cosh`/`Tanh`/`Arcsinh`/`Arccosh`/`Arctanh`/`Sinc`, `Deg2Rad`/`Rad2Deg`, `Sign`, `Floor`/`Ceil`/`Trunc`/`Rint` | — |
 | reductions | `Sum`/`Prod`/`Mean`/`Var`/`Std`/`Min`/`Max`/`ArgMin`/`ArgMax`/`Median`/`Cumsum`/`Cumprod`, `Average` (weights), `PtP`, all `Nan*` variants (incl. `NanProd`/`NanCumsum`), any `axis` + `keepdims` | — |
 | statistics | `Percentile` (all 13 methods), `Quantile`, `Median`, `Histogram`, `Histogram2D`, `Bincount(weights)`, `Cov`, `CorrCoef`, `Diff` | `CorrCoef` of masked data 🚧 |
-| sorting & sets | `Sort`, `Argsort`, `SearchSorted`, `Digitize`, `Unique` (+`axis`), `UniqueIdx` (returns index/counts), `IsIn`/`Intersect1D`/`Union1D`/`Setdiff1D`/`Setxor1D` | `Partition`/`Argpartition` 🚧 |
+| sorting & sets | `Sort`, `Argsort`, `Partition`, `Argpartition`, `SearchSorted`, `Digitize`, `Unique` (+`axis`), `UniqueIdx` (returns index/counts), `IsIn`/`Intersect1D`/`Union1D`/`Setdiff1D`/`Setxor1D` | — |
 | linalg | `Dot`, `MatMul`, `Inner`, `Outer`, `Einsum`, `Tensordot`, `Det`, `Inv`, `Solve`, `Norm`, `Eigvalsh`, `Eigh`, `Svd`, `Svdvals`, `Slogdet`, `Kron`, `QR`, `Cholesky`, `Pinv`, `Lstsq` (returns x/residuals/rank/s) | general `Eig`/`Eigvals` (non-symmetric) 🚧, complex solvers 🚧 |
 | random | bit-exact legacy `RandomState`/MT19937: `Seed`, `RandomSample`, `StandardNormal`, `Uniform`, `Normal`, `RandInt`, `Permutation`, `Shuffle` | `Generator`/PCG64 family 🚧, `Choice`/`Beta`/`Gamma`/`Poisson` etc. 🚧 |
-| fft | `FFT`/`IFFT`/`RFFT`/`IRFFT`/`FFTFreq` (radix-2 + Bluestein, any length) | N-D transforms 🚧, `FFTShift`/`FFT2` 🚧 |
+| fft | `FFT`/`IFFT`/`RFFT`/`IRFFT`/`FFTFreq` (radix-2 + Bluestein, any length), `FFTShift`/`IFFTShift` | N-D transforms 🚧, `FFT2` 🚧 |
 | masked arrays | `MaskedArray` (data+mask), `Filled`/`Compressed`/`Count`, masked `Sum`/`Mean`/`Min`/`Max`/`Median`/`Var`/`Std`, `MaskedAdd/Subtract/Multiply/Divide`, `MaskedInvalid`/`MaskedWhere`, predicates | `ma.corrcoef` 🚧 (see limitations), `masked_equal`-style constructors beyond the 8 provided ⚠️ |
 | I/O | `SaveNPY`/`LoadNPY` (+ bytes), `SaveZ`/`SaveZCompressed`/`LoadZ`, `FromBuffer` (zero-copy), `FromFile`/`ToFile`, `SaveTxt`/`LoadTxt` | `Memmap` 🚧, `Genfromtxt` 🚧, `usecols`/per-column dtypes 🚧 |
 | ufunc protocol | `BinaryOut`/`UnaryOut` (`out=`), `BinaryWhere`/`UnaryWhere` (`where=`), `Reduce`, `Accumulate`, `UfuncOuter` | `at`/`buffers`/`signature` keywords 🚧 |

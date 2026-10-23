@@ -2240,6 +2240,35 @@ def _main_funcs() -> int:
                                      [_x, _res, np.asarray(_rank, dtype="<i8"), _sv],
                                      note="最小二乘 (x, residuals, rank, s)", tol=1e-10))
 
+# —— 形状/索引小工具(Step 36)——
+    rza = arr("i8", [1, 2, 3])
+    entries.append(_emit_shape("funcs_resize", "resize", [("a", rza)], np.resize(rza, 5),
+                               note="按元素循环填充", args={"axis": [5]}))
+    cidx = arr("i8", [0, 1, 0])
+    cc1 = arr("i8", [1, 2, 3])
+    cc2 = arr("i8", [10, 20, 30])
+    entries.append(_emit_shape("funcs_choose", "choose",
+                               [("idx", cidx), ("c0", cc1), ("c1", cc2)],
+                               np.choose(cidx, [cc1, cc2]), note="按索引从候选里取"))
+    _tr, _tc = np.tril_indices(3)
+    _ur, _uc = np.triu_indices(3)
+    _uidx = arr("i8", [5, 11])
+    _r0, _r1 = np.unravel_index(_uidx, (3, 4))
+    entries.append(_emit_multi_funcs("funcs_unravel_index", "unravel_index", [("a", _uidx)],
+                                     [_r0.astype("<i8"), _r1.astype("<i8")],
+                                     note="展平下标 → 各维下标", args={"axis": [3, 4]}))
+    _fe = arr("f8", [1.0, 2.0, 3.0, 4.0])
+    entries.append(_emit_shape("funcs_fftshift", "fftshift", [("a", _fe)],
+                               np.fft.fftshift(_fe), note="前后半段互换"))
+    _fo = arr("f8", [0.0, 1.0, 2.0, 3.0, 4.0])
+    entries.append(_emit_shape("funcs_ifftshift", "ifftshift", [("a", _fo)],
+                               np.fft.ifftshift(_fo), note="奇长时的逆移位"))
+    entries.append(_emit_rel("funcs_exp2", "exp2", [("a", arr("f8", [1.0, 2.0, 3.0]))],
+                             np.exp2(arr("f8", [1.0, 2.0, 3.0])), note="2 的幂", tol=1e-15))
+    _ncp = arr("f8", [1.0, np.nan, 3.0])
+    entries.append(_emit_shape("funcs_nancumprod", "nancumprod", [("a", _ncp)],
+                               np.nancumprod(_ncp), note="NaN 当 1 的前缀积"))
+
 # 写 manifest_funcs.json(第五份;不碰旧四份 manifest 及其 npy)
     mf_path = os.path.join(REFDIR, "manifest_funcs.json")
     prev_gen = _load_prev_generated(mf_path)

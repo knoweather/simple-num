@@ -5428,5 +5428,129 @@
   "generated": "2026-10-23T08:09:40Z",
   "note": "最小二乘 (x, residuals, rank, s)",
   "tol": 1e-10
+ },
+ {
+  "name": "funcs_resize",
+  "op": "resize",
+  "inputs": [
+   "cases/funcs_resize_a.npy"
+  ],
+  "expect": "cases/funcs_resize_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T08:23:26Z",
+  "note": "按元素循环填充",
+  "args": {
+   "axis": [
+    5
+   ]
+  },
+  "out_shape": [
+   5
+  ]
+ },
+ {
+  "name": "funcs_choose",
+  "op": "choose",
+  "inputs": [
+   "cases/funcs_choose_idx.npy",
+   "cases/funcs_choose_c0.npy",
+   "cases/funcs_choose_c1.npy"
+  ],
+  "expect": "cases/funcs_choose_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T08:23:26Z",
+  "note": "按索引从候选里取",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_unravel_index",
+  "op": "unravel_index",
+  "inputs": [
+   "cases/funcs_unravel_index_a.npy"
+  ],
+  "outputs": [
+   "cases/funcs_unravel_index_out0.npy",
+   "cases/funcs_unravel_index_out1.npy"
+  ],
+  "out_shapes": [
+   [
+    2
+   ],
+   [
+    2
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T08:23:26Z",
+  "note": "展平下标 → 各维下标",
+  "args": {
+   "axis": [
+    3,
+    4
+   ]
+  }
+ },
+ {
+  "name": "funcs_fftshift",
+  "op": "fftshift",
+  "inputs": [
+   "cases/funcs_fftshift_a.npy"
+  ],
+  "expect": "cases/funcs_fftshift_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T08:23:26Z",
+  "note": "前后半段互换",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_ifftshift",
+  "op": "ifftshift",
+  "inputs": [
+   "cases/funcs_ifftshift_a.npy"
+  ],
+  "expect": "cases/funcs_ifftshift_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T08:23:26Z",
+  "note": "奇长时的逆移位",
+  "out_shape": [
+   5
+  ]
+ },
+ {
+  "name": "funcs_exp2",
+  "op": "exp2",
+  "inputs": [
+   "cases/funcs_exp2_a.npy"
+  ],
+  "expect": "cases/funcs_exp2_out.npy",
+  "region": "rel",
+  "tol": 1e-15,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T08:23:26Z",
+  "note": "2 的幂"
+ },
+ {
+  "name": "funcs_nancumprod",
+  "op": "nancumprod",
+  "inputs": [
+   "cases/funcs_nancumprod_a.npy"
+  ],
+  "expect": "cases/funcs_nancumprod_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T08:23:26Z",
+  "note": "NaN 当 1 的前缀积",
+  "out_shape": [
+   3
+  ]
  }
 ]
