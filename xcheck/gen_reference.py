@@ -2269,6 +2269,24 @@ def _main_funcs() -> int:
     entries.append(_emit_shape("funcs_nancumprod", "nancumprod", [("a", _ncp)],
                                np.nancumprod(_ncp), note="NaN 当 1 的前缀积"))
 
+# —— N 维 FFT / nan_to_num / diag_indices(Step 37)——
+    # 选一组 FFT 结果无精确零点的输入:相对容差在期望为 0 时没有意义
+    _fa = arr("f8", [[1.0, 2.0], [3.0, 5.0]])
+    entries.append(_emit_rel("funcs_fft2", "fft2", [("a", _fa)],
+                             np.fft.fft2(_fa), note="二维 FFT(逆向按两轴长度缩放)", tol=1e-9))
+    _fb = arr("f8", [[[float(i * 12 + j * 4 + k) for k in range(4)] for j in range(3)] for i in range(2)])
+    entries.append(_emit_rel("funcs_fftn_axes", "fftn", [("a", _fb)],
+                             np.fft.fftn(_fb, axes=(0, 2)),
+                             note="指定轴的 N 维 FFT", args={"axis": [0, 2]}, tol=1e-9))
+    _nn = arr("f8", [np.nan, np.inf, -np.inf, 1.0])
+    entries.append(_emit_shape("funcs_nan_to_num", "nan_to_num", [("a", _nn)],
+                               np.nan_to_num(_nn), note="NaN→0, ±Inf→±MaxFloat64"))
+    _dq = arr("f8", [[1.0, 0.0], [0.0, 1.0]])
+    _d0, _d1 = np.diag_indices_from(_dq)
+    entries.append(_emit_multi_funcs("funcs_diag_indices_from", "diag_indices_from",
+                                     [("a", _dq)], [_d0.astype("<i8"), _d1.astype("<i8")],
+                                     note="方阵对角线各维下标"))
+
 # 写 manifest_funcs.json(第五份;不碰旧四份 manifest 及其 npy)
     mf_path = os.path.join(REFDIR, "manifest_funcs.json")
     prev_gen = _load_prev_generated(mf_path)

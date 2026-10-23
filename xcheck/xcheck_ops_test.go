@@ -368,6 +368,21 @@ func init() {
 		},
 		"nancumprod": func(ins []*num.Array, args caseArgs) (*num.Array, error) {
 			return num.NanCumprod(ins[0], args.Axis)
+		}, // —— N 维 FFT / nan_to_num(Step 37)——
+		"fft2": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.FFT2(ins[0])
+		},
+		"ifft2": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.IFFT2(ins[0])
+		},
+		"fftn": func(ins []*num.Array, args caseArgs) (*num.Array, error) {
+			return num.FFTN(ins[0], args.Axis)
+		},
+		"ifftn": func(ins []*num.Array, args caseArgs) (*num.Array, error) {
+			return num.IFFTN(ins[0], args.Axis)
+		},
+		"nan_to_num": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.NanToNum(ins[0], num.NanToNumOptions{})
 		}, // —— ufunc 补充批(Step 31)——
 		"negative": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
 			return num.Negative(ins[0])
@@ -789,7 +804,9 @@ func init() {
 		"qr": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
 			return num.QR(ins[0])
 		},
-		"unravel_index": func(ins []*num.Array, args caseArgs) ([]*num.Array, error) {
+		"diag_indices_from": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
+			return num.DiagIndicesFrom(ins[0])
+		}, "unravel_index": func(ins []*num.Array, args caseArgs) ([]*num.Array, error) {
 			return num.UnravelIndex(ins[0], args.Axis)
 		}, "lstsq": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
 			return num.Lstsq(ins[0], ins[1])

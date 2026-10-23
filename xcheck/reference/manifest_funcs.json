@@ -5552,5 +5552,75 @@
   "out_shape": [
    3
   ]
+ },
+ {
+  "name": "funcs_fft2",
+  "op": "fft2",
+  "inputs": [
+   "cases/funcs_fft2_a.npy"
+  ],
+  "expect": "cases/funcs_fft2_out.npy",
+  "region": "rel",
+  "tol": 1e-09,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T08:53:08Z",
+  "note": "二维 FFT(逆向按两轴长度缩放)"
+ },
+ {
+  "name": "funcs_fftn_axes",
+  "op": "fftn",
+  "inputs": [
+   "cases/funcs_fftn_axes_a.npy"
+  ],
+  "expect": "cases/funcs_fftn_axes_out.npy",
+  "region": "rel",
+  "tol": 1e-09,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T08:53:08Z",
+  "note": "指定轴的 N 维 FFT",
+  "args": {
+   "axis": [
+    0,
+    2
+   ]
+  }
+ },
+ {
+  "name": "funcs_nan_to_num",
+  "op": "nan_to_num",
+  "inputs": [
+   "cases/funcs_nan_to_num_a.npy"
+  ],
+  "expect": "cases/funcs_nan_to_num_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T08:53:08Z",
+  "note": "NaN→0, ±Inf→±MaxFloat64",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_diag_indices_from",
+  "op": "diag_indices_from",
+  "inputs": [
+   "cases/funcs_diag_indices_from_a.npy"
+  ],
+  "outputs": [
+   "cases/funcs_diag_indices_from_out0.npy",
+   "cases/funcs_diag_indices_from_out1.npy"
+  ],
+  "out_shapes": [
+   [
+    2
+   ],
+   [
+    2
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T08:53:08Z",
+  "note": "方阵对角线各维下标"
  }
 ]
