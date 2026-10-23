@@ -5,9 +5,9 @@ import (
 )
 
 // bench 基线。1e6 元素量级,标定引擎分发开销与工厂/IO 吞吐。
-// - Add 走 _test_add 内核(ufunc_test.go 注册);引擎路径与 B 的正式 impl_*.go 内核
+// - Add 走 _test_add 内核(ufunc_test.go 注册);引擎路径与正式的 impl_*.go 内核
 // 完全同构(同签名同分发),故数字可直接当正式算子的基线。
-// - Sum/Take 已接线:Sum 走 B 的 pairwise.go 正式实现,Take 走 impl_gather.go 正式实现。
+// - Sum/Take 已接线:Sum 走 pairwise.go 的实现,Take 走 impl_gather.go 的实现。
 // - 校准命令:go test -run=^$ -bench=. -benchmem.
 
 const benchN = 1 << 20 // 1e6
@@ -134,7 +134,7 @@ func BenchmarkAsContiguousTransposed1e6(b *testing.B) {
 	}
 }
 
-// Sum 全归约:axis=nil → 标量(0 维)结果,走 B 的 pairwise.go 正式实现。
+// Sum 全归约:axis=nil → 标量(0 维)结果,走 pairwise.go 的实现。
 func BenchmarkSumF64_1e6(b *testing.B) {
 	x, _ := benchPair(b)
 	b.SetBytes(int64(benchN) * 8)
@@ -147,7 +147,7 @@ func BenchmarkSumF64_1e6(b *testing.B) {
 	}
 }
 
-// Take:1e6 f64 源 + int64 索引全量 gather,走 B 的 impl_gather.go 正式实现。
+// Take:1e6 f64 源 + int64 索引全量 gather,走 impl_gather.go 的实现。
 func BenchmarkTakeF64_1e6(b *testing.B) {
 	src, _ := benchPair(b)
 	idx, err := Arange(0, benchN, 1, DInt64)

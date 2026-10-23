@@ -2,7 +2,7 @@ package num
 
 // T7/T8 单测(B)。期望值 = numpy 2.5.4 实测探针字面量(与 xcheck/reference fixtures
 // 同源, §5)。f64/f32 逐位比对(bits),NaN 断言双方皆 NaN(payload 由
-// xcheck npy gate 逐字节兜底)。getI/rootOf 借用 A 的测试辅助(同包)。
+// xcheck npy gate 逐字节兜底)。getI/rootOf 借用测试辅助(同包)。
 
 import (
 	"errors"

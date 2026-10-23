@@ -250,6 +250,10 @@ func init() {
 		"maximum": num.Maximum, "minimum": num.Minimum, "arctan2": num.Arctan2,
 		"logical_and": num.LogicalAnd, "logical_or": num.LogicalOr,
 		"logical_xor": num.LogicalXor,
+		// 位运算(整型/bool;浮点拒绝)
+		"bitwise_and": num.BitwiseAnd, "bitwise_or": num.BitwiseOr,
+		"bitwise_xor": num.BitwiseXor, "left_shift": num.LeftShift,
+		"right_shift": num.RightShift,
 	}
 	unaryOps = map[string]unaryFunc{
 		"abs": num.Abs, "exp": num.Exp, "log": num.Log, "log10": num.Log10,

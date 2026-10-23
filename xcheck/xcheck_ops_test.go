@@ -13,9 +13,9 @@ import (
 //
 // 填了谁,消费端(`xcheck_test.go`)就真的跑谁并按 manifest 的 region 逐位/阈值对拍
 // (bitwise 逐位含 NaN 位型与 ±0;rel 用该案的 `tol`)。没填的 op 只做 fixture 校验
-// 并记 Log —— 那一层的判定由 B 的内核测试兜,不在这里静默通过。
+// 并记 Log —— 那一层的判定由内核测试兜,不在这里静默通过。
 //
-// 为什么单独成一个文件:算子入口(`num.Add` 等)在 B 的 `impl_arith.go` 里 —— 只有
+// 为什么单独成一个文件:算子入口(`num.Add` 等)在 `impl_arith.go` 里 —— 只有
 // 本文件登记算子入口;签名与实现逐项对齐,未注册的 `funcs_` 案会直接失败。
 // `impl_arith.go`(四则 7 算子随 T7/T8 进公共前缀 `9986ae0`),故这里登记**四则 7 个**。
 //
@@ -30,7 +30,7 @@ import (
 //
 //	xcheckReduceOps(归约,签名 func(a *Array, axis []int, keepdims bool) (*Array, error),
 // 轴与 keepdim 由 manifest 的 `args` 带):10 个 —— 归约全真是 `num.AllTrue`,
-// **不是** `num.All`(A 的 index.go 占用了该名)。
+// **不是** `num.All`(那里 `All` 是索引器,不是归约)。
 //
 //	xcheckGatherOps(gather/掩码,签名 func(ins []*Array, args caseArgs) (*Array, error)):
 // 6 个(take/take_along_axis/put/compress/count_nonzero/bincount),取自第三清单
@@ -302,6 +302,48 @@ func init() {
 		},
 		"cross": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
 			return num.Cross(ins[0], ins[1])
+		},
+		// —— 位运算 + 小工具(Step 34)——
+		"bitwise_and": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.BitwiseAnd(ins[0], ins[1])
+		},
+		"bitwise_or": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.BitwiseOr(ins[0], ins[1])
+		},
+		"bitwise_xor": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.BitwiseXor(ins[0], ins[1])
+		},
+		"left_shift": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.LeftShift(ins[0], ins[1])
+		},
+		"right_shift": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.RightShift(ins[0], ins[1])
+		},
+		"rot90": func(ins []*num.Array, args caseArgs) (*num.Array, error) {
+			ax1, ax2 := 0, 1
+			if len(args.Axis) >= 2 {
+				ax1, ax2 = args.Axis[0], args.Axis[1]
+			}
+			return num.Rot90(ins[0], args.K, ax1, ax2)
+		},
+		"average": func(ins []*num.Array, args caseArgs) (*num.Array, error) {
+			var w *num.Array
+			if len(ins) > 1 {
+				w = ins[1]
+			}
+			return num.Average(ins[0], args.Axis, w)
+		},
+		"ptp": func(ins []*num.Array, args caseArgs) (*num.Array, error) {
+			return num.PtP(ins[0], args.Axis, args.Keepdim)
+		},
+		"nanprod": func(ins []*num.Array, args caseArgs) (*num.Array, error) {
+			return num.NanProd(ins[0], args.Axis, args.Keepdim)
+		},
+		"nancumsum": func(ins []*num.Array, args caseArgs) (*num.Array, error) {
+			return num.NanCumsum(ins[0], args.Axis)
+		},
+		"kron": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.Kron(ins[0], ins[1])
 		}, // —— ufunc 补充批(Step 31)——
 		"negative": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
 			return num.Negative(ins[0])
@@ -719,6 +761,21 @@ func init() {
 		},
 		"unique_idx": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
 			return num.UniqueIdx(ins[0])
+		},
+		"slogdet": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
+			sign, logdet, err := num.Slogdet(ins[0])
+			if err != nil {
+				return nil, err
+			}
+			s, err := scalarArr(sign)
+			if err != nil {
+				return nil, err
+			}
+			l, err := scalarArr(logdet)
+			if err != nil {
+				return nil, err
+			}
+			return []*num.Array{s, l}, nil
 		}, "array_split": func(ins []*num.Array, args caseArgs) ([]*num.Array, error) {
 			ax := 0
 			if len(args.Axis) > 0 {

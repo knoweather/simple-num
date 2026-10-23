@@ -10,7 +10,7 @@ import (
 //
 // Eigvalsh / Eigh:对称矩阵用**循环 Jacobi 旋转**(数值稳定、实现简单),
 // 只读下三角(与 numpy 的 UPLO='L' 口径一致),特征值**升序**返回。
-// Svd / Svdvals:用**单边 Jacobi**(对列做正交化),数值精度优于 AᵀA 的路线,
+// Svd / Svdvals:用**单边 Jacobi**(对列做正交化),数值精度优于 AᵀA 这条路线,
 // 奇异值**降序**返回,只给 thin SVD(U 为 m×k、Vt 为 k×n,k=min(m,n))。
 
 // jacobiEigenSym 对对称矩阵做循环 Jacobi 分解(输入按行主序,内部会修改)。

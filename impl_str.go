@@ -10,7 +10,7 @@ package num
 // numpy TypeError → ErrDtype;
 // - numpy 的 np.add(S,S)/np.add(U,U) 支持**字符串拼接**(→ 更宽 dtype),
 // 本库明确"字符运算不做" → 返回 ErrDtype;
-// - 存取/编解码/npy 往返由 A 的 codec 承担(本文件只补比较面)。
+// - 存取/编解码/npy 往返由 codec 承担(本文件只补比较面)。
 
 import "fmt"
 

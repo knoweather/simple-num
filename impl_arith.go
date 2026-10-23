@@ -4,7 +4,7 @@ package num
 //
 // 语义基准:numpy 2.5.4 实测 + npy_math 源码考据,逐条记 §2。
 // 挂载:A 引擎的 dispatchBinary(ufunc.go)经 typed 注册面
-// (registerBinaryTyped / registerBinarySpec);入口函数(Add/Sub/...)是 B 的
+// (registerBinaryTyped / registerBinarySpec);入口函数(Add/Sub/...)是公共
 // 适配层,负责 numpy 类型解析在引擎单值 ForceOut 表达不了的部分:
 // - add/multiply 的 bool×bool:numpy 保 bool → ForceOut=Bool 特种算子;
 // - subtract 的 bool×bool:numpy 拒 → 入口层 ErrDtype( 同构);
@@ -22,7 +22,7 @@ import (
 // integer powers are not allowed.";四哨兵无对应项,暂包 ErrDtype,)。
 var errPowNegExp = errors.New("num: integer to negative integer powers")
 
-// —— 内核类型约束(与 kindOfVal 的绑定由 A 的 typed 注册面完成)——
+// —— 内核类型约束(与 kindOfVal 的绑定由 typed 注册面完成)——
 type (
 	Ints interface {
 		int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
@@ -431,7 +431,7 @@ func f16ScalarPair(op string, elem func(x, y float32) float32) {
 	registerBinaryScalar(op, l, r)
 }
 
-// —— 注册(init 分片合入;A 的 _test_ 名与 B 的算子名不冲突,)——
+// —— 注册(init 分片合入;_test_ 名与正式算子名不冲突,)——
 
 func init() {
 	// bool×bool 特种算子(路由见 Add/Multiply 入口)。
@@ -530,7 +530,7 @@ func arithFloats[T FloatKinds]() {
 	registerScalarPair[T]("power", powFE[T])
 }
 
-// —— 适配入口(B 的公共 API 面;算子名 = numpy ufunc 名,Go 侧 PascalCase)——
+// —— 适配入口(公共 API 面;算子名 = numpy ufunc 名,Go 侧 PascalCase)——
 //
 // 语义与错误模型:广播/晋级/零除/边角全部按 §2;错误 fail-loud
 // wrap 四哨兵,禁 panic。

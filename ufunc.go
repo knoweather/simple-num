@@ -10,7 +10,7 @@ import (
 // 引擎保证窗基址 8 字节对齐、元素边界、等长(/)。错误只出形状/零除类。
 // 内核适配(B,impl_*.go init)走 registerUnarySpec/registerBinarySpec 或
 // typed 便捷口(registerUnaryTyped/registerBinaryTyped/registerCompareTyped);
-// 晋级策略(unaryFallback/ForceOut)由 B 按 numpy 实测在注册时声明:
+// 晋级策略(unaryFallback/ForceOut)按 numpy 实测在注册时声明:
 // - exp/log/sin/... 整型输入 → Float64(numpy ufunc 类型解析,int 无循环);
 // - div(True divide)任意整型对 → Float64;
 // - cmp 系列(lt/eq/...)→ ForceOut=Bool(registerCompareTyped 自动完成)。

@@ -32,12 +32,12 @@ import (
 // 整数零除:**不设特例**,本库与 numpy 同为「元素 0、不报错」
 // (ErrZeroDiv 留给真正会报错的路径,如 Arange step=0),故 reference 里那些 0 就是比对目标。
 
-// xcheckOps op 名(manifest 的 "op" 字段)→ 二元算子入口。由 A 的注册文件
+// xcheckOps op 名(manifest 的 "op" 字段)→ 二元算子入口。由 xcheck_ops_test.go
 // 填充;未注册的 op 在第 1 层只做 fixture 校验并记 Log。
 var xcheckOps = map[string]func(a, b *num.Array) (*num.Array, error){}
 
 // xcheckUnaryOps 一元 op 名 → 入口(签名 `func(x *Array) (*Array, error)`)。
-// 与 xcheckOps 同为 A 的注册文件填充。
+// 与 xcheckOps 同为 xcheck_ops_test.go 填充。
 var xcheckUnaryOps = map[string]func(x *num.Array) (*num.Array, error){}
 
 // xcheckReduceOps 归约 op 名 → 入口(轴的表达走 manifest 的 `args{axis,keepdim}`)。
@@ -98,7 +98,7 @@ type caseArgs struct {
 	Discont    float64   `json:"discont,omitempty"`
 }
 
-// manifestCase reference manifest 条目(B 的 gen_reference.py 落盘口径,字段以
+// manifestCase reference manifest 条目(gen_reference.py 落盘口径,字段以
 // reference/manifest.json 为准;未知字段忽略,新字段按需消费)。
 type manifestCase struct {
 	Name   string   `json:"name"`
@@ -123,13 +123,13 @@ const refRoot = "../xcheck/reference"
 func TestReferenceManifest(t *testing.T) {
 	raw, err := os.ReadFile(filepath.Join(refRoot, "manifest.json"))
 	if err != nil {
-		t.Skipf("参考数据未生成(B 的 gen_reference.py),消费端待生成后生效:%v", err)
+		t.Skipf("参考数据未生成(gen_reference.py),消费端待生成后生效:%v", err)
 	}
 	var cases []manifestCase
 	if err := json.Unmarshal(raw, &cases); err != nil {
 		t.Fatalf("manifest 解码失败:%v", err)
 	}
-	// 归约案在 B 的第二份 manifest(manifest_agg.json):文件不存在只记一行继续;
+	// 归约案在第二份 manifest(manifest_agg.json):文件不存在只记一行继续;
 	// 存在则并入同一 cases 切片(case 名跨文件查重,见下面的 seen)。
 	// 注意:json.Unmarshal 会复用非空切片的已有元素,故解进临时切片再 append。
 	if rawAgg, err := os.ReadFile(filepath.Join(refRoot, "manifest_agg.json")); err != nil {
@@ -142,7 +142,7 @@ func TestReferenceManifest(t *testing.T) {
 		cases = append(cases, agg...)
 		t.Logf("manifest_agg.json 已并入,合计 %d 案", len(cases))
 	}
-	// gather/掩码案在 B 的第三份 manifest(manifest_gather.json):同口径——文件不存在只记一行继续;
+	// gather/掩码案在第三份 manifest(manifest_gather.json):同口径——文件不存在只记一行继续;
 	// 存在则并入同一 cases 切片(case 名跨清单查重,见下面的 seen)。
 	if rawG, err := os.ReadFile(filepath.Join(refRoot, "manifest_gather.json")); err != nil {
 		t.Logf("manifest_gather.json 未生成:%v(本轮不含 gather/掩码案)", err)
@@ -154,7 +154,7 @@ func TestReferenceManifest(t *testing.T) {
 		cases = append(cases, g...)
 		t.Logf("manifest_gather.json 已并入,合计 %d 案", len(cases))
 	}
-	// 多输出案(nonzero)在 B 的第四份 manifest(manifest_nonzero.json):同口径——文件不存在
+	// 多输出案(nonzero)在第四份 manifest(manifest_nonzero.json):同口径——文件不存在
 	// 只记一行继续;存在则并入同一 cases 切片(case 名跨清单查重,见下面的 seen)。
 	if rawN, err := os.ReadFile(filepath.Join(refRoot, "manifest_nonzero.json")); err != nil {
 		t.Logf("manifest_nonzero.json 未生成:%v(本轮不含多输出案)", err)
@@ -285,7 +285,7 @@ func TestReferenceManifest(t *testing.T) {
 }
 
 // isReduceCase 判定归约案( 豁免的口径):op 在归约注册表里,或 manifest 的 args
-// 带了 axis / keepdim(B 的生成端只在归约案上写这两个字段)。
+// 带了 axis / keepdim(生成端只在归约案上写这两个字段)。
 func isReduceCase(c manifestCase) bool {
 	_, ok := xcheckReduceOps[c.Op]
 	return ok || c.Args.Axis != nil || c.Args.Keepdim
@@ -297,12 +297,12 @@ func hasOutShape(c manifestCase) bool {
 }
 
 // runMultiOp 按 case 取多输出入口(第五张表 xcheckMultiOps,第四清单的 nonzero 这类案)。
-// 未登记则只记 Log,判定交给 B 的内核测试(与 runCaseOp 同口径,这一层不静默通过)。
+// 未登记则只记 Log,判定交给内核测试(与 runCaseOp 同口径,这一层不静默通过)。
 func runMultiOp(t *testing.T, c manifestCase, ins []*num.Array) ([]*num.Array, bool) {
 	t.Helper()
 	fn, ok := xcheckMultiOps[c.Op]
 	if !ok {
-		t.Logf("op=%s(多输出)入口未注册(内核在 B 的后续提交里);本分支只做 fixture 校验", c.Op)
+		t.Logf("op=%s(多输出)入口未注册(该算子尚未接入);本分支只做 fixture 校验", c.Op)
 		return nil, false
 	}
 	got, err := fn(ins, c.Args)
@@ -313,7 +313,7 @@ func runMultiOp(t *testing.T, c manifestCase, ins []*num.Array) ([]*num.Array, b
 }
 
 // runCaseOp 按 case 取入口并执行(返回 ran=false 表示本分支未注册该 op:只做 fixture
-// 校验并记 Log,判定交给 B 的内核测试;这一层不做"静默通过")。多输出案由 runMultiOp
+// 校验并记 Log,判定交给内核测试;这一层不做"静默通过")。多输出案由 runMultiOp
 // (第五张表)先行分流、不进本函数;本函数内 gather/掩码表先行短路,
 // 其后按元数分一元/二元/归约三表(既有分发行为零变化)。
 // - gather/掩码(第三清单):xcheckGatherOps(take/take_along_axis/put/compress/count_nonzero/bincount);
@@ -351,7 +351,7 @@ func runCaseOp(t *testing.T, c manifestCase, ins []*num.Array) (*num.Array, bool
 			}
 			return got, true
 		}
-		t.Logf("op=%s(1 元)一元/归约入口均未注册(内核在 B 的后续提交里);本分支只做 fixture 校验", c.Op)
+		t.Logf("op=%s(1 元)一元/归约入口均未注册(该算子尚未接入);本分支只做 fixture 校验", c.Op)
 	case 2:
 		if fn, ok := xcheckOps[c.Op]; ok {
 			got, err := fn(ins[0], ins[1])
@@ -360,7 +360,7 @@ func runCaseOp(t *testing.T, c manifestCase, ins []*num.Array) (*num.Array, bool
 			}
 			return got, true
 		}
-		t.Logf("op=%s 二元入口未注册(内核在 B 的后续提交里);本分支只做 fixture 校验", c.Op)
+		t.Logf("op=%s 二元入口未注册(该算子尚未接入);本分支只做 fixture 校验", c.Op)
 	default:
 		if fn, ok := xcheckReduceOps[c.Op]; ok {
 			got, err := fn(ins[0], c.Args.Axis, c.Args.Keepdim)

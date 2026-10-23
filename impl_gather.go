@@ -13,7 +13,7 @@ package num
 //
 // 实现:纯字节级拷贝(itemsize 步进),与 dtype 无关 —— f16/complex/S/U 也能
 // gather(不经过 decode/encode);Put 的取值/写回走 decodeOne/encodeOne
-// (复用 A 的编解码,含截断与回绕语义)。
+// (复用编解码,含截断与回绕语义)。
 
 import "fmt"
 

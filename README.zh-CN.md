@@ -129,7 +129,7 @@ node wasm/smoke/smoke.mjs    # 构建 + 加载 + 跑一遍 JS API 断言
 用例会声明一个相对容差。
 
 - **与 NumPy 的参考数据对拍**（`xcheck/`）：由 `xcheck/gen_reference.py` 产出
-  **477 案 / 484 子测试**，覆盖整型/浮点/复数、广播、±0/NaN/Inf、整型溢出、
+  **492 案 / 499 子测试**，覆盖整型/浮点/复数、广播、±0/NaN/Inf、整型溢出、
   按轴归约、gather/掩码索引、多输出算子与整个函数面。两种比较区：逐位
   （完全相等，含 NaN 位型）与相对容差（FFT、LU、`sinc`）。
 - **未注册即失败**：manifest 里的算子若没有对应实现，测试直接失败，而不是悄悄算通过。
@@ -169,17 +169,18 @@ wasm/                                                 WebAssembly 桥接与 JS �
 | 领域 | 已支持 | 尚未支持（计划） |
 |---|---|---|
 | dtype | `bool`、`int8…int64`、`uint8…uint64`、`float16/32/64`、`complex64/128`、定宽 `S`/`U`、`datetime64` | `float128` 🚧、`timedelta64` 🚧、结构化/记录 dtype 🚧、`object` 🚧 |
-| 构造 | `FromSlice`、`Zeros`、`Ones`、`Empty`、`Full`、`Eye`、`Identity`、`Arange`、`LinSpace`、`MeshGrid`、`Diag`、`Diagflat` | `LogSpace` 🚧、`GeomSpace` 🚧、`FromIter` 🚧、`FromString` 🚧、`Vander` 🚧、`Tri` 🚧 |
+| 构造 | `FromSlice`、`Zeros`、`Ones`、`Empty`、`Full`、`Eye`、`Identity`、`Arange`、`LinSpace`、`LogSpace`、`GeomSpace`、`MeshGrid`、`Diag`、`Diagflat` | `FromIter` 🚧、`FromString` 🚧、`Vander` 🚧、`Tri` 🚧 |
 | 形状与视图 | `Reshape`、`Ravel`、`Transpose`、`Squeeze`、`ExpandDims`、`SwapAxes`、`BroadcastTo`、`Sub`（能零拷贝的都零拷贝） | `Moveaxis` 🚧、`Resize` 🚧、`BroadcastArrays` 🚧 |
-| 拼装与切分 | `Concatenate`、`Stack`/`VStack`/`HStack`/`ColumnStack`/`DStack`、`Split`/`ArraySplit`/`SplitAt`/`H·V·DSplit`、`Append`/`Insert`/`Delete`、`Flip`/`FlipUD`/`FlipLR`、`Roll`、`Repeat`、`Tile`、`Pad`（10 种模式，含 `stat_length`）、`Atleast1D/2D/3D` | `Rot90` 🚧、`Triu`/`Tril` 的下标辅助 🚧 |
+| 拼装与切分 | `Concatenate`、`Stack`/`VStack`/`HStack`/`ColumnStack`/`DStack`、`Split`/`ArraySplit`/`SplitAt`/`H·V·DSplit`、`Append`/`Insert`/`Delete`、`Flip`/`FlipUD`/`FlipLR`、`Roll`、`Rot90`、`Repeat`、`Tile`、`Pad`（10 种模式，含 `stat_length`）、`Atleast1D/2D/3D` | `Triu`/`Tril` 的下标辅助 🚧 |
 | 索引 | 基本切片、花式索引、布尔掩码、`Take`、`TakeAlongAxis`、`Put`、`PutAlongAxis`、`PutMask`、`Place`、`FillDiagonal`、`Compress`、`Nonzero`、`Argwhere`、`Flatnonzero`、`CountNonzero` | `Choose` 🚧、`TrilIndices` 🚧、`Unravel` 🚧 |
-| 算术 | `Add`/`Subtract`/`Multiply`/`Div`/`FloorDivide`/`Remainder`/`Power`、`Negative`/`Positive`/`Abs`/`Fabs`/`Square`/`Reciprocal`、`Maximum`/`Minimum`、`Clip`、`Round`/`Around`、`Where`/`Select`/`Piecewise` | 位运算 `&`/`\|`/`^`/`<<`/`>>` 🚧（目前只有 `Invert`） |
+| 算术 | `Add`/`Subtract`/`Multiply`/`Div`/`FloorDivide`/`Remainder`/`Power`、`Negative`/`Positive`/`Abs`/`Fabs`/`Square`/`Reciprocal`、`Maximum`/`Minimum`、`Clip`、`Round`/`Around`、`Where`/`Select`/`Piecewise` | — |
+| 位运算 | `BitwiseAnd`/`BitwiseOr`/`BitwiseXor`/`LeftShift`/`RightShift`/`Invert`（整型与 bool；非法移位量得 0，与 NumPy 一致） | — |
 | 比较与逻辑 | `Equal`/`NotEqual`/`Less`/`LessEqual`/`Greater`/`GreaterEqual`、`LogicalAnd/Or/Xor/Not`、`AllTrue`/`Any`、`IsNan`/`IsInf`/`IsFinite`/`IsReal`、`IsClose`/`AllClose` | — |
 | 超越函数 | `Exp`/`Log`/`Log2`/`Log10`/`Expm1`/`Log1p`/`Sqrt`/`Cbrt`/`Sin`/`Cos`/`Tan`/`Arcsin`/`Arccos`/`Arctan`/`Arctan2`/`Sinh`/`Cosh`/`Tanh`/`Arcsinh`/`Arccosh`/`Arctanh`/`Sinc`、`Deg2Rad`/`Rad2Deg`、`Sign`、`Floor`/`Ceil`/`Trunc`/`Rint` | `Exp2` 🚧 |
-| 归约 | `Sum`/`Prod`/`Mean`/`Var`/`Std`/`Min`/`Max`/`ArgMin`/`ArgMax`/`Median`/`Cumsum`/`Cumprod`，`Nan*` 全家，任意 `axis` + `keepdims` | `Average`（加权）🚧、`PtP` 🚧、`NanProd`/`NanCumsum` 🚧 |
+| 归约 | `Sum`/`Prod`/`Mean`/`Var`/`Std`/`Min`/`Max`/`ArgMin`/`ArgMax`/`Median`/`Cumsum`/`Cumprod`、`Average`（加权）、`PtP`、`Nan*` 全家（含 `NanProd`/`NanCumsum`），任意 `axis` + `keepdims` | — |
 | 统计 | `Percentile`（13 种 method 全支持）、`Quantile`、`Median`、`Histogram`、`Histogram2D`、`Bincount(weights)`、`Cov`、`CorrCoef`、`Diff` | 掩码数据的 `CorrCoef` 🚧 |
 | 排序与集合 | `Sort`、`Argsort`、`SearchSorted`、`Digitize`、`Unique`（含 `axis`）、`UniqueIdx`（返回下标/计数）、`IsIn`/`Intersect1D`/`Union1D`/`Setdiff1D`/`Setxor1D` | `Partition`/`Argpartition` 🚧 |
-| 线性代数 | `Dot`、`MatMul`、`Inner`、`Outer`、`Einsum`、`Tensordot`、`Det`、`Inv`、`Solve`、`Norm`、`Eigvalsh`、`Eigh`、`Svd`、`Svdvals` | 一般 `Eig`/`Eigvals`（非对称）🚧、`QR` 🚧、`Cholesky` 🚧、`Lstsq` 🚧、`Pinv` 🚧、`Slogdet` 🚧、`Kron` 🚧、复数求解 🚧 |
+| 线性代数 | `Dot`、`MatMul`、`Inner`、`Outer`、`Einsum`、`Tensordot`、`Det`、`Inv`、`Solve`、`Norm`、`Eigvalsh`、`Eigh`、`Svd`、`Svdvals`、`Slogdet`、`Kron` | 一般 `Eig`/`Eigvals`（非对称）🚧、`QR` 🚧、`Cholesky` 🚧、`Lstsq` 🚧、`Pinv` 🚧、复数求解 🚧 |
 | 随机数 | 逐位复刻 legacy `RandomState`/MT19937：`Seed`、`RandomSample`、`StandardNormal`、`Uniform`、`Normal`、`RandInt`、`Permutation`、`Shuffle` | `Generator`/PCG64 系列 🚧、`Choice`/`Beta`/`Gamma`/`Poisson` 等 🚧 |
 | FFT | `FFT`/`IFFT`/`RFFT`/`IRFFT`/`FFTFreq`（radix-2 + Bluestein，任意长度） | N 维变换 🚧、`FFTShift`/`FFT2` 🚧 |
 | 掩码数组 | `MaskedArray`（数据+掩码）、`Filled`/`Compressed`/`Count`、掩码 `Sum`/`Mean`/`Min`/`Max`/`Median`/`Var`/`Std`、`MaskedAdd/Subtract/Multiply/Divide`、`MaskedInvalid`/`MaskedWhere`、8 个谓词构造器 | `ma.corrcoef` 🚧（见限制说明）、更多 `masked_*` 构造器 ⚠️ |

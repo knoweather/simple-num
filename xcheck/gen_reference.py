@@ -169,9 +169,9 @@ def main(argv=None) -> int:
         return _main_nonzero()
     if "--funcs" in argv:
         return _main_funcs()
-    m = Manifest()   # 逐元素算子(A 的消费端 layer1/2 直接消费)
+    m = Manifest()   # 逐元素算子(消费端 layer1/2 直接消费)
     ma = Manifest()  # 归约算子(输出形状与输入不可广播;
- # B 的 impl_agg_test/pairwise_test 按名直读 cases/*.npy)
+ # impl_agg_test/pairwise_test 按名直读 cases/*.npy)
 
  # —— add:同形 × dtype 面 ——
     binop(m, "add_f8_same", "add", "f8", [1.5, -2.25, 3.125, 0.0], "f8", [0.5, 0.25, -6.0, 0.0],
@@ -2172,7 +2172,54 @@ def _main_funcs() -> int:
                                np.cross(cb, arr("f8", [0.0, 0.0, 1.0])),
                                note="批量叉积(前导维广播)"))
 
- # 写 manifest_funcs.json(第五份;不碰旧四份 manifest 及其 npy)
+ # —— 位运算 + 小工具(Step 34)——
+    ba1 = arr("i4", [6, 3, -4])
+    bb1 = arr("i4", [3, 5, 1])
+    entries.append(_emit_shape("funcs_bitwise_and", "bitwise_and", [("a", ba1), ("b", bb1)],
+                           np.bitwise_and(ba1, bb1), note="按位与"))
+    entries.append(_emit_shape("funcs_bitwise_or", "bitwise_or", [("a", ba1), ("b", bb1)],
+                           np.bitwise_or(ba1, bb1), note="按位或"))
+    entries.append(_emit_shape("funcs_bitwise_xor", "bitwise_xor", [("a", ba1), ("b", bb1)],
+                           np.bitwise_xor(ba1, bb1), note="按位异或"))
+    entries.append(_emit_shape("funcs_left_shift", "left_shift", [("a", ba1), ("b", bb1)],
+                           np.left_shift(ba1, bb1), note="左移"))
+    entries.append(_emit_shape("funcs_right_shift", "right_shift", [("a", ba1), ("b", bb1)],
+                           np.right_shift(ba1, bb1), note="右移"))
+    rm = arr("f8", [[0.0, 1.0, 2.0], [3.0, 4.0, 5.0]])
+    entries.append(_emit_shape("funcs_rot90", "rot90", [("a", rm)], np.rot90(rm, 1, axes=(0, 1)),
+                           note="逆时针 90 度", args={"k": 1, "axis": [0, 1]}))
+    entries.append(_emit_shape("funcs_rot90_k3", "rot90", [("a", rm)], np.rot90(rm, 3, axes=(0, 1)),
+                           note="逆时针 270 度", args={"k": 3, "axis": [0, 1]}))
+    av1 = arr("f8", [1.0, 2.0, 3.0])
+    avw = arr("f8", [1.0, 2.0, 2.0])
+    entries.append(_emit_rel("funcs_average", "average", [("a", av1), ("w", avw)],
+                         np.asarray(np.average(av1, weights=avw)),
+                         note="加权平均 2.2", tol=1e-12))
+    av2 = arr("f8", [[1.0, 2.0], [3.0, 4.0]])
+    avw2 = arr("f8", [1.0, 3.0])
+    entries.append(_emit_rel("funcs_average_axis", "average", [("a", av2), ("w", avw2)],
+                         np.average(av2, axis=1, weights=avw2),
+                         note="按轴加权平均", args={"axis": [1]}, tol=1e-12))
+    entries.append(_emit_shape("funcs_ptp", "ptp", [("a", arr("f8", [3.0, 1.0, 4.0, 1.0, 5.0]))],
+                           np.ptp(arr("f8", [3.0, 1.0, 4.0, 1.0, 5.0])), note="峰谷差 4"))
+    entries.append(_emit_shape("funcs_ptp_axis", "ptp", [("a", av2)],
+                           np.ptp(av2, axis=0), note="按轴峰谷差", args={"axis": [0]}))
+    npd = arr("f8", [1.0, np.nan, 3.0])
+    entries.append(_emit_shape("funcs_nanprod", "nanprod", [("a", npd)],
+                           np.nanprod(npd), note="忽略 NaN 的连乘 3"))
+    entries.append(_emit_shape("funcs_nancumsum", "nancumsum", [("a", npd)],
+                           np.nancumsum(npd), note="NaN 当 0 的前缀和 [1,1,4]"))
+    ka = arr("i4", [[1, 2], [3, 4]])
+    kb = arr("i4", [[0, 5], [6, 7]])
+    entries.append(_emit_shape("funcs_kron", "kron", [("a", ka), ("b", kb)], np.kron(ka, kb),
+                           note="Kronecker 积"))
+    sa = arr("f8", [[4.0, 3.0], [2.0, 1.0]])
+    _sign, _logdet = np.linalg.slogdet(sa)
+    entries.append(_emit_multi_funcs("funcs_slogdet", "slogdet", [("a", sa)],
+                                 [np.asarray(_sign), np.asarray(_logdet)],
+                                 note="(符号, log|det|)"))
+
+# 写 manifest_funcs.json(第五份;不碰旧四份 manifest 及其 npy)
     mf_path = os.path.join(REFDIR, "manifest_funcs.json")
     prev_gen = _load_prev_generated(mf_path)
     stamp = _now()

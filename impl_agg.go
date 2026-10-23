@@ -3,7 +3,7 @@ package num
 // :聚合 9 算子(B 自建归约层)。
 //
 // ufunc.go 没有 reduce 注册/分发面,故归约在这里自带分发:
-// 适配层自建归约 —— 复用 A 的 Array 访问面、transformCopy 归一原语与 win[T]
+// 适配层自建归约 —— 复用 Array 访问面、transformCopy 归一原语与 win[T]
 // 视窗,语义按 numpy 2.5.4 实测:
 //
 // - 输出 dtype:sum —— b/i8..i64 → i64、u8..u64 → u64、f4 → f4、f8 → f8;

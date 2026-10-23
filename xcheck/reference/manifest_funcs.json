@@ -5085,5 +5085,261 @@
    2,
    3
   ]
+ },
+ {
+  "name": "funcs_bitwise_and",
+  "op": "bitwise_and",
+  "inputs": [
+   "cases/funcs_bitwise_and_a.npy",
+   "cases/funcs_bitwise_and_b.npy"
+  ],
+  "expect": "cases/funcs_bitwise_and_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "按位与",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_bitwise_or",
+  "op": "bitwise_or",
+  "inputs": [
+   "cases/funcs_bitwise_or_a.npy",
+   "cases/funcs_bitwise_or_b.npy"
+  ],
+  "expect": "cases/funcs_bitwise_or_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "按位或",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_bitwise_xor",
+  "op": "bitwise_xor",
+  "inputs": [
+   "cases/funcs_bitwise_xor_a.npy",
+   "cases/funcs_bitwise_xor_b.npy"
+  ],
+  "expect": "cases/funcs_bitwise_xor_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "按位异或",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_left_shift",
+  "op": "left_shift",
+  "inputs": [
+   "cases/funcs_left_shift_a.npy",
+   "cases/funcs_left_shift_b.npy"
+  ],
+  "expect": "cases/funcs_left_shift_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "左移",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_right_shift",
+  "op": "right_shift",
+  "inputs": [
+   "cases/funcs_right_shift_a.npy",
+   "cases/funcs_right_shift_b.npy"
+  ],
+  "expect": "cases/funcs_right_shift_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "右移",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_rot90",
+  "op": "rot90",
+  "inputs": [
+   "cases/funcs_rot90_a.npy"
+  ],
+  "expect": "cases/funcs_rot90_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "逆时针 90 度",
+  "args": {
+   "k": 1,
+   "axis": [
+    0,
+    1
+   ]
+  },
+  "out_shape": [
+   3,
+   2
+  ]
+ },
+ {
+  "name": "funcs_rot90_k3",
+  "op": "rot90",
+  "inputs": [
+   "cases/funcs_rot90_k3_a.npy"
+  ],
+  "expect": "cases/funcs_rot90_k3_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "逆时针 270 度",
+  "args": {
+   "k": 3,
+   "axis": [
+    0,
+    1
+   ]
+  },
+  "out_shape": [
+   3,
+   2
+  ]
+ },
+ {
+  "name": "funcs_average",
+  "op": "average",
+  "inputs": [
+   "cases/funcs_average_a.npy",
+   "cases/funcs_average_w.npy"
+  ],
+  "expect": "cases/funcs_average_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "加权平均 2.2"
+ },
+ {
+  "name": "funcs_average_axis",
+  "op": "average",
+  "inputs": [
+   "cases/funcs_average_axis_a.npy",
+   "cases/funcs_average_axis_w.npy"
+  ],
+  "expect": "cases/funcs_average_axis_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "按轴加权平均",
+  "args": {
+   "axis": [
+    1
+   ]
+  }
+ },
+ {
+  "name": "funcs_ptp",
+  "op": "ptp",
+  "inputs": [
+   "cases/funcs_ptp_a.npy"
+  ],
+  "expect": "cases/funcs_ptp_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "峰谷差 4",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_ptp_axis",
+  "op": "ptp",
+  "inputs": [
+   "cases/funcs_ptp_axis_a.npy"
+  ],
+  "expect": "cases/funcs_ptp_axis_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "按轴峰谷差",
+  "args": {
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_nanprod",
+  "op": "nanprod",
+  "inputs": [
+   "cases/funcs_nanprod_a.npy"
+  ],
+  "expect": "cases/funcs_nanprod_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "忽略 NaN 的连乘 3",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_nancumsum",
+  "op": "nancumsum",
+  "inputs": [
+   "cases/funcs_nancumsum_a.npy"
+  ],
+  "expect": "cases/funcs_nancumsum_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "NaN 当 0 的前缀和 [1,1,4]",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_kron",
+  "op": "kron",
+  "inputs": [
+   "cases/funcs_kron_a.npy",
+   "cases/funcs_kron_b.npy"
+  ],
+  "expect": "cases/funcs_kron_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "Kronecker 积",
+  "out_shape": [
+   4,
+   4
+  ]
+ },
+ {
+  "name": "funcs_slogdet",
+  "op": "slogdet",
+  "inputs": [
+   "cases/funcs_slogdet_a.npy"
+  ],
+  "outputs": [
+   "cases/funcs_slogdet_out0.npy",
+   "cases/funcs_slogdet_out1.npy"
+  ],
+  "out_shapes": [
+   [],
+   []
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T07:45:45Z",
+  "note": "(符号, log|det|)"
  }
 ]

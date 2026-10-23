@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-// 引擎端到端:stub 内核以 _test_ 前缀注册,与 B 的正式算子名(add/lt/…)隔离,
+// 引擎端到端:stub 内核以 _test_ 前缀注册,与正式算子名(add/lt/…)隔离,
 // 防止注册覆盖次序不确定导致测试相互污染。
 
 func getI(t *testing.T, a *Array, idx ...int) any {
