@@ -343,6 +343,7 @@ func init() {
 	}
 	linalgUnaryOps = map[string]unaryFunc{
 		"inv": num.Inv, "eigvalsh": num.Eigvalsh, "svdvals": num.Svdvals,
+		"cholesky": num.Cholesky, "pinv": num.Pinv,
 		"det": func(a *num.Array) (*num.Array, error) {
 			v, err := num.Det(a)
 			if err != nil {

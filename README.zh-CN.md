@@ -129,7 +129,7 @@ node wasm/smoke/smoke.mjs    # 构建 + 加载 + 跑一遍 JS API 断言
 用例会声明一个相对容差。
 
 - **与 NumPy 的参考数据对拍**（`xcheck/`）：由 `xcheck/gen_reference.py` 产出
-  **492 案 / 499 子测试**，覆盖整型/浮点/复数、广播、±0/NaN/Inf、整型溢出、
+  **496 案 / 503 子测试**，覆盖整型/浮点/复数、广播、±0/NaN/Inf、整型溢出、
   按轴归约、gather/掩码索引、多输出算子与整个函数面。两种比较区：逐位
   （完全相等，含 NaN 位型）与相对容差（FFT、LU、`sinc`）。
 - **未注册即失败**：manifest 里的算子若没有对应实现，测试直接失败，而不是悄悄算通过。
@@ -180,7 +180,7 @@ wasm/                                                 WebAssembly 桥接与 JS �
 | 归约 | `Sum`/`Prod`/`Mean`/`Var`/`Std`/`Min`/`Max`/`ArgMin`/`ArgMax`/`Median`/`Cumsum`/`Cumprod`、`Average`（加权）、`PtP`、`Nan*` 全家（含 `NanProd`/`NanCumsum`），任意 `axis` + `keepdims` | — |
 | 统计 | `Percentile`（13 种 method 全支持）、`Quantile`、`Median`、`Histogram`、`Histogram2D`、`Bincount(weights)`、`Cov`、`CorrCoef`、`Diff` | 掩码数据的 `CorrCoef` 🚧 |
 | 排序与集合 | `Sort`、`Argsort`、`SearchSorted`、`Digitize`、`Unique`（含 `axis`）、`UniqueIdx`（返回下标/计数）、`IsIn`/`Intersect1D`/`Union1D`/`Setdiff1D`/`Setxor1D` | `Partition`/`Argpartition` 🚧 |
-| 线性代数 | `Dot`、`MatMul`、`Inner`、`Outer`、`Einsum`、`Tensordot`、`Det`、`Inv`、`Solve`、`Norm`、`Eigvalsh`、`Eigh`、`Svd`、`Svdvals`、`Slogdet`、`Kron` | 一般 `Eig`/`Eigvals`（非对称）🚧、`QR` 🚧、`Cholesky` 🚧、`Lstsq` 🚧、`Pinv` 🚧、复数求解 🚧 |
+| 线性代数 | `Dot`、`MatMul`、`Inner`、`Outer`、`Einsum`、`Tensordot`、`Det`、`Inv`、`Solve`、`Norm`、`Eigvalsh`、`Eigh`、`Svd`、`Svdvals`、`Slogdet`、`Kron`、`QR`、`Cholesky`、`Pinv`、`Lstsq`（返回 x/residuals/rank/s） | 一般 `Eig`/`Eigvals`（非对称）🚧、复数求解 🚧 |
 | 随机数 | 逐位复刻 legacy `RandomState`/MT19937：`Seed`、`RandomSample`、`StandardNormal`、`Uniform`、`Normal`、`RandInt`、`Permutation`、`Shuffle` | `Generator`/PCG64 系列 🚧、`Choice`/`Beta`/`Gamma`/`Poisson` 等 🚧 |
 | FFT | `FFT`/`IFFT`/`RFFT`/`IRFFT`/`FFTFreq`（radix-2 + Bluestein，任意长度） | N 维变换 🚧、`FFTShift`/`FFT2` 🚧 |
 | 掩码数组 | `MaskedArray`（数据+掩码）、`Filled`/`Compressed`/`Count`、掩码 `Sum`/`Mean`/`Min`/`Max`/`Median`/`Var`/`Std`、`MaskedAdd/Subtract/Multiply/Divide`、`MaskedInvalid`/`MaskedWhere`、8 个谓词构造器 | `ma.corrcoef` 🚧（见限制说明）、更多 `masked_*` 构造器 ⚠️ |

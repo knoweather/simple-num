@@ -136,5 +136,5 @@ const npy = simpleNum.saveNPY(c);           // Uint8Array,可直接下载成 .np
 - 纯 Go,`CGO_ENABLED=0` 可构建;桥接层不做文件 IO —— 字节进去、字节出来。
 - `js.Func` 回调由 Go runtime 事件循环驱动:`main` 停在 `select{}` 常驻。
   wasm 实例是**单线程**的,同一时刻只能跑一个调用(所有 `js/wasm` 程序都如此)。
-- 分发器与 `xcheck/` 里 492 个参考用例共用同一套算子入口，所以 wasm 路径的语义
+- 分发器与 `xcheck/` 里 496 个参考用例共用同一套算子入口，所以 wasm 路径的语义
   与主库一致。

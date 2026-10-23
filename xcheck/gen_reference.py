@@ -880,7 +880,7 @@ def _emit_shape(name, op, inputs, out, note, args=None):
     跳过"输入须广播到期望形状"的断言并直接断言结果形状。"""
     return _emit_funcs(name, op, inputs, out, note, args=args, out_shape=np.shape(out))
 
-def _emit_multi_funcs(name, op, inputs, outs, note, args=None):
+def _emit_multi_funcs(name, op, inputs, outs, note, args=None, tol=None):
     """多输出 funcs 发射器(meshgrid/gradient):outputs + out_shapes,与 nonzero 清单同口径。"""
     paths = []
     for s, a in inputs:
@@ -899,11 +899,13 @@ def _emit_multi_funcs(name, op, inputs, outs, note, args=None):
         "inputs": paths,
         "outputs": opaths,
         "out_shapes": oshapes,
-        "region": "bitwise",
+        "region": "bitwise" if not tol else "rel",
         "generator": GENERATOR,
         "generated": _now(),
         "note": note,
     }
+    if tol:
+        entry["tol"] = tol
     if args is not None:
         entry["args"] = args
     return entry
@@ -2218,6 +2220,25 @@ def _main_funcs() -> int:
     entries.append(_emit_multi_funcs("funcs_slogdet", "slogdet", [("a", sa)],
                                  [np.asarray(_sign), np.asarray(_logdet)],
                                  note="(符号, log|det|)"))
+
+# —— 线代补全(Step 35):QR / Cholesky / Pinv / Lstsq ——
+    qa = arr("f8", [[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]])
+    _q, _r = np.linalg.qr(qa)
+    entries.append(_emit_multi_funcs("funcs_qr", "qr", [("a", qa)], [_q, _r],
+                                     note="Householder QR(reduced) → (Q, R)", tol=1e-10))
+    sa2 = arr("f8", [[4.0, 2.0], [2.0, 3.0]])
+    entries.append(_emit_rel("funcs_cholesky", "cholesky", [("a", sa2)],
+                             np.linalg.cholesky(sa2), note="下三角 Cholesky 分解",
+                             tol=1e-12))
+    _pv = np.linalg.pinv(qa)
+    entries.append(_emit_rel("funcs_pinv", "pinv", [("a", qa)], _pv,
+                             note="Moore-Penrose 伪逆", tol=1e-10,
+                             out_shape=np.shape(_pv)))
+    lb = arr("f8", [1.0, 2.0, 4.0])
+    _x, _res, _rank, _sv = np.linalg.lstsq(qa, lb, rcond=None)
+    entries.append(_emit_multi_funcs("funcs_lstsq", "lstsq", [("a", qa), ("b", lb)],
+                                     [_x, _res, np.asarray(_rank, dtype="<i8"), _sv],
+                                     note="最小二乘 (x, residuals, rank, s)", tol=1e-10))
 
 # 写 manifest_funcs.json(第五份;不碰旧四份 manifest 及其 npy)
     mf_path = os.path.join(REFDIR, "manifest_funcs.json")

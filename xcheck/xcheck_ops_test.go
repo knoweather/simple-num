@@ -344,6 +344,12 @@ func init() {
 		},
 		"kron": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
 			return num.Kron(ins[0], ins[1])
+		}, // —— 线代补全(Step 35)——
+		"cholesky": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.Cholesky(ins[0])
+		},
+		"pinv": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.Pinv(ins[0])
 		}, // —— ufunc 补充批(Step 31)——
 		"negative": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
 			return num.Negative(ins[0])
@@ -762,7 +768,12 @@ func init() {
 		"unique_idx": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
 			return num.UniqueIdx(ins[0])
 		},
-		"slogdet": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
+		"qr": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
+			return num.QR(ins[0])
+		},
+		"lstsq": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
+			return num.Lstsq(ins[0], ins[1])
+		}, "slogdet": func(ins []*num.Array, _ caseArgs) ([]*num.Array, error) {
 			sign, logdet, err := num.Slogdet(ins[0])
 			if err != nil {
 				return nil, err
