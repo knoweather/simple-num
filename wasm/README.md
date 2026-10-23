@@ -76,7 +76,7 @@ a `number[]`.
 
 | Method | Arguments | Returns |
 | --- | --- | --- |
-| `version()` | — | version string (e.g. `"0.1.0"`) |
+| `version()` | — | version string; the build scripts inject `git describe` (e.g. `0.1.5`, `0.1.5-3-gabc1234`, `0.1.5-dirty`), a plain `go build` falls back to the release number baked into `wasm/api.go` |
 | `zeros(shape, dtype)` | `number[]` + dtype string | array object |
 | `arange(start, stop, step, dtype)` | three numbers + dtype string | array object |
 | `fromBytes(dtype, shape, data)` | dtype string + `number[]` + bytes | array object (byte count must equal product × itemsize) |

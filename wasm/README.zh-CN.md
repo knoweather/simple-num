@@ -70,7 +70,7 @@ node wasm/smoke/smoke.mjs
 
 | 方法 | 参数 | 返回 |
 | --- | --- | --- |
-| `version()` | — | 版本串(如 `"0.1.0"`) |
+| `version()` | — | 版本串;构建脚本注入 `git describe` 结果(如 `0.1.5`、`0.1.5-3-gabc1234`、`0.1.5-dirty`),直接 `go build` 时回落为 `wasm/api.go` 里写的发布号 |
 | `zeros(shape, dtype)` | `number[]` + dtype 串 | 数组对象 |
 | `arange(start, stop, step, dtype)` | 三个 number + dtype 串 | 数组对象 |
 | `fromBytes(dtype, shape, data)` | dtype 串 + `number[]` + 字节 | 数组对象(字节数须 = 乘积 × itemsize) |

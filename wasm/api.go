@@ -17,8 +17,9 @@ import (
 	num "github.com/knoweather/simple-num"
 )
 
-// Version 核心 API 版本(胶水层与宿主侧共用)。
-const Version = "0.1.0"
+// Version 是桥接层版本。构建脚本用 -ldflags -X 注入 git describe 的结果;
+// 直接 go build 时回落到下面这个默认值(应随发版更新)。
+var Version = "0.1.5"
 
 // —— lastError(sat 同款语义:失败即记录,宿主可回读)——
 

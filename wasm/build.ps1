@@ -70,7 +70,11 @@ try {
     $env:GOARCH      = 'wasm'
     $env:CGO_ENABLED = '0'
 
-    & $goBin build -trimpath -o wasm/simple-num.wasm ./wasm/main
+    # 版本号取自最近一次 tag(与 build.sh 一致)
+    $version = (git describe --tags --always --dirty 2>$null)
+    if (-not $version) { $version = "0.0.0-dev" }
+$version = $version -replace '^v', ''
+    & $goBin build -trimpath -o wasm/simple-num.wasm -ldflags "-X github.com/knoweather/simple-num/wasm.Version=$version" ./wasm/main
     if ($LASTEXITCODE -ne 0) { throw "go build failed with exit code $LASTEXITCODE" }
 
     Copy-Item -LiteralPath $execJsSrc -Destination 'wasm/wasm_exec.js'

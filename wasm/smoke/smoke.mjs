@@ -100,7 +100,7 @@ function mustArr(res, what) {
 }
 
 // 1) 版本
-check(api.version() === "0.1.0", `version() = ${api.version()}`);
+check(/^\d+\.\d+\.\d+/.test(api.version()), `version() = ${api.version()}`);
 
 // 2) 构造 + Values + reshape
 const a = mustArr(api.fromBytes("f8", [2, 3], f8bytes([0, 1, 2, 3, 4, 5])), "fromBytes");

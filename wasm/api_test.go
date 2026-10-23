@@ -3,6 +3,7 @@ package wasm
 import (
 	"encoding/binary"
 	"math"
+	"regexp"
 	"strings"
 	"testing"
 
@@ -347,8 +348,8 @@ func TestAPI(t *testing.T) {
 		if LastErr() != "" {
 			t.Errorf("ClearErr 后 LastErr = %q", LastErr())
 		}
-		if Version != "0.1.0" {
-			t.Errorf("Version = %q", Version)
+		if !semverPrefix.MatchString(Version) {
+			t.Errorf("Version = %q, 期望形如 0.1.5 或 0.1.5-3-gabc1234", Version)
 		}
 	})
 }
@@ -442,3 +443,6 @@ func mustArr(t *testing.T, dt string, shape []int, vals ...float64) *num.Array {
 	}
 	return a
 }
+
+// semverPrefix 匹配 semver 前缀(构建脚本可能附加 git describe 后缀)。
+var semverPrefix = regexp.MustCompile(`^\d+\.\d+\.\d+`)

@@ -27,9 +27,13 @@ if [ ! -f "$exec_js" ]; then
 	exit 1
 fi
 
-GOOS=js GOARCH=wasm CGO_ENABLED=0 "$GO" build -trimpath -o wasm/simple-num.wasm ./wasm/main
+version=$(git describe --tags --always --dirty 2>/dev/null || echo "0.0.0-dev")
+version=${version#v}
+GOOS=js GOARCH=wasm CGO_ENABLED=0 "$GO" build -trimpath \
+	-ldflags "-X github.com/knoweather/simple-num/wasm.Version=$version" \
+	-o wasm/simple-num.wasm ./wasm/main
 cp "$exec_js" wasm/wasm_exec.js
 
-echo "built  wasm/simple-num.wasm  ($(wc -c < wasm/simple-num.wasm) bytes)"
+echo "built  wasm/simple-num.wasm  ($(wc -c < wasm/simple-num.wasm) bytes, version $version)"
 echo "copied wasm/wasm_exec.js"
 echo "usage: load wasm/wasm_exec.js and instantiate the module; then call globalThis.simpleNum.* (see README)."
