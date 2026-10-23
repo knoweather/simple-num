@@ -29,6 +29,9 @@ func Dot(a, b *Array) (*Array, error) {
 	if err != nil {
 		return nil, fmt.Errorf("num: dot: dtype 不可提升: %w", err)
 	}
+	if isCplxKind(dt.Kind) {
+		return dotComplex(a, b)
+	}
 	ac, err := transformCopy(a, a.Shape(), dt)
 	if err != nil {
 		return nil, err
@@ -86,6 +89,9 @@ func MatMul(a, b *Array) (*Array, error) {
 	dt, err := promoteTypes(a.Dtype(), b.Dtype())
 	if err != nil {
 		return nil, fmt.Errorf("num: matmul: dtype 不可提升: %w", err)
+	}
+	if isCplxKind(dt.Kind) {
+		return matmulComplex(a, b)
 	}
 	ac, err := transformCopy(a, a.Shape(), dt)
 	if err != nil {

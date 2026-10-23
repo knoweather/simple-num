@@ -2287,6 +2287,22 @@ def _main_funcs() -> int:
                                      [("a", _dq)], [_d0.astype("<i8"), _d1.astype("<i8")],
                                      note="方阵对角线各维下标"))
 
+# —— 实输入 N 维 FFT / 复数线代(Step 38)——
+    # 2×2 输入:rfft2 形状不变且结果无精确零点(相对容差对 0 无意义)
+    _r2 = arr("f8", [[1.0, 2.0], [3.0, 5.0]])
+    entries.append(_emit_rel("funcs_rfft2", "rfft2", [("a", _r2)], np.fft.rfft2(_r2),
+                             note="实输入二维 FFT(末轴保留 n/2+1)", tol=1e-9))
+    _ca = arr("c16", [[3 + 1j, 1 - 2j], [1 + 0j, 4 + 3j]])
+    _cb = arr("c16", [1 + 1j, 2 - 1j])
+    entries.append(_emit_rel("funcs_solve_complex", "solve", [("a", _ca), ("b", _cb)],
+                             np.linalg.solve(_ca, _cb), note="复数线性方程组", tol=1e-10))
+    entries.append(_emit_rel("funcs_inv_complex", "inv", [("a", _ca)],
+                             np.linalg.inv(_ca), note="复数矩阵求逆", tol=1e-10))
+    _cm = arr("c16", [[1 + 2j, 0 - 1j], [3 + 0j, 4 + 1j]])
+    _cn = arr("c16", [[1 + 0j, 2 + 1j], [0 + 3j, 1 - 1j]])
+    entries.append(_emit_rel("funcs_matmul_complex", "matmul", [("a", _cm), ("b", _cn)],
+                             np.matmul(_cm, _cn), note="复数矩阵乘", tol=1e-12))
+
 # 写 manifest_funcs.json(第五份;不碰旧四份 manifest 及其 npy)
     mf_path = os.path.join(REFDIR, "manifest_funcs.json")
     prev_gen = _load_prev_generated(mf_path)

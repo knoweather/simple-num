@@ -5622,5 +5622,59 @@
   "generator": "numpy 2.5.4",
   "generated": "2026-10-23T08:53:08Z",
   "note": "方阵对角线各维下标"
+ },
+ {
+  "name": "funcs_rfft2",
+  "op": "rfft2",
+  "inputs": [
+   "cases/funcs_rfft2_a.npy"
+  ],
+  "expect": "cases/funcs_rfft2_out.npy",
+  "region": "rel",
+  "tol": 1e-09,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T10:41:50Z",
+  "note": "实输入二维 FFT(末轴保留 n/2+1)"
+ },
+ {
+  "name": "funcs_solve_complex",
+  "op": "solve",
+  "inputs": [
+   "cases/funcs_solve_complex_a.npy",
+   "cases/funcs_solve_complex_b.npy"
+  ],
+  "expect": "cases/funcs_solve_complex_out.npy",
+  "region": "rel",
+  "tol": 1e-10,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T10:41:50Z",
+  "note": "复数线性方程组"
+ },
+ {
+  "name": "funcs_inv_complex",
+  "op": "inv",
+  "inputs": [
+   "cases/funcs_inv_complex_a.npy"
+  ],
+  "expect": "cases/funcs_inv_complex_out.npy",
+  "region": "rel",
+  "tol": 1e-10,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T10:41:50Z",
+  "note": "复数矩阵求逆"
+ },
+ {
+  "name": "funcs_matmul_complex",
+  "op": "matmul",
+  "inputs": [
+   "cases/funcs_matmul_complex_a.npy",
+   "cases/funcs_matmul_complex_b.npy"
+  ],
+  "expect": "cases/funcs_matmul_complex_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T10:41:50Z",
+  "note": "复数矩阵乘"
  }
 ]

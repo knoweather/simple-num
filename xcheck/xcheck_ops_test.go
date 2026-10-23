@@ -383,6 +383,12 @@ func init() {
 		},
 		"nan_to_num": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
 			return num.NanToNum(ins[0], num.NanToNumOptions{})
+		}, // —— 实输入 N 维 FFT(Step 38)——
+		"rfft2": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.RFFT2(ins[0])
+		},
+		"rfftn": func(ins []*num.Array, args caseArgs) (*num.Array, error) {
+			return num.RFFTN(ins[0], args.Axis)
 		}, // —— ufunc 补充批(Step 31)——
 		"negative": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
 			return num.Negative(ins[0])

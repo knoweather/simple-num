@@ -72,6 +72,9 @@ func Det(a *Array) (float64, error) {
 
 // Inv ≡ np.linalg.inv:方阵求逆。
 func Inv(a *Array) (*Array, error) {
+	if a != nil && isCplxKind(a.Dtype().Kind) {
+		return invComplex(a)
+	}
 	n, flat, err := squareF64(a, "inv")
 	if err != nil {
 		return nil, err
@@ -104,6 +107,10 @@ func Inv(a *Array) (*Array, error) {
 
 // Solve ≡ np.linalg.solve(a, b):解 ax = b。b 可为 (n,) 或 (n,k)。
 func Solve(a, b *Array) (*Array, error) {
+	// 任一端为复数时走复数 LU 路径(与 numpy 一样自动处理复数系统)
+	if (a != nil && isCplxKind(a.Dtype().Kind)) || (b != nil && isCplxKind(b.Dtype().Kind)) {
+		return solveComplexPair(a, b)
+	}
 	n, flat, err := squareF64(a, "solve")
 	if err != nil {
 		return nil, err

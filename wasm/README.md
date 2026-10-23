@@ -152,4 +152,4 @@ binding in `wasm/wasm.go`.
   `select{}` and the instance stays resident. A wasm module instance is
   **single-threaded** — one call at a time, same as any `js/wasm` program.
 - The dispatchers share the same operator entry points as the `xcheck/` reference
-  suite (507 cases), so the wasm path is covered by the same semantics.
+  suite (511 cases), so the wasm path is covered by the same semantics.
