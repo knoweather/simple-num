@@ -214,6 +214,12 @@ wasm/                                                 WebAssembly 桥接与 JS �
 |---|---|
 | [`wasm/README.md`](wasm/README.md) / [中文](wasm/README.zh-CN.md) | WASM 入口：构建、JS API、已暴露与计划暴露的对比、冒烟测试 |
 
+## 版本约定
+
+发布使用 annotated tag，形如 `v0.<minor>.<patch>`。每次发布只把**最后一位 +1**
+（`v0.1.0` → `v0.1.1` → … → `v0.1.9`）；最后一位到 9 之后**进位**到次版本
+（`v0.1.9` → `v0.2.0`）。
+
 ## 许可
 
 MIT —— 见 [LICENSE](LICENSE)。语义均来自对 NumPy 行为的实测观察，并用 Go 重新实现；

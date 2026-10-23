@@ -241,6 +241,13 @@ Legend: ✅ available · ⚠️ partial (see the note) · 🚧 not yet, planned.
 |---|---|
 | [`wasm/README.md`](wasm/README.md) | WASM entry: build, JS API, what is exposed vs planned, smoke test |
 
+## Versioning
+
+Releases use annotated tags of the form `v0.<minor>.<patch>`. Each release
+increments only the last digit (`v0.1.0` → `v0.1.1` → … → `v0.1.9`); when that
+digit would pass 9 the counter carries into the minor component
+(`v0.1.9` → `v0.2.0`).
+
 ## License
 
 MIT — see [LICENSE](LICENSE). Semantics were derived from observed NumPy
