@@ -1,0 +1,8 @@
+# Keep every text file at LF so Windows checkouts do not churn on autocrlf.
+* text=auto eol=lf
+
+# Explicit list for readability (text=auto already covers these).
+*.go    text eol=lf
+*.py    text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf

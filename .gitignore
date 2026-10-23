@@ -1,0 +1,27 @@
+# Go
+*.exe
+*.exe~
+*.test
+*.out
+*.prof
+*.cov
+coverage/
+coverage.txt
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+
+# AI 助手工作区 / IDE(不入库)
+.workbuddy-ai/
+.idea/
+
+# WASM 构建输出(与 Go 工具链版本强绑定,不入库)
+wasm/*.wasm
+wasm/wasm_exec.js
+# AI 协作过程文档(不入公开仓库;本地保留即可)
+COORDINATION.md
+DESIGN.md
+NUMPY-NOTES.md
+PROGRESS-A.md
+PROGRESS-B.md

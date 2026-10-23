@@ -1,0 +1,136 @@
+[
+ {
+  "name": "nonzero_i8_1d",
+  "op": "nonzero",
+  "inputs": [
+   "cases/nonzero_i8_1d_a.npy"
+  ],
+  "outputs": [
+   "cases/nonzero_i8_1d_out.npy"
+  ],
+  "out_shapes": [
+   [
+    3
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T13:08:42Z",
+  "note": "i8 1D:[0,5,0,-3,0,7] nonzero 位置 [1,3,5];负值亦为真"
+ },
+ {
+  "name": "nonzero_i8_2d",
+  "op": "nonzero",
+  "inputs": [
+   "cases/nonzero_i8_2d_a.npy"
+  ],
+  "outputs": [
+   "cases/nonzero_i8_2d_out0.npy",
+   "cases/nonzero_i8_2d_out1.npy"
+  ],
+  "out_shapes": [
+   [
+    3
+   ],
+   [
+    3
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T13:08:42Z",
+  "note": "i8(2,3):非零元 (0,1)/(1,0)/(1,2),rows[0,1,1] cols[1,0,2]"
+ },
+ {
+  "name": "nonzero_f8_3d",
+  "op": "nonzero",
+  "inputs": [
+   "cases/nonzero_f8_3d_a.npy"
+  ],
+  "outputs": [
+   "cases/nonzero_f8_3d_out0.npy",
+   "cases/nonzero_f8_3d_out1.npy",
+   "cases/nonzero_f8_3d_out2.npy"
+  ],
+  "out_shapes": [
+   [
+    6
+   ],
+   [
+    6
+   ],
+   [
+    6
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T13:08:42Z",
+  "note": "f8(2,2,2):NaN/inf 为真、-0.0 为假(nonzero 数=6)"
+ },
+ {
+  "name": "nonzero_all_zero",
+  "op": "nonzero",
+  "inputs": [
+   "cases/nonzero_all_zero_a.npy"
+  ],
+  "outputs": [
+   "cases/nonzero_all_zero_out0.npy",
+   "cases/nonzero_all_zero_out1.npy"
+  ],
+  "out_shapes": [
+   [
+    0
+   ],
+   [
+    0
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T13:08:42Z",
+  "note": "i8(3,4) 全零:两输出均空(形状 [0]),验空 npy 落盘"
+ },
+ {
+  "name": "nonzero_bool_2d",
+  "op": "nonzero",
+  "inputs": [
+   "cases/nonzero_bool_2d_a.npy"
+  ],
+  "outputs": [
+   "cases/nonzero_bool_2d_out0.npy",
+   "cases/nonzero_bool_2d_out1.npy"
+  ],
+  "out_shapes": [
+   [
+    3
+   ],
+   [
+    3
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T13:08:42Z",
+  "note": "bool(2,3):True 为真、False 为假"
+ },
+ {
+  "name": "nonzero_u1_1d",
+  "op": "nonzero",
+  "inputs": [
+   "cases/nonzero_u1_1d_a.npy"
+  ],
+  "outputs": [
+   "cases/nonzero_u1_1d_out.npy"
+  ],
+  "out_shapes": [
+   [
+    2
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T13:08:42Z",
+  "note": "u8 1D:含 0 与非零(255),位置 [1,3]"
+ }
+]

@@ -1,0 +1,257 @@
+[
+ {
+  "name": "gather_take_i8_1d",
+  "op": "take",
+  "inputs": [
+   "cases/gather_take_i8_1d_a.npy",
+   "cases/gather_take_i8_1d_b.npy"
+  ],
+  "expect": "cases/gather_take_i8_1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "flat take:负索引归一+重复;out shape=idx (4,),a(2,3)不可广播到它",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "gather_take_i8_2d",
+  "op": "take",
+  "inputs": [
+   "cases/gather_take_i8_2d_a.npy",
+   "cases/gather_take_i8_2d_b.npy"
+  ],
+  "expect": "cases/gather_take_i8_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "非方 idx (2,2)→out (2,2);a(2,3)不可广播到它",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "gather_take_f8_nan",
+  "op": "take",
+  "inputs": [
+   "cases/gather_take_f8_nan_a.npy",
+   "cases/gather_take_f8_nan_b.npy"
+  ],
+  "expect": "cases/gather_take_f8_nan_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "f8 字节级拷贝:NaN payload 保留(bitwise)",
+  "out_shape": [
+   1
+  ]
+ },
+ {
+  "name": "gather_take_along_axis_i8",
+  "op": "take_along_axis",
+  "inputs": [
+   "cases/gather_take_along_axis_i8_a.npy",
+   "cases/gather_take_along_axis_i8_b.npy"
+  ],
+  "expect": "cases/gather_take_along_axis_i8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "a(3,4)×idx(3,2) axis=1:负+重复;out shape=idx (3,2)",
+  "args": {
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   3,
+   2
+  ]
+ },
+ {
+  "name": "gather_take_along_axis_bcast",
+  "op": "take_along_axis",
+  "inputs": [
+   "cases/gather_take_along_axis_bcast_a.npy",
+   "cases/gather_take_along_axis_bcast_b.npy"
+  ],
+  "expect": "cases/gather_take_along_axis_bcast_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "非轴维 1:Go out=idx (1,2)≠numpy 广播结果;期望值按 Go 语义复刻生成",
+  "args": {
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   1,
+   2
+  ]
+ },
+ {
+  "name": "put_i8_neg_dup",
+  "op": "put",
+  "inputs": [
+   "cases/put_i8_neg_dup_src.npy",
+   "cases/put_i8_neg_dup_idx.npy",
+   "cases/put_i8_neg_dup_vals.npy"
+  ],
+  "expect": "cases/put_i8_neg_dup_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "原地 mutate:负归一+重复 last-write-wins;out=src 形状 (6,),3 输入不可广播→out_shape",
+  "out_shape": [
+   6
+  ]
+ },
+ {
+  "name": "put_i8_unsafe_f8",
+  "op": "put",
+  "inputs": [
+   "cases/put_i8_unsafe_f8_src.npy",
+   "cases/put_i8_unsafe_f8_idx.npy",
+   "cases/put_i8_unsafe_f8_vals.npy"
+  ],
+  "expect": "cases/put_i8_unsafe_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "不安全转换 f8→i8 向零截断(1.9→1);原地 mutate;out_shape=[6]",
+  "out_shape": [
+   6
+  ]
+ },
+ {
+  "name": "mask_compress_short",
+  "op": "compress",
+  "inputs": [
+   "cases/mask_compress_short_a.npy",
+   "cases/mask_compress_short_cond.npy"
+  ],
+  "expect": "cases/mask_compress_short_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "flat compress:短条件只作用于前 min(len,size) 个 flat 元素;out (1,)",
+  "out_shape": [
+   1
+  ]
+ },
+ {
+  "name": "mask_compress_full",
+  "op": "compress",
+  "inputs": [
+   "cases/mask_compress_full_a.npy",
+   "cases/mask_compress_full_cond.npy"
+  ],
+  "expect": "cases/mask_compress_full_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "flat compress:out (3,) 保留 flat 位 1/3/5",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "mask_compress_axis_i8",
+  "op": "compress",
+  "inputs": [
+   "cases/mask_compress_axis_i8_a.npy",
+   "cases/mask_compress_axis_i8_cond.npy"
+  ],
+  "expect": "cases/mask_compress_axis_i8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "轴压缩:保留行 0/2→(2,4)",
+  "args": {
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   2,
+   4
+  ]
+ },
+ {
+  "name": "mask_count_nonzero_i8",
+  "op": "count_nonzero",
+  "inputs": [
+   "cases/mask_count_nonzero_i8_x.npy"
+  ],
+  "expect": "cases/mask_count_nonzero_i8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "0-d 标量输出(Go 返回 int);out_shape [] = 0-d",
+  "out_shape": []
+ },
+ {
+  "name": "mask_count_nonzero_nan",
+  "op": "count_nonzero",
+  "inputs": [
+   "cases/mask_count_nonzero_nan_x.npy"
+  ],
+  "expect": "cases/mask_count_nonzero_nan_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "NaN 计入非零;0-d 输出",
+  "out_shape": []
+ },
+ {
+  "name": "bincount_i8",
+  "op": "bincount",
+  "inputs": [
+   "cases/bincount_i8_x.npy"
+  ],
+  "expect": "cases/bincount_i8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "输出 i64 长=max+1;形状与输入同可广播→无 out_shape",
+  "args": {
+   "n": 0
+  }
+ },
+ {
+  "name": "bincount_minlength",
+  "op": "bincount",
+  "inputs": [
+   "cases/bincount_minlength_x.npy"
+  ],
+  "expect": "cases/bincount_minlength_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "minlength=5 补零到 (5,)",
+  "args": {
+   "n": 5
+  },
+  "out_shape": [
+   5
+  ]
+ },
+ {
+  "name": "bincount_u8",
+  "op": "bincount",
+  "inputs": [
+   "cases/bincount_u8_x.npy"
+  ],
+  "expect": "cases/bincount_u8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-19T01:23:04Z",
+  "note": "u8 输入→i64 输出(dtype 变化)",
+  "args": {
+   "n": 0
+  }
+ }
+]

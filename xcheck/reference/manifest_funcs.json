@@ -1,0 +1,5089 @@
+[
+ {
+  "name": "funcs_round_f8_d0",
+  "op": "round",
+  "inputs": [
+   "cases/funcs_round_f8_d0_a.npy"
+  ],
+  "expect": "cases/funcs_round_f8_d0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "f8 decimals=0:half-to-even(0.5→0、2.5→2、3.5→4)+ -0.5/-0.0→-0.0",
+  "args": {
+   "decimals": 0
+  }
+ },
+ {
+  "name": "funcs_round_f8_d2",
+  "op": "round",
+  "inputs": [
+   "cases/funcs_round_f8_d2_a.npy"
+  ],
+  "expect": "cases/funcs_round_f8_d2_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "f8 decimals=2:含二进制非精确十进制值(2.675/1.005)验 numpy 实际位型",
+  "args": {
+   "decimals": 2
+  }
+ },
+ {
+  "name": "funcs_round_f8_dn2",
+  "op": "round",
+  "inputs": [
+   "cases/funcs_round_f8_dn2_a.npy"
+  ],
+  "expect": "cases/funcs_round_f8_dn2_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "f8 decimals=-2:百位取整(1250→1200、-1250→-1200、1499→1500)",
+  "args": {
+   "decimals": -2
+  }
+ },
+ {
+  "name": "funcs_round_f4_d1",
+  "op": "round",
+  "inputs": [
+   "cases/funcs_round_f4_d1_a.npy"
+  ],
+  "expect": "cases/funcs_round_f4_d1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "f4 decimals=1:6 值,half-to-even;out dtype f32",
+  "args": {
+   "decimals": 1
+  }
+ },
+ {
+  "name": "funcs_round_i4_d0",
+  "op": "round",
+  "inputs": [
+   "cases/funcs_round_i4_d0_a.npy"
+  ],
+  "expect": "cases/funcs_round_i4_d0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "i4 decimals=0:整型原样,out dtype i32",
+  "args": {
+   "decimals": 0
+  }
+ },
+ {
+  "name": "funcs_round_c16_d0",
+  "op": "round",
+  "inputs": [
+   "cases/funcs_round_c16_d0_a.npy"
+  ],
+  "expect": "cases/funcs_round_c16_d0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "c16 decimals=0:实虚分量各自取整,out dtype c128",
+  "args": {
+   "decimals": 0
+  }
+ },
+ {
+  "name": "funcs_round_f8_special",
+  "op": "round",
+  "inputs": [
+   "cases/funcs_round_f8_special_a.npy"
+  ],
+  "expect": "cases/funcs_round_f8_special_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "f8 decimals=0:NaN/±Inf 不变、其余取整",
+  "args": {
+   "decimals": 0
+  }
+ },
+ {
+  "name": "funcs_clip_f8",
+  "op": "clip",
+  "inputs": [
+   "cases/funcs_clip_f8_a.npy",
+   "cases/funcs_clip_f8_lo.npy",
+   "cases/funcs_clip_f8_hi.npy"
+  ],
+  "expect": "cases/funcs_clip_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "f8 常规:5 元素+0-d f64 界;out dtype f64"
+ },
+ {
+  "name": "funcs_clip_f8_nan",
+  "op": "clip",
+  "inputs": [
+   "cases/funcs_clip_f8_nan_a.npy",
+   "cases/funcs_clip_f8_nan_lo.npy",
+   "cases/funcs_clip_f8_nan_hi.npy"
+  ],
+  "expect": "cases/funcs_clip_f8_nan_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "f8 含 NaN:NaN 传播(同界);out dtype f64"
+ },
+ {
+  "name": "funcs_clip_i4",
+  "op": "clip",
+  "inputs": [
+   "cases/funcs_clip_i4_a.npy",
+   "cases/funcs_clip_i4_lo.npy",
+   "cases/funcs_clip_i4_hi.npy"
+  ],
+  "expect": "cases/funcs_clip_i4_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "i4 数组+i32 0-d 界;out dtype i32"
+ },
+ {
+  "name": "funcs_clip_i4_lohi",
+  "op": "clip",
+  "inputs": [
+   "cases/funcs_clip_i4_lohi_a.npy",
+   "cases/funcs_clip_i4_lohi_lo.npy",
+   "cases/funcs_clip_i4_lohi_hi.npy"
+  ],
+  "expect": "cases/funcs_clip_i4_lohi_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "i4 lo>hi(3/1):numpy 实际结果恒为 hi=1"
+ },
+ {
+  "name": "funcs_clip_f8_prom",
+  "op": "clip",
+  "inputs": [
+   "cases/funcs_clip_f8_prom_a.npy",
+   "cases/funcs_clip_f8_prom_lo.npy",
+   "cases/funcs_clip_f8_prom_hi.npy"
+  ],
+  "expect": "cases/funcs_clip_f8_prom_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "f8 数组+i32 0-d 界:promote 到 f64"
+ },
+ {
+  "name": "funcs_where_b23_i4",
+  "op": "where",
+  "inputs": [
+   "cases/funcs_where_b23_i4_cond.npy",
+   "cases/funcs_where_b23_i4_x.npy",
+   "cases/funcs_where_b23_i4_y.npy"
+  ],
+  "expect": "cases/funcs_where_b23_i4_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "cond bool(2,3)+x i4(3,)+y i4 0-d→out (2,3) i32;广播+晋级"
+ },
+ {
+  "name": "funcs_where_b23_i4f8",
+  "op": "where",
+  "inputs": [
+   "cases/funcs_where_b23_i4f8_cond.npy",
+   "cases/funcs_where_b23_i4f8_x.npy",
+   "cases/funcs_where_b23_i4f8_y.npy"
+  ],
+  "expect": "cases/funcs_where_b23_i4f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "cond bool(2,3)+x i4(2,3)+y f8(2,3)→out (2,3) f64;晋级"
+ },
+ {
+  "name": "funcs_where_i4_f8",
+  "op": "where",
+  "inputs": [
+   "cases/funcs_where_i4_f8_cond.npy",
+   "cases/funcs_where_i4_f8_x.npy",
+   "cases/funcs_where_i4_f8_y.npy"
+  ],
+  "expect": "cases/funcs_where_i4_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T14:04:01Z",
+  "note": "cond i4(5,)含 0/非 0(!=0 为真)+x/y f8(5,)→out (5,) f64"
+ },
+ {
+  "name": "funcs_isnan_f8",
+  "op": "isnan",
+  "inputs": [
+   "cases/funcs_isnan_f8_a.npy"
+  ],
+  "expect": "cases/funcs_isnan_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "f8 [NaN,±Inf,±0,1]→[T,T,T,F,F,F];out dtype bool"
+ },
+ {
+  "name": "funcs_isnan_f4",
+  "op": "isnan",
+  "inputs": [
+   "cases/funcs_isnan_f4_a.npy"
+  ],
+  "expect": "cases/funcs_isnan_f4_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "f4 同 f8 形;out dtype bool"
+ },
+ {
+  "name": "funcs_isnan_c16",
+  "op": "isnan",
+  "inputs": [
+   "cases/funcs_isnan_c16_a.npy"
+  ],
+  "expect": "cases/funcs_isnan_c16_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "c128:实/虚部 NaN→T;[F,T,T];out dtype bool"
+ },
+ {
+  "name": "funcs_isinf_f8",
+  "op": "isinf",
+  "inputs": [
+   "cases/funcs_isinf_f8_a.npy"
+  ],
+  "expect": "cases/funcs_isinf_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "f8 [NaN,±Inf,0,5]→[F,T,T,F,F];out dtype bool"
+ },
+ {
+  "name": "funcs_isinf_c16",
+  "op": "isinf",
+  "inputs": [
+   "cases/funcs_isinf_c16_a.npy"
+  ],
+  "expect": "cases/funcs_isinf_c16_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "c128 [有限,inf]→[F,T];out dtype bool"
+ },
+ {
+  "name": "funcs_isfinite_f8",
+  "op": "isfinite",
+  "inputs": [
+   "cases/funcs_isfinite_f8_a.npy"
+  ],
+  "expect": "cases/funcs_isfinite_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "f8 [NaN,±Inf,0,5]→[F,F,F,T,T];out dtype bool"
+ },
+ {
+  "name": "funcs_logical_and_i4",
+  "op": "logical_and",
+  "inputs": [
+   "cases/funcs_logical_and_i4_x.npy",
+   "cases/funcs_logical_and_i4_y.npy"
+  ],
+  "expect": "cases/funcs_logical_and_i4_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "i4×i4→bool [F,T,F];非零为真"
+ },
+ {
+  "name": "funcs_logical_and_bcast",
+  "op": "logical_and",
+  "inputs": [
+   "cases/funcs_logical_and_bcast_x.npy",
+   "cases/funcs_logical_and_bcast_y.npy"
+  ],
+  "expect": "cases/funcs_logical_and_bcast_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "bool(2,1)×bool(1,3)→out (2,3) [[T,F,T],[F,F,F]];广播"
+ },
+ {
+  "name": "funcs_logical_or_b",
+  "op": "logical_or",
+  "inputs": [
+   "cases/funcs_logical_or_b_x.npy",
+   "cases/funcs_logical_or_b_y.npy"
+  ],
+  "expect": "cases/funcs_logical_or_b_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "bool×bool→[T,F,T];out dtype bool"
+ },
+ {
+  "name": "funcs_logical_not_f8",
+  "op": "logical_not",
+  "inputs": [
+   "cases/funcs_logical_not_f8_a.npy"
+  ],
+  "expect": "cases/funcs_logical_not_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "f8 [0,1,NaN,-0]→not [T,F,F,T];NaN 非零;out dtype bool"
+ },
+ {
+  "name": "funcs_logical_xor_mix",
+  "op": "logical_xor",
+  "inputs": [
+   "cases/funcs_logical_xor_mix_x.npy",
+   "cases/funcs_logical_xor_mix_y.npy"
+  ],
+  "expect": "cases/funcs_logical_xor_mix_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "i4×f8 混型→bool [T,T,F];NaN 非零"
+ },
+ {
+  "name": "funcs_maximum_f8",
+  "op": "maximum",
+  "inputs": [
+   "cases/funcs_maximum_f8_x.npy",
+   "cases/funcs_maximum_f8_y.npy"
+  ],
+  "expect": "cases/funcs_maximum_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "f8:NaN 传播;max(-0.0,+0.0)=+0.0(相等取第二操作数);out [2,nan,+0,3] f64"
+ },
+ {
+  "name": "funcs_minimum_f8",
+  "op": "minimum",
+  "inputs": [
+   "cases/funcs_minimum_f8_x.npy",
+   "cases/funcs_minimum_f8_y.npy"
+  ],
+  "expect": "cases/funcs_minimum_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "f8:NaN 传播;min(-0.0,+0.0)=+0.0(相等取第二操作数);out [1,nan,+0,-1] f64"
+ },
+ {
+  "name": "funcs_maximum_mix",
+  "op": "maximum",
+  "inputs": [
+   "cases/funcs_maximum_mix_x.npy",
+   "cases/funcs_maximum_mix_y.npy"
+  ],
+  "expect": "cases/funcs_maximum_mix_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:25:45Z",
+  "note": "i4×f8→promote 到 f64 [2.0,5.0,-3.0]"
+ },
+ {
+  "name": "funcs_deg2rad_f8",
+  "op": "deg2rad",
+  "inputs": [
+   "cases/funcs_deg2rad_f8_a.npy"
+  ],
+  "expect": "cases/funcs_deg2rad_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:58:19Z",
+  "note": "f8 6值;out dtype f64"
+ },
+ {
+  "name": "funcs_deg2rad_f4",
+  "op": "deg2rad",
+  "inputs": [
+   "cases/funcs_deg2rad_f4_a.npy"
+  ],
+  "expect": "cases/funcs_deg2rad_f4_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:58:19Z",
+  "note": "f4 同值;out dtype f32"
+ },
+ {
+  "name": "funcs_deg2rad_i4",
+  "op": "deg2rad",
+  "inputs": [
+   "cases/funcs_deg2rad_i4_a.npy"
+  ],
+  "expect": "cases/funcs_deg2rad_i4_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:58:19Z",
+  "note": "i4→deg2rad:输出dtype由numpy决定=f64;3值"
+ },
+ {
+  "name": "funcs_rad2deg_f8",
+  "op": "rad2deg",
+  "inputs": [
+   "cases/funcs_rad2deg_f8_a.npy"
+  ],
+  "expect": "cases/funcs_rad2deg_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:58:19Z",
+  "note": "f8 5值(含±π/4、π、1e8);out dtype f64"
+ },
+ {
+  "name": "funcs_fabs_f8",
+  "op": "fabs",
+  "inputs": [
+   "cases/funcs_fabs_f8_a.npy"
+  ],
+  "expect": "cases/funcs_fabs_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:58:19Z",
+  "note": "f8 [±3,-0,nan,-inf];out dtype f64"
+ },
+ {
+  "name": "funcs_fabs_i1",
+  "op": "fabs",
+  "inputs": [
+   "cases/funcs_fabs_i1_a.npy"
+  ],
+  "expect": "cases/funcs_fabs_i1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:58:19Z",
+  "note": "i8→np.fabs:输出dtype由numpy决定=f16(最小可无损容纳整型浮点);bitwise"
+ },
+ {
+  "name": "funcs_sign_f8",
+  "op": "sign",
+  "inputs": [
+   "cases/funcs_sign_f8_a.npy"
+  ],
+  "expect": "cases/funcs_sign_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:58:19Z",
+  "note": "f8 [-2,0,3,-0,nan]→[-1,0,1,0,nan];out dtype f64"
+ },
+ {
+  "name": "funcs_sign_i4",
+  "op": "sign",
+  "inputs": [
+   "cases/funcs_sign_i4_a.npy"
+  ],
+  "expect": "cases/funcs_sign_i4_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:58:19Z",
+  "note": "i4[-5,0,7]→[-1,0,1];out dtype i32(整型保dtype)"
+ },
+ {
+  "name": "funcs_sign_c16",
+  "op": "sign",
+  "inputs": [
+   "cases/funcs_sign_c16_a.npy"
+  ],
+  "expect": "cases/funcs_sign_c16_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:58:19Z",
+  "note": "c128:复数按x/|x|(3+4j→0.6+0.8j、0→0、-1→-1);out dtype c128"
+ },
+ {
+  "name": "funcs_arctan2_f8",
+  "op": "arctan2",
+  "inputs": [
+   "cases/funcs_arctan2_f8_y.npy",
+   "cases/funcs_arctan2_f8_x.npy"
+  ],
+  "expect": "cases/funcs_arctan2_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:58:19Z",
+  "note": "f8 y×x 4组:π/4、-3π/4、3π/4、0;out dtype f64"
+ },
+ {
+  "name": "funcs_arctan2_i1",
+  "op": "arctan2",
+  "inputs": [
+   "cases/funcs_arctan2_i1_y.npy",
+   "cases/funcs_arctan2_i1_x.npy"
+  ],
+  "expect": "cases/funcs_arctan2_i1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:58:19Z",
+  "note": "i8×i8→arctan2:输出dtype由numpy决定=f16;out [0.785] f16"
+ },
+ {
+  "name": "funcs_arctan2_bcast",
+  "op": "arctan2",
+  "inputs": [
+   "cases/funcs_arctan2_bcast_y.npy",
+   "cases/funcs_arctan2_bcast_x.npy"
+  ],
+  "expect": "cases/funcs_arctan2_bcast_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T15:58:19Z",
+  "note": "f8 (2,1)×(1,3)→out (2,3);广播;out dtype f64"
+ },
+ {
+  "name": "funcs_nansum_f8",
+  "op": "nansum",
+  "inputs": [
+   "cases/funcs_nansum_f8_a.npy"
+  ],
+  "expect": "cases/funcs_nansum_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:18:54Z",
+  "note": "f8(2,3)含NaN全归约:1+3+4+5=13;out 0-d f64"
+ },
+ {
+  "name": "funcs_nansum_axis0",
+  "op": "nansum",
+  "inputs": [
+   "cases/funcs_nansum_axis0_a.npy"
+  ],
+  "expect": "cases/funcs_nansum_axis0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:18:54Z",
+  "note": "f8(2,3)含NaN轴0归约:[5,5,3];out (3,) f64",
+  "args": {
+   "axis": [
+    0
+   ]
+  }
+ },
+ {
+  "name": "funcs_nanmax_f8",
+  "op": "nanmax",
+  "inputs": [
+   "cases/funcs_nanmax_f8_a.npy"
+  ],
+  "expect": "cases/funcs_nanmax_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:18:54Z",
+  "note": "f8 [1,nan,3,-2]跳过NaN取最大:3;out 0-d f64"
+ },
+ {
+  "name": "funcs_nanmax_axis1",
+  "op": "nanmax",
+  "inputs": [
+   "cases/funcs_nanmax_axis1_a.npy"
+  ],
+  "expect": "cases/funcs_nanmax_axis1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:18:54Z",
+  "note": "f8(2,3)含NaN轴1归约:[3,5];out (2,) f64",
+  "args": {
+   "axis": [
+    1
+   ]
+  }
+ },
+ {
+  "name": "funcs_nanmin_f8",
+  "op": "nanmin",
+  "inputs": [
+   "cases/funcs_nanmin_f8_a.npy"
+  ],
+  "expect": "cases/funcs_nanmin_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:18:54Z",
+  "note": "f8 [1,nan,3,-2]跳过NaN取最小:-2;out 0-d f64"
+ },
+ {
+  "name": "funcs_nanmin_i4",
+  "op": "nanmin",
+  "inputs": [
+   "cases/funcs_nanmin_i4_a.npy"
+  ],
+  "expect": "cases/funcs_nanmin_i4_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:18:54Z",
+  "note": "i4整型委托:跳过NaN取最小:-5;out 0-d i32"
+ },
+ {
+  "name": "funcs_isclose_f8",
+  "op": "isclose",
+  "inputs": [
+   "cases/funcs_isclose_f8_a.npy",
+   "cases/funcs_isclose_f8_b.npy"
+  ],
+  "expect": "cases/funcs_isclose_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:18:54Z",
+  "note": "f8(6,)含NaN/±Inf:同号inf相等T、NaN≠NaN F;out (6,) bool",
+  "args": {
+   "rtol": 1e-05,
+   "atol": 1e-08
+  }
+ },
+ {
+  "name": "funcs_isclose_atol",
+  "op": "isclose",
+  "inputs": [
+   "cases/funcs_isclose_atol_a.npy",
+   "cases/funcs_isclose_atol_b.npy"
+  ],
+  "expect": "cases/funcs_isclose_atol_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:18:54Z",
+  "note": "f8(2,)rtol=0仅atol:|0-1e-9|<=1e-8 T、|0-1e-6| F;out (2,) bool",
+  "args": {
+   "rtol": 0.0,
+   "atol": 1e-08
+  }
+ },
+ {
+  "name": "funcs_isclose_bcast",
+  "op": "isclose",
+  "inputs": [
+   "cases/funcs_isclose_bcast_a.npy",
+   "cases/funcs_isclose_bcast_b.npy"
+  ],
+  "expect": "cases/funcs_isclose_bcast_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:18:54Z",
+  "note": "f8(2,1)×(1,3)广播→out (2,3) bool [[T,F,F],[F,T,F]]",
+  "args": {
+   "rtol": 0.0,
+   "atol": 0.5
+  }
+ },
+ {
+  "name": "funcs_allclose",
+  "op": "allclose",
+  "inputs": [
+   "cases/funcs_allclose_a.npy",
+   "cases/funcs_allclose_b.npy"
+  ],
+  "expect": "cases/funcs_allclose_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:18:54Z",
+  "note": "f8(3,)全close→0-d bool True;np.allclose 返回标量,落盘 0-d bool",
+  "args": {
+   "rtol": 1e-05,
+   "atol": 1e-08
+  }
+ },
+ {
+  "name": "funcs_nanmean_f8",
+  "op": "nanmean",
+  "inputs": [
+   "cases/funcs_nanmean_f8_a.npy"
+  ],
+  "expect": "cases/funcs_nanmean_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:20:19Z",
+  "note": "f8 [1,nan,3,5] → 非 NaN 均值 3.0"
+ },
+ {
+  "name": "funcs_nanmean_axis1",
+  "op": "nanmean",
+  "inputs": [
+   "cases/funcs_nanmean_axis1_a.npy"
+  ],
+  "expect": "cases/funcs_nanmean_axis1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:20:19Z",
+  "note": "f8 (2,2) axis=1 → [1.0, 4.0]",
+  "args": {
+   "axis": [
+    1
+   ]
+  }
+ },
+ {
+  "name": "funcs_nanvar_axis1",
+  "op": "nanvar",
+  "inputs": [
+   "cases/funcs_nanvar_axis1_a.npy"
+  ],
+  "expect": "cases/funcs_nanvar_axis1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:20:19Z",
+  "note": "f8 (2,2) axis=1 → [0.0, 1.0](ddof=0)",
+  "args": {
+   "axis": [
+    1
+   ]
+  }
+ },
+ {
+  "name": "funcs_nanstd_axis1",
+  "op": "nanstd",
+  "inputs": [
+   "cases/funcs_nanstd_axis1_a.npy"
+  ],
+  "expect": "cases/funcs_nanstd_axis1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:20:19Z",
+  "note": "f8 (2,2) axis=1 → [0.0, 1.0](√var)",
+  "args": {
+   "axis": [
+    1
+   ]
+  }
+ },
+ {
+  "name": "funcs_nanvar_f8",
+  "op": "nanvar",
+  "inputs": [
+   "cases/funcs_nanvar_f8_a.npy"
+  ],
+  "expect": "cases/funcs_nanvar_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:20:19Z",
+  "note": "f8 [1,nan,3,5] → 8/3(ddof=0)"
+ },
+ {
+  "name": "funcs_flip_f8_1d",
+  "op": "flip",
+  "inputs": [
+   "cases/funcs_flip_f8_1d_a.npy"
+  ],
+  "expect": "cases/funcs_flip_f8_1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "1-D 全轴反转"
+ },
+ {
+  "name": "funcs_flip_2d_ax0",
+  "op": "flip",
+  "inputs": [
+   "cases/funcs_flip_2d_ax0_a.npy"
+  ],
+  "expect": "cases/funcs_flip_2d_ax0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "2-D 轴 0 反转",
+  "args": {
+   "axis": [
+    0
+   ]
+  }
+ },
+ {
+  "name": "funcs_flip_2d_all",
+  "op": "flip",
+  "inputs": [
+   "cases/funcs_flip_2d_all_a.npy"
+  ],
+  "expect": "cases/funcs_flip_2d_all_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "2-D 全轴反转"
+ },
+ {
+  "name": "funcs_flipud",
+  "op": "flipud",
+  "inputs": [
+   "cases/funcs_flipud_a.npy"
+  ],
+  "expect": "cases/funcs_flipud_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "flipud = flip axis 0"
+ },
+ {
+  "name": "funcs_fliplr",
+  "op": "fliplr",
+  "inputs": [
+   "cases/funcs_fliplr_a.npy"
+  ],
+  "expect": "cases/funcs_fliplr_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "fliplr = flip axis 1"
+ },
+ {
+  "name": "funcs_roll_flat",
+  "op": "roll",
+  "inputs": [
+   "cases/funcs_roll_flat_a.npy"
+  ],
+  "expect": "cases/funcs_roll_flat_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "axis=None:先拉平再循环右移 1",
+  "args": {
+   "shift": 1
+  }
+ },
+ {
+  "name": "funcs_roll_ax0",
+  "op": "roll",
+  "inputs": [
+   "cases/funcs_roll_ax0_a.npy"
+  ],
+  "expect": "cases/funcs_roll_ax0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "沿轴 0 循环右移 1",
+  "args": {
+   "shift": 1,
+   "axis": [
+    0
+   ]
+  }
+ },
+ {
+  "name": "funcs_roll_neg",
+  "op": "roll",
+  "inputs": [
+   "cases/funcs_roll_neg_a.npy"
+  ],
+  "expect": "cases/funcs_roll_neg_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "负移位 = 左移",
+  "args": {
+   "shift": -1
+  }
+ },
+ {
+  "name": "funcs_repeat_flat",
+  "op": "repeat",
+  "inputs": [
+   "cases/funcs_repeat_flat_a.npy"
+  ],
+  "expect": "cases/funcs_repeat_flat_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "axis=None:每元素重复 2 次",
+  "args": {
+   "repeats": 2
+  },
+  "out_shape": [
+   8
+  ]
+ },
+ {
+  "name": "funcs_repeat_ax0",
+  "op": "repeat",
+  "inputs": [
+   "cases/funcs_repeat_ax0_a.npy"
+  ],
+  "expect": "cases/funcs_repeat_ax0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "沿轴 0 每行重复 2 次",
+  "args": {
+   "repeats": 2,
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   4,
+   3
+  ]
+ },
+ {
+  "name": "funcs_tile_1d",
+  "op": "tile",
+  "inputs": [
+   "cases/funcs_tile_1d_a.npy"
+  ],
+  "expect": "cases/funcs_tile_1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "1-D 平铺 ×2",
+  "args": {
+   "reps": [
+    2
+   ]
+  },
+  "out_shape": [
+   8
+  ]
+ },
+ {
+  "name": "funcs_tile_2d",
+  "op": "tile",
+  "inputs": [
+   "cases/funcs_tile_2d_a.npy"
+  ],
+  "expect": "cases/funcs_tile_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "2-D 行方向 ×2、列不变",
+  "args": {
+   "reps": [
+    2,
+    1
+   ]
+  },
+  "out_shape": [
+   4,
+   3
+  ]
+ },
+ {
+  "name": "funcs_tile_pad",
+  "op": "tile",
+  "inputs": [
+   "cases/funcs_tile_pad_a.npy"
+  ],
+  "expect": "cases/funcs_tile_pad_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "reps 短于 ndim 时前置补 1(等价不铺贴)",
+  "args": {
+   "reps": [
+    1
+   ]
+  },
+  "out_shape": [
+   2,
+   3
+  ]
+ },
+ {
+  "name": "funcs_atleast_1d_0d",
+  "op": "atleast_1d",
+  "inputs": [
+   "cases/funcs_atleast_1d_0d_a.npy"
+  ],
+  "expect": "cases/funcs_atleast_1d_0d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "0-d → (1,)",
+  "out_shape": [
+   1
+  ]
+ },
+ {
+  "name": "funcs_atleast_2d_1d",
+  "op": "atleast_2d",
+  "inputs": [
+   "cases/funcs_atleast_2d_1d_a.npy"
+  ],
+  "expect": "cases/funcs_atleast_2d_1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "1-D → (1,n)",
+  "out_shape": [
+   1,
+   4
+  ]
+ },
+ {
+  "name": "funcs_atleast_3d_1d",
+  "op": "atleast_3d",
+  "inputs": [
+   "cases/funcs_atleast_3d_1d_a.npy"
+  ],
+  "expect": "cases/funcs_atleast_3d_1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "1-D → (1,n,1)",
+  "out_shape": [
+   1,
+   4,
+   1
+  ]
+ },
+ {
+  "name": "funcs_atleast_3d_2d",
+  "op": "atleast_3d",
+  "inputs": [
+   "cases/funcs_atleast_3d_2d_a.npy"
+  ],
+  "expect": "cases/funcs_atleast_3d_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "2-D → (m,n,1)",
+  "out_shape": [
+   2,
+   3,
+   1
+  ]
+ },
+ {
+  "name": "funcs_zeros_like",
+  "op": "zeros_like",
+  "inputs": [
+   "cases/funcs_zeros_like_a.npy"
+  ],
+  "expect": "cases/funcs_zeros_like_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:24:21Z",
+  "note": "同形状同 dtype 全零"
+ },
+ {
+  "name": "funcs_sort_f8_1d",
+  "op": "sort",
+  "inputs": [
+   "cases/funcs_sort_f8_1d_a.npy"
+  ],
+  "expect": "cases/funcs_sort_f8_1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "1-D 升序;形状不变",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_sort_axis1",
+  "op": "sort",
+  "inputs": [
+   "cases/funcs_sort_axis1_a.npy"
+  ],
+  "expect": "cases/funcs_sort_axis1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "2-D 沿轴 1 排序",
+  "args": {
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   2,
+   3
+  ]
+ },
+ {
+  "name": "funcs_sort_axis0",
+  "op": "sort",
+  "inputs": [
+   "cases/funcs_sort_axis0_a.npy"
+  ],
+  "expect": "cases/funcs_sort_axis0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "2-D 沿轴 0 排序",
+  "args": {
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   2,
+   3
+  ]
+ },
+ {
+  "name": "funcs_sort_nan",
+  "op": "sort",
+  "inputs": [
+   "cases/funcs_sort_nan_a.npy"
+  ],
+  "expect": "cases/funcs_sort_nan_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "NaN 排最后(numpy 同)",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_argsort_f8",
+  "op": "argsort",
+  "inputs": [
+   "cases/funcs_argsort_f8_a.npy"
+  ],
+  "expect": "cases/funcs_argsort_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "下标升序 [1,2,0]",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_argsort_axis1",
+  "op": "argsort",
+  "inputs": [
+   "cases/funcs_argsort_axis1_a.npy"
+  ],
+  "expect": "cases/funcs_argsort_axis1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "2-D 沿轴 1 的下标",
+  "args": {
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   2,
+   3
+  ]
+ },
+ {
+  "name": "funcs_median_f8",
+  "op": "median",
+  "inputs": [
+   "cases/funcs_median_f8_a.npy"
+  ],
+  "expect": "cases/funcs_median_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "奇数个 → 中间值 2.0",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_median_even",
+  "op": "median",
+  "inputs": [
+   "cases/funcs_median_even_a.npy"
+  ],
+  "expect": "cases/funcs_median_even_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "偶数个 → 中间两数均值 2.5",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_median_axis1",
+  "op": "median",
+  "inputs": [
+   "cases/funcs_median_axis1_a.npy"
+  ],
+  "expect": "cases/funcs_median_axis1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "2-D 沿轴 1 中位数",
+  "args": {
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_percentile_q25",
+  "op": "percentile",
+  "inputs": [
+   "cases/funcs_percentile_q25_a.npy"
+  ],
+  "expect": "cases/funcs_percentile_q25_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "线性插值:1 + 0.75*(2-1) = 1.75",
+  "args": {
+   "q": 25.0
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_percentile_axis1",
+  "op": "percentile",
+  "inputs": [
+   "cases/funcs_percentile_axis1_a.npy"
+  ],
+  "expect": "cases/funcs_percentile_axis1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "2-D 沿轴 1 的 75 分位",
+  "args": {
+   "q": 75.0,
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_diff_1",
+  "op": "diff",
+  "inputs": [
+   "cases/funcs_diff_1_a.npy"
+  ],
+  "expect": "cases/funcs_diff_1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "一阶差分 [1,2,3]",
+  "args": {
+   "n": 1
+  },
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_diff_axis0",
+  "op": "diff",
+  "inputs": [
+   "cases/funcs_diff_axis0_a.npy"
+  ],
+  "expect": "cases/funcs_diff_axis0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "沿轴 0 一阶差分",
+  "args": {
+   "n": 1,
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   1,
+   3
+  ]
+ },
+ {
+  "name": "funcs_unique_f8",
+  "op": "unique",
+  "inputs": [
+   "cases/funcs_unique_f8_a.npy"
+  ],
+  "expect": "cases/funcs_unique_f8_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "排序去重 → [1,2,3]",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_unique_i4",
+  "op": "unique",
+  "inputs": [
+   "cases/funcs_unique_i4_a.npy"
+  ],
+  "expect": "cases/funcs_unique_i4_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:36:56Z",
+  "note": "整型去重保持 dtype",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_dot_2d",
+  "op": "dot",
+  "inputs": [
+   "cases/funcs_dot_2d_a.npy",
+   "cases/funcs_dot_2d_b.npy"
+  ],
+  "expect": "cases/funcs_dot_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:49:09Z",
+  "note": "2-D·2-D → (2,2)",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_dot_1d",
+  "op": "dot",
+  "inputs": [
+   "cases/funcs_dot_1d_a.npy",
+   "cases/funcs_dot_1d_b.npy"
+  ],
+  "expect": "cases/funcs_dot_1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:49:09Z",
+  "note": "1-D·1-D → 0-d 标量 32",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_dot_2d1d",
+  "op": "dot",
+  "inputs": [
+   "cases/funcs_dot_2d1d_a.npy",
+   "cases/funcs_dot_2d1d_b.npy"
+  ],
+  "expect": "cases/funcs_dot_2d1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:49:09Z",
+  "note": "2-D·1-D → (2,)",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_dot_1d2d",
+  "op": "dot",
+  "inputs": [
+   "cases/funcs_dot_1d2d_a.npy",
+   "cases/funcs_dot_1d2d_b.npy"
+  ],
+  "expect": "cases/funcs_dot_1d2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:49:09Z",
+  "note": "1-D·2-D → (2,)",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_dot_int",
+  "op": "dot",
+  "inputs": [
+   "cases/funcs_dot_int_a.npy",
+   "cases/funcs_dot_int_b.npy"
+  ],
+  "expect": "cases/funcs_dot_int_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:49:09Z",
+  "note": "int32·int32 → int32(同宽累加)",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_matmul_2d",
+  "op": "matmul",
+  "inputs": [
+   "cases/funcs_matmul_2d_a.npy",
+   "cases/funcs_matmul_2d_b.npy"
+  ],
+  "expect": "cases/funcs_matmul_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:49:09Z",
+  "note": "matmul 2-D·2-D",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_matmul_1d1d",
+  "op": "matmul",
+  "inputs": [
+   "cases/funcs_matmul_1d1d_a.npy",
+   "cases/funcs_matmul_1d1d_b.npy"
+  ],
+  "expect": "cases/funcs_matmul_1d1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:49:09Z",
+  "note": "matmul 1-D·1-D → 0-d",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_matmul_2d1d",
+  "op": "matmul",
+  "inputs": [
+   "cases/funcs_matmul_2d1d_a.npy",
+   "cases/funcs_matmul_2d1d_b.npy"
+  ],
+  "expect": "cases/funcs_matmul_2d1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:49:09Z",
+  "note": "matmul 2-D·1-D → (2,)",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_matmul_stack",
+  "op": "matmul",
+  "inputs": [
+   "cases/funcs_matmul_stack_a.npy",
+   "cases/funcs_matmul_stack_b.npy"
+  ],
+  "expect": "cases/funcs_matmul_stack_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:49:09Z",
+  "note": "batch (2,2,2)·(2,2):b 广播到两个 batch",
+  "out_shape": [
+   2,
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_inner_2d",
+  "op": "inner",
+  "inputs": [
+   "cases/funcs_inner_2d_a.npy",
+   "cases/funcs_inner_2d_b.npy"
+  ],
+  "expect": "cases/funcs_inner_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:49:09Z",
+  "note": "inner (2,3)·(2,3) → (2,2)",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_outer",
+  "op": "outer",
+  "inputs": [
+   "cases/funcs_outer_a.npy",
+   "cases/funcs_outer_b.npy"
+  ],
+  "expect": "cases/funcs_outer_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:49:09Z",
+  "note": "outer:[1,2]×[3,4,5] → (2,3)",
+  "out_shape": [
+   2,
+   3
+  ]
+ },
+ {
+  "name": "funcs_outer_flat",
+  "op": "outer",
+  "inputs": [
+   "cases/funcs_outer_flat_a.npy",
+   "cases/funcs_outer_flat_b.npy"
+  ],
+  "expect": "cases/funcs_outer_flat_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:49:09Z",
+  "note": "二维输入先拉平 → (4,2)",
+  "out_shape": [
+   4,
+   2
+  ]
+ },
+ {
+  "name": "funcs_searchsorted_left",
+  "op": "searchsorted",
+  "inputs": [
+   "cases/funcs_searchsorted_left_a.npy",
+   "cases/funcs_searchsorted_left_b.npy"
+  ],
+  "expect": "cases/funcs_searchsorted_left_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:53:12Z",
+  "note": "lower bound:首个 >= v 的下标",
+  "args": {
+   "right": false
+  },
+  "out_shape": [
+   6
+  ]
+ },
+ {
+  "name": "funcs_searchsorted_right",
+  "op": "searchsorted",
+  "inputs": [
+   "cases/funcs_searchsorted_right_a.npy",
+   "cases/funcs_searchsorted_right_b.npy"
+  ],
+  "expect": "cases/funcs_searchsorted_right_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:53:12Z",
+  "note": "upper bound:首个 > v 的下标",
+  "args": {
+   "right": true
+  },
+  "out_shape": [
+   6
+  ]
+ },
+ {
+  "name": "funcs_digitize",
+  "op": "digitize",
+  "inputs": [
+   "cases/funcs_digitize_a.npy",
+   "cases/funcs_digitize_b.npy"
+  ],
+  "expect": "cases/funcs_digitize_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:53:12Z",
+  "note": "right=False:bins[i-1] <= x < bins[i]",
+  "args": {
+   "right": false
+  },
+  "out_shape": [
+   6
+  ]
+ },
+ {
+  "name": "funcs_digitize_right",
+  "op": "digitize",
+  "inputs": [
+   "cases/funcs_digitize_right_a.npy",
+   "cases/funcs_digitize_right_b.npy"
+  ],
+  "expect": "cases/funcs_digitize_right_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:53:12Z",
+  "note": "right=True:边界归左箱",
+  "args": {
+   "right": true
+  },
+  "out_shape": [
+   6
+  ]
+ },
+ {
+  "name": "funcs_interp",
+  "op": "interp",
+  "inputs": [
+   "cases/funcs_interp_a.npy",
+   "cases/funcs_interp_b.npy",
+   "cases/funcs_interp_c.npy"
+  ],
+  "expect": "cases/funcs_interp_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:53:12Z",
+  "note": "线性插值 + 端点钳制:[-1→0, 0.5→5, 1.5→15, 3→20]",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_interp_nonuniform",
+  "op": "interp",
+  "inputs": [
+   "cases/funcs_interp_nonuniform_a.npy",
+   "cases/funcs_interp_nonuniform_b.npy",
+   "cases/funcs_interp_nonuniform_c.npy"
+  ],
+  "expect": "cases/funcs_interp_nonuniform_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:53:12Z",
+  "note": "非等距 xp:x=1→2, x=2.5→6.5",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_meshgrid_ij",
+  "op": "meshgrid",
+  "inputs": [
+   "cases/funcs_meshgrid_ij_a.npy",
+   "cases/funcs_meshgrid_ij_b.npy"
+  ],
+  "outputs": [
+   "cases/funcs_meshgrid_ij_out0.npy",
+   "cases/funcs_meshgrid_ij_out1.npy"
+  ],
+  "out_shapes": [
+   [
+    2,
+    3
+   ],
+   [
+    2,
+    3
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:53:12Z",
+  "note": "ij 索引序:输出形状 (2,3)"
+ },
+ {
+  "name": "funcs_meshgrid_xy",
+  "op": "meshgrid",
+  "inputs": [
+   "cases/funcs_meshgrid_xy_a.npy",
+   "cases/funcs_meshgrid_xy_b.npy"
+  ],
+  "outputs": [
+   "cases/funcs_meshgrid_xy_out0.npy",
+   "cases/funcs_meshgrid_xy_out1.npy"
+  ],
+  "out_shapes": [
+   [
+    3,
+    2
+   ],
+   [
+    3,
+    2
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:53:12Z",
+  "note": "xy 索引序:前两维交换 → (3,2)",
+  "args": {
+   "xy": true
+  }
+ },
+ {
+  "name": "funcs_gradient_1d",
+  "op": "gradient",
+  "inputs": [
+   "cases/funcs_gradient_1d_a.npy"
+  ],
+  "outputs": [
+   "cases/funcs_gradient_1d_out0.npy"
+  ],
+  "out_shapes": [
+   [
+    4
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:53:12Z",
+  "note": "1-D:边界一阶、内部中心差分 [1,1.5,2.5,3]"
+ },
+ {
+  "name": "funcs_gradient_2d",
+  "op": "gradient",
+  "inputs": [
+   "cases/funcs_gradient_2d_a.npy"
+  ],
+  "outputs": [
+   "cases/funcs_gradient_2d_out0.npy",
+   "cases/funcs_gradient_2d_out1.npy"
+  ],
+  "out_shapes": [
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T16:53:12Z",
+  "note": "2-D 无 axis:每轴一个数组,形状同输入"
+ },
+ {
+  "name": "funcs_pad_constant",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_constant_a.npy"
+  ],
+  "expect": "cases/funcs_pad_constant_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:00:28Z",
+  "note": "constant:两端补 9",
+  "args": {
+   "pads": [
+    [
+     1,
+     1
+    ]
+   ],
+   "mode": "constant",
+   "cval": 9.0
+  },
+  "out_shape": [
+   5
+  ]
+ },
+ {
+  "name": "funcs_pad_edge",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_edge_a.npy"
+  ],
+  "expect": "cases/funcs_pad_edge_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:00:28Z",
+  "note": "edge:复制边缘",
+  "args": {
+   "pads": [
+    [
+     1,
+     2
+    ]
+   ],
+   "mode": "edge"
+  },
+  "out_shape": [
+   6
+  ]
+ },
+ {
+  "name": "funcs_pad_reflect",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_reflect_a.npy"
+  ],
+  "expect": "cases/funcs_pad_reflect_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:00:28Z",
+  "note": "reflect:不重复边缘",
+  "args": {
+   "pads": [
+    [
+     2,
+     2
+    ]
+   ],
+   "mode": "reflect"
+  },
+  "out_shape": [
+   7
+  ]
+ },
+ {
+  "name": "funcs_pad_symmetric",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_symmetric_a.npy"
+  ],
+  "expect": "cases/funcs_pad_symmetric_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:00:28Z",
+  "note": "symmetric:重复边缘",
+  "args": {
+   "pads": [
+    [
+     2,
+     2
+    ]
+   ],
+   "mode": "symmetric"
+  },
+  "out_shape": [
+   7
+  ]
+ },
+ {
+  "name": "funcs_pad_wrap",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_wrap_a.npy"
+  ],
+  "expect": "cases/funcs_pad_wrap_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:00:28Z",
+  "note": "wrap:循环",
+  "args": {
+   "pads": [
+    [
+     2,
+     2
+    ]
+   ],
+   "mode": "wrap"
+  },
+  "out_shape": [
+   7
+  ]
+ },
+ {
+  "name": "funcs_pad_2d",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_2d_a.npy"
+  ],
+  "expect": "cases/funcs_pad_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:00:28Z",
+  "note": "2-D 每轴不同宽度",
+  "args": {
+   "pads": [
+    [
+     1,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "mode": "constant"
+  },
+  "out_shape": [
+   3,
+   3
+  ]
+ },
+ {
+  "name": "funcs_histogram_uniform",
+  "op": "histogram",
+  "inputs": [
+   "cases/funcs_histogram_uniform_a.npy"
+  ],
+  "outputs": [
+   "cases/funcs_histogram_uniform_out0.npy",
+   "cases/funcs_histogram_uniform_out1.npy"
+  ],
+  "out_shapes": [
+   [
+    2
+   ],
+   [
+    3
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:00:28Z",
+  "note": "等分 2 箱:边界归属(1.0 落末箱)",
+  "args": {
+   "bins": 2,
+   "lo": 0.0,
+   "hi": 1.0
+  }
+ },
+ {
+  "name": "funcs_histogram_range",
+  "op": "histogram",
+  "inputs": [
+   "cases/funcs_histogram_range_a.npy"
+  ],
+  "outputs": [
+   "cases/funcs_histogram_range_out0.npy",
+   "cases/funcs_histogram_range_out1.npy"
+  ],
+  "out_shapes": [
+   [
+    2
+   ],
+   [
+    3
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:00:28Z",
+  "note": "显式 range [0,10] 两箱",
+  "args": {
+   "bins": 2,
+   "lo": 0.0,
+   "hi": 10.0
+  }
+ },
+ {
+  "name": "funcs_select",
+  "op": "select",
+  "inputs": [
+   "cases/funcs_select_c1.npy",
+   "cases/funcs_select_c2.npy",
+   "cases/funcs_select_h1.npy",
+   "cases/funcs_select_h2.npy",
+   "cases/funcs_select_d.npy"
+  ],
+  "expect": "cases/funcs_select_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:00:28Z",
+  "note": "首个为真胜出;default 参与 dtype 提升",
+  "args": {
+   "ncond": 2
+  },
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_putmask",
+  "op": "putmask",
+  "inputs": [
+   "cases/funcs_putmask_a.npy",
+   "cases/funcs_putmask_m.npy",
+   "cases/funcs_putmask_v.npy"
+  ],
+  "expect": "cases/funcs_putmask_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:00:28Z",
+  "note": "原地覆盖,values 循环取用(0→9, 2→8)",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_putmask_2d",
+  "op": "putmask",
+  "inputs": [
+   "cases/funcs_putmask_2d_a.npy",
+   "cases/funcs_putmask_2d_m.npy",
+   "cases/funcs_putmask_2d_v.npy"
+  ],
+  "expect": "cases/funcs_putmask_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:00:28Z",
+  "note": "2-D 同形 mask",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_fft4",
+  "op": "fft",
+  "inputs": [
+   "cases/funcs_fft4_a.npy"
+  ],
+  "expect": "cases/funcs_fft4_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:09:33Z",
+  "note": "n=4 的 FFT(radix-2)"
+ },
+ {
+  "name": "funcs_fft5",
+  "op": "fft",
+  "inputs": [
+   "cases/funcs_fft5_a.npy"
+  ],
+  "expect": "cases/funcs_fft5_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:09:33Z",
+  "note": "n=5 非 2 的幂(朴素 DFT)"
+ },
+ {
+  "name": "funcs_fft_complex",
+  "op": "fft",
+  "inputs": [
+   "cases/funcs_fft_complex_a.npy"
+  ],
+  "expect": "cases/funcs_fft_complex_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:09:33Z",
+  "note": "复数输入"
+ },
+ {
+  "name": "funcs_ifft_rt",
+  "op": "ifft",
+  "inputs": [
+   "cases/funcs_ifft_rt_a.npy"
+  ],
+  "expect": "cases/funcs_ifft_rt_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:09:33Z",
+  "note": "ifft 往返还原(1/n 归一)"
+ },
+ {
+  "name": "funcs_rfft4",
+  "op": "rfft",
+  "inputs": [
+   "cases/funcs_rfft4_a.npy"
+  ],
+  "expect": "cases/funcs_rfft4_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:09:33Z",
+  "note": "半谱 n/2+1=3",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_irfft4",
+  "op": "irfft",
+  "inputs": [
+   "cases/funcs_irfft4_a.npy"
+  ],
+  "expect": "cases/funcs_irfft4_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:09:33Z",
+  "note": "半谱还原实数序列",
+  "args": {
+   "n": 4
+  },
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_fftfreq8",
+  "op": "fftfreq",
+  "inputs": [
+   "cases/funcs_fftfreq8_a.npy"
+  ],
+  "expect": "cases/funcs_fftfreq8_out.npy",
+  "region": "rel",
+  "tol": 1e-15,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:09:33Z",
+  "note": "频率分档(n=8, d=1)",
+  "args": {
+   "n": 8,
+   "d": 1.0
+  },
+  "out_shape": [
+   8
+  ]
+ },
+ {
+  "name": "funcs_fft_2d",
+  "op": "fft",
+  "inputs": [
+   "cases/funcs_fft_2d_a.npy"
+  ],
+  "expect": "cases/funcs_fft_2d_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:09:33Z",
+  "note": "2-D 沿最后一轴"
+ },
+ {
+  "name": "funcs_ma_filled",
+  "op": "ma_filled",
+  "inputs": [
+   "cases/funcs_ma_filled_a.npy",
+   "cases/funcs_ma_filled_m.npy",
+   "cases/funcs_ma_filled_v.npy"
+  ],
+  "expect": "cases/funcs_ma_filled_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:13:53Z",
+  "note": "被掩码位置填 0",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_ma_compressed",
+  "op": "ma_compressed",
+  "inputs": [
+   "cases/funcs_ma_compressed_a.npy",
+   "cases/funcs_ma_compressed_m.npy"
+  ],
+  "expect": "cases/funcs_ma_compressed_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:13:53Z",
+  "note": "取出未掩码元素 (1-D)",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_ma_sum_axis0",
+  "op": "ma_sum",
+  "inputs": [
+   "cases/funcs_ma_sum_axis0_a.npy",
+   "cases/funcs_ma_sum_axis0_m.npy"
+  ],
+  "expect": "cases/funcs_ma_sum_axis0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:13:53Z",
+  "note": "按轴 0 求和,跳过掩码(第 1 列只有 4 有效)",
+  "args": {
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_einsum_matmul",
+  "op": "einsum",
+  "inputs": [
+   "cases/funcs_einsum_matmul_a.npy",
+   "cases/funcs_einsum_matmul_b.npy"
+  ],
+  "expect": "cases/funcs_einsum_matmul_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:17:05Z",
+  "note": "ij,jk->ik 矩阵乘",
+  "args": {
+   "sub": "ij,jk->ik"
+  },
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_einsum_transpose",
+  "op": "einsum",
+  "inputs": [
+   "cases/funcs_einsum_transpose_a.npy"
+  ],
+  "expect": "cases/funcs_einsum_transpose_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:17:05Z",
+  "note": "ij->ji 转置",
+  "args": {
+   "sub": "ij->ji"
+  },
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_einsum_diag",
+  "op": "einsum",
+  "inputs": [
+   "cases/funcs_einsum_diag_a.npy"
+  ],
+  "expect": "cases/funcs_einsum_diag_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:17:05Z",
+  "note": "ii->i 取对角",
+  "args": {
+   "sub": "ii->i"
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_einsum_fullsum",
+  "op": "einsum",
+  "inputs": [
+   "cases/funcs_einsum_fullsum_a.npy"
+  ],
+  "expect": "cases/funcs_einsum_fullsum_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:17:05Z",
+  "note": "ij-> 全和 → 0-d",
+  "args": {
+   "sub": "ij->"
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_einsum_dot",
+  "op": "einsum",
+  "inputs": [
+   "cases/funcs_einsum_dot_a.npy",
+   "cases/funcs_einsum_dot_b.npy"
+  ],
+  "expect": "cases/funcs_einsum_dot_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:17:05Z",
+  "note": "i,i-> 内积 → 0-d",
+  "args": {
+   "sub": "i,i->"
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_tensordot_2d",
+  "op": "tensordot",
+  "inputs": [
+   "cases/funcs_tensordot_2d_a.npy",
+   "cases/funcs_tensordot_2d_b.npy"
+  ],
+  "expect": "cases/funcs_tensordot_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:17:05Z",
+  "note": "2-D 收缩末轴与首轴",
+  "args": {
+   "axesA": [
+    1
+   ],
+   "axesB": [
+    0
+   ]
+  },
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_tensordot_1d",
+  "op": "tensordot",
+  "inputs": [
+   "cases/funcs_tensordot_1d_a.npy",
+   "cases/funcs_tensordot_1d_b.npy"
+  ],
+  "expect": "cases/funcs_tensordot_1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:17:05Z",
+  "note": "1-D 点积 → 0-d",
+  "args": {
+   "axesA": [
+    0
+   ],
+   "axesB": [
+    0
+   ]
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_tensordot_3d",
+  "op": "tensordot",
+  "inputs": [
+   "cases/funcs_tensordot_3d_a.npy",
+   "cases/funcs_tensordot_3d_b.npy"
+  ],
+  "expect": "cases/funcs_tensordot_3d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:17:05Z",
+  "note": "3-D × 2-D 收缩一条轴",
+  "args": {
+   "axesA": [
+    2
+   ],
+   "axesB": [
+    0
+   ]
+  },
+  "out_shape": [
+   2,
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_unique_idx",
+  "op": "unique_idx",
+  "inputs": [
+   "cases/funcs_unique_idx_a.npy"
+  ],
+  "outputs": [
+   "cases/funcs_unique_idx_out0.npy",
+   "cases/funcs_unique_idx_out1.npy",
+   "cases/funcs_unique_idx_out2.npy"
+  ],
+  "out_shapes": [
+   [
+    3
+   ],
+   [
+    3
+   ],
+   [
+    3
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:17:05Z",
+  "note": "values + 首次出现下标 + 计数(numpy 口径)"
+ },
+ {
+  "name": "funcs_ufunc_out",
+  "op": "add_out",
+  "inputs": [
+   "cases/funcs_ufunc_out_a.npy",
+   "cases/funcs_ufunc_out_b.npy",
+   "cases/funcs_ufunc_out_d.npy"
+  ],
+  "expect": "cases/funcs_ufunc_out_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:20:25Z",
+  "note": "out= 写回已有数组",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_ufunc_where",
+  "op": "add_where",
+  "inputs": [
+   "cases/funcs_ufunc_where_a.npy",
+   "cases/funcs_ufunc_where_b.npy",
+   "cases/funcs_ufunc_where_d.npy",
+   "cases/funcs_ufunc_where_c.npy"
+  ],
+  "expect": "cases/funcs_ufunc_where_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:20:25Z",
+  "note": "where= 只写条件为真的位置",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_ufunc_reduce",
+  "op": "add_reduce",
+  "inputs": [
+   "cases/funcs_ufunc_reduce_a.npy"
+  ],
+  "expect": "cases/funcs_ufunc_reduce_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:20:25Z",
+  "note": "add.reduce 全归约 → 0-d",
+  "args": {},
+  "out_shape": []
+ },
+ {
+  "name": "funcs_ufunc_reduce_axis",
+  "op": "add_reduce",
+  "inputs": [
+   "cases/funcs_ufunc_reduce_axis_a.npy"
+  ],
+  "expect": "cases/funcs_ufunc_reduce_axis_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:20:25Z",
+  "note": "add.reduce axis=0",
+  "args": {
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_ufunc_reduce_mul",
+  "op": "mul_reduce",
+  "inputs": [
+   "cases/funcs_ufunc_reduce_mul_a.npy"
+  ],
+  "expect": "cases/funcs_ufunc_reduce_mul_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:20:25Z",
+  "note": "multiply.reduce 全归约",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_ufunc_accumulate",
+  "op": "add_accumulate",
+  "inputs": [
+   "cases/funcs_ufunc_accumulate_a.npy"
+  ],
+  "expect": "cases/funcs_ufunc_accumulate_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:20:25Z",
+  "note": "add.accumulate 前缀和",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_ufunc_accumulate_axis",
+  "op": "add_accumulate",
+  "inputs": [
+   "cases/funcs_ufunc_accumulate_axis_a.npy"
+  ],
+  "expect": "cases/funcs_ufunc_accumulate_axis_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:20:25Z",
+  "note": "按列前缀和",
+  "args": {
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_ufunc_outer",
+  "op": "add_outer",
+  "inputs": [
+   "cases/funcs_ufunc_outer_a.npy",
+   "cases/funcs_ufunc_outer_b.npy"
+  ],
+  "expect": "cases/funcs_ufunc_outer_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:20:25Z",
+  "note": "add.outer 逐对外积",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_place",
+  "op": "place",
+  "inputs": [
+   "cases/funcs_place_a.npy",
+   "cases/funcs_place_m.npy",
+   "cases/funcs_place_v.npy"
+  ],
+  "expect": "cases/funcs_place_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-22T17:28:10Z",
+  "note": "place 按**命中顺序**取 vals(位置 0→9、位置 2→8)",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_diag_1d",
+  "op": "diag",
+  "inputs": [
+   "cases/funcs_diag_1d_a.npy"
+  ],
+  "expect": "cases/funcs_diag_1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "1-D → 3x3 对角阵",
+  "args": {
+   "k": 0
+  },
+  "out_shape": [
+   3,
+   3
+  ]
+ },
+ {
+  "name": "funcs_diag_1d_k1",
+  "op": "diag",
+  "inputs": [
+   "cases/funcs_diag_1d_k1_a.npy"
+  ],
+  "expect": "cases/funcs_diag_1d_k1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "k=1:上移一条对角线",
+  "args": {
+   "k": 1
+  },
+  "out_shape": [
+   3,
+   3
+  ]
+ },
+ {
+  "name": "funcs_diag_2d",
+  "op": "diag",
+  "inputs": [
+   "cases/funcs_diag_2d_a.npy"
+  ],
+  "expect": "cases/funcs_diag_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "2-D → 抽取主对角",
+  "args": {
+   "k": 0
+  },
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_diag_2d_k-1",
+  "op": "diag",
+  "inputs": [
+   "cases/funcs_diag_2d_k-1_a.npy"
+  ],
+  "expect": "cases/funcs_diag_2d_k-1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "抽取 k=-1 对角",
+  "args": {
+   "k": -1
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_diagflat",
+  "op": "diagflat",
+  "inputs": [
+   "cases/funcs_diagflat_a.npy"
+  ],
+  "expect": "cases/funcs_diagflat_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "二维先拉平再造对角阵",
+  "out_shape": [
+   4,
+   4
+  ]
+ },
+ {
+  "name": "funcs_trace",
+  "op": "trace",
+  "inputs": [
+   "cases/funcs_trace_a.npy"
+  ],
+  "expect": "cases/funcs_trace_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "对角线之和 15",
+  "args": {
+   "offset": 0
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_trace_offset",
+  "op": "trace",
+  "inputs": [
+   "cases/funcs_trace_offset_a.npy"
+  ],
+  "expect": "cases/funcs_trace_offset_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "offset=1 → 8",
+  "args": {
+   "offset": 1
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_triu",
+  "op": "triu",
+  "inputs": [
+   "cases/funcs_triu_a.npy"
+  ],
+  "expect": "cases/funcs_triu_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "上三角",
+  "args": {
+   "k": 0
+  },
+  "out_shape": [
+   3,
+   3
+  ]
+ },
+ {
+  "name": "funcs_triu_k1",
+  "op": "triu",
+  "inputs": [
+   "cases/funcs_triu_k1_a.npy"
+  ],
+  "expect": "cases/funcs_triu_k1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "上三角 k=1",
+  "args": {
+   "k": 1
+  },
+  "out_shape": [
+   3,
+   3
+  ]
+ },
+ {
+  "name": "funcs_tril",
+  "op": "tril",
+  "inputs": [
+   "cases/funcs_tril_a.npy"
+  ],
+  "expect": "cases/funcs_tril_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "下三角",
+  "args": {
+   "k": 0
+  },
+  "out_shape": [
+   3,
+   3
+  ]
+ },
+ {
+  "name": "funcs_tril_k-1",
+  "op": "tril",
+  "inputs": [
+   "cases/funcs_tril_k-1_a.npy"
+  ],
+  "expect": "cases/funcs_tril_k-1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "下三角 k=-1",
+  "args": {
+   "k": -1
+  },
+  "out_shape": [
+   3,
+   3
+  ]
+ },
+ {
+  "name": "funcs_fill_diagonal",
+  "op": "fill_diagonal",
+  "inputs": [
+   "cases/funcs_fill_diagonal_a.npy",
+   "cases/funcs_fill_diagonal_v.npy"
+  ],
+  "expect": "cases/funcs_fill_diagonal_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "原地写对角线",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_cov",
+  "op": "cov",
+  "inputs": [
+   "cases/funcs_cov_a.npy"
+  ],
+  "expect": "cases/funcs_cov_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "2 变量 3 观测的协方差矩阵",
+  "args": {
+   "rowvar": true,
+   "ddof": -1
+  },
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_corrcoef",
+  "op": "corrcoef",
+  "inputs": [
+   "cases/funcs_corrcoef_a.npy"
+  ],
+  "expect": "cases/funcs_corrcoef_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "相关系数矩阵",
+  "args": {
+   "rowvar": true
+  },
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_cov_1d",
+  "op": "cov",
+  "inputs": [
+   "cases/funcs_cov_1d_a.npy"
+  ],
+  "expect": "cases/funcs_cov_1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:01:40Z",
+  "note": "1-D → 0-d 方差",
+  "args": {
+   "rowvar": true,
+   "ddof": -1
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_pad_linear_ramp",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_linear_ramp_a.npy"
+  ],
+  "expect": "cases/funcs_pad_linear_ramp_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:08:23Z",
+  "note": "linear_ramp 前侧 2",
+  "args": {
+   "pads": [
+    [
+     2,
+     0
+    ]
+   ],
+   "mode": "linear_ramp"
+  },
+  "out_shape": [
+   5
+  ]
+ },
+ {
+  "name": "funcs_pad_linear_ramp_end",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_linear_ramp_end_a.npy"
+  ],
+  "expect": "cases/funcs_pad_linear_ramp_end_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:08:23Z",
+  "note": "linear_ramp 后侧 3,末端值 9",
+  "args": {
+   "pads": [
+    [
+     0,
+     3
+    ]
+   ],
+   "mode": "linear_ramp",
+   "endAfter": 9.0
+  },
+  "out_shape": [
+   6
+  ]
+ },
+ {
+  "name": "funcs_pad_maximum",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_maximum_a.npy"
+  ],
+  "expect": "cases/funcs_pad_maximum_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:08:23Z",
+  "note": "maximum 两侧都用该轴最大值 3",
+  "args": {
+   "pads": [
+    [
+     2,
+     1
+    ]
+   ],
+   "mode": "maximum"
+  },
+  "out_shape": [
+   6
+  ]
+ },
+ {
+  "name": "funcs_pad_minimum",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_minimum_a.npy"
+  ],
+  "expect": "cases/funcs_pad_minimum_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:08:23Z",
+  "note": "minimum 两侧都用最小值 1",
+  "args": {
+   "pads": [
+    [
+     2,
+     1
+    ]
+   ],
+   "mode": "minimum"
+  },
+  "out_shape": [
+   6
+  ]
+ },
+ {
+  "name": "funcs_pad_mean",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_mean_a.npy"
+  ],
+  "expect": "cases/funcs_pad_mean_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:08:23Z",
+  "note": "mean 两侧都用均值 2",
+  "args": {
+   "pads": [
+    [
+     2,
+     1
+    ]
+   ],
+   "mode": "mean"
+  },
+  "out_shape": [
+   6
+  ]
+ },
+ {
+  "name": "funcs_pad_median",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_median_a.npy"
+  ],
+  "expect": "cases/funcs_pad_median_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:08:23Z",
+  "note": "median 两侧都用中位数 2",
+  "args": {
+   "pads": [
+    [
+     2,
+     1
+    ]
+   ],
+   "mode": "median"
+  },
+  "out_shape": [
+   6
+  ]
+ },
+ {
+  "name": "funcs_pad_max_2d",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_max_2d_a.npy"
+  ],
+  "expect": "cases/funcs_pad_max_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:08:23Z",
+  "note": "2-D 轴 0:每列取最大填充",
+  "args": {
+   "pads": [
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "mode": "maximum"
+  },
+  "out_shape": [
+   4,
+   2
+  ]
+ },
+ {
+  "name": "funcs_pad_mean_2d",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_mean_2d_a.npy"
+  ],
+  "expect": "cases/funcs_pad_mean_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:08:23Z",
+  "note": "2-D 轴 1:每行取均值填充",
+  "args": {
+   "pads": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "mode": "mean"
+  },
+  "out_shape": [
+   2,
+   4
+  ]
+ },
+ {
+  "name": "funcs_pad_max_int",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_max_int_a.npy"
+  ],
+  "expect": "cases/funcs_pad_max_int_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:08:23Z",
+  "note": "整型输入:输出仍为 int32",
+  "args": {
+   "pads": [
+    [
+     2,
+     1
+    ]
+   ],
+   "mode": "maximum"
+  },
+  "out_shape": [
+   6
+  ]
+ },
+ {
+  "name": "funcs_unique_axis0",
+  "op": "unique_axis",
+  "inputs": [
+   "cases/funcs_unique_axis0_a.npy"
+  ],
+  "expect": "cases/funcs_unique_axis0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:08:23Z",
+  "note": "按行去重(字典序)",
+  "args": {
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_unique_axis1",
+  "op": "unique_axis",
+  "inputs": [
+   "cases/funcs_unique_axis1_a.npy"
+  ],
+  "expect": "cases/funcs_unique_axis1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:08:23Z",
+  "note": "按列去重(字典序)",
+  "args": {
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_bincount_weights",
+  "op": "bincount_w",
+  "inputs": [
+   "cases/funcs_bincount_weights_x.npy",
+   "cases/funcs_bincount_weights_w.npy"
+  ],
+  "expect": "cases/funcs_bincount_weights_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:10:49Z",
+  "note": "加权 bincount → float64 和",
+  "args": {
+   "n": 5
+  },
+  "out_shape": [
+   5
+  ]
+ },
+ {
+  "name": "funcs_histogram2d",
+  "op": "histogram2d",
+  "inputs": [
+   "cases/funcs_histogram2d_x.npy",
+   "cases/funcs_histogram2d_y.npy"
+  ],
+  "outputs": [
+   "cases/funcs_histogram2d_out0.npy",
+   "cases/funcs_histogram2d_out1.npy",
+   "cases/funcs_histogram2d_out2.npy"
+  ],
+  "out_shapes": [
+   [
+    2,
+    3
+   ],
+   [
+    3
+   ],
+   [
+    4
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:10:49Z",
+  "note": "2x3 分箱 → (H, xedges, yedges)",
+  "args": {
+   "binsX": 2,
+   "binsY": 3,
+   "xlo": 0.0,
+   "xhi": 1.0,
+   "ylo": 0.0,
+   "yhi": 3.0
+  }
+ },
+ {
+  "name": "funcs_histogram2d_2",
+  "op": "histogram2d",
+  "inputs": [
+   "cases/funcs_histogram2d_2_x.npy",
+   "cases/funcs_histogram2d_2_y.npy"
+  ],
+  "outputs": [
+   "cases/funcs_histogram2d_2_out0.npy",
+   "cases/funcs_histogram2d_2_out1.npy",
+   "cases/funcs_histogram2d_2_out2.npy"
+  ],
+  "out_shapes": [
+   [
+    2,
+    2
+   ],
+   [
+    3
+   ],
+   [
+    3
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:10:49Z",
+  "note": "2x2 分箱,同箱多点",
+  "args": {
+   "binsX": 2,
+   "binsY": 2,
+   "xlo": 0.0,
+   "xhi": 1.0,
+   "ylo": 0.0,
+   "yhi": 1.0
+  }
+ },
+ {
+  "name": "funcs_pct_linear",
+  "op": "percentile_m",
+  "inputs": [
+   "cases/funcs_pct_linear_a.npy"
+  ],
+  "expect": "cases/funcs_pct_linear_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:15:38Z",
+  "note": "linear q=25",
+  "args": {
+   "q": 25.0,
+   "method": "linear"
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_pct_weibull",
+  "op": "percentile_m",
+  "inputs": [
+   "cases/funcs_pct_weibull_a.npy"
+  ],
+  "expect": "cases/funcs_pct_weibull_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:15:38Z",
+  "note": "weibull q=25 → 1.5",
+  "args": {
+   "q": 25.0,
+   "method": "weibull"
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_pct_hazen",
+  "op": "percentile_m",
+  "inputs": [
+   "cases/funcs_pct_hazen_a.npy"
+  ],
+  "expect": "cases/funcs_pct_hazen_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:15:38Z",
+  "note": "hazen q=25 → 1.75",
+  "args": {
+   "q": 25.0,
+   "method": "hazen"
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_pct_nearest",
+  "op": "percentile_m",
+  "inputs": [
+   "cases/funcs_pct_nearest_a.npy"
+  ],
+  "expect": "cases/funcs_pct_nearest_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:15:38Z",
+  "note": "nearest q=50(n=6)→ 3(银行家舍入)",
+  "args": {
+   "q": 50.0,
+   "method": "nearest"
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_pct_closest",
+  "op": "percentile_m",
+  "inputs": [
+   "cases/funcs_pct_closest_a.npy"
+  ],
+  "expect": "cases/funcs_pct_closest_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:15:38Z",
+  "note": "closest_observation q=50 → 2",
+  "args": {
+   "q": 50.0,
+   "method": "closest_observation"
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_pct_many",
+  "op": "percentile_many",
+  "inputs": [
+   "cases/funcs_pct_many_a.npy"
+  ],
+  "expect": "cases/funcs_pct_many_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:15:38Z",
+  "note": "q 数组 → (3,)",
+  "args": {
+   "qs": [
+    25.0,
+    50.0,
+    75.0
+   ]
+  },
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_pct_many_axis",
+  "op": "percentile_many",
+  "inputs": [
+   "cases/funcs_pct_many_axis_a.npy"
+  ],
+  "expect": "cases/funcs_pct_many_axis_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:15:38Z",
+  "note": "q 数组 + 轴归约 → (2,2)",
+  "args": {
+   "qs": [
+    25.0,
+    75.0
+   ],
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_quantile",
+  "op": "quantile",
+  "inputs": [
+   "cases/funcs_quantile_a.npy"
+  ],
+  "expect": "cases/funcs_quantile_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:19:36Z",
+  "note": "quantile 0.25 → 2",
+  "args": {
+   "q": 0.25
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_quantile_method",
+  "op": "quantile",
+  "inputs": [
+   "cases/funcs_quantile_method_a.npy"
+  ],
+  "expect": "cases/funcs_quantile_method_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:19:36Z",
+  "note": "quantile weibull 0.25 → 1.5",
+  "args": {
+   "q": 0.25,
+   "method": "weibull"
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_quantile_many",
+  "op": "quantile_many",
+  "inputs": [
+   "cases/funcs_quantile_many_a.npy"
+  ],
+  "expect": "cases/funcs_quantile_many_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:19:36Z",
+  "note": "q 数组 → [2,3]",
+  "args": {
+   "qs": [
+    0.25,
+    0.5
+   ]
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_nanpercentile",
+  "op": "nanpercentile",
+  "inputs": [
+   "cases/funcs_nanpercentile_a.npy"
+  ],
+  "expect": "cases/funcs_nanpercentile_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:19:36Z",
+  "note": "剔除 NaN 后中位数 3",
+  "args": {
+   "q": 50.0
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_nanpercentile_axis",
+  "op": "nanpercentile",
+  "inputs": [
+   "cases/funcs_nanpercentile_axis_a.npy"
+  ],
+  "expect": "cases/funcs_nanpercentile_axis_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:19:36Z",
+  "note": "按轴剔除 NaN → [2,5]",
+  "args": {
+   "q": 50.0,
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_nanquantile",
+  "op": "nanquantile",
+  "inputs": [
+   "cases/funcs_nanquantile_a.npy"
+  ],
+  "expect": "cases/funcs_nanquantile_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:19:36Z",
+  "note": "剔除 NaN 后 0.75 → 4.25",
+  "args": {
+   "q": 0.75
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_nanmedian",
+  "op": "nanmedian",
+  "inputs": [
+   "cases/funcs_nanmedian_a.npy"
+  ],
+  "expect": "cases/funcs_nanmedian_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:23:24Z",
+  "note": "剔除 NaN 后中位数 2",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_nanmedian_axis",
+  "op": "nanmedian",
+  "inputs": [
+   "cases/funcs_nanmedian_axis_a.npy"
+  ],
+  "expect": "cases/funcs_nanmedian_axis_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:23:24Z",
+  "note": "按轴剔除 NaN → [2,4]",
+  "args": {
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_nanargmin",
+  "op": "nanargmin",
+  "inputs": [
+   "cases/funcs_nanargmin_a.npy"
+  ],
+  "expect": "cases/funcs_nanargmin_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:23:24Z",
+  "note": "跳过 NaN 的最小下标 2",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_nanargmax",
+  "op": "nanargmax",
+  "inputs": [
+   "cases/funcs_nanargmax_a.npy"
+  ],
+  "expect": "cases/funcs_nanargmax_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:23:24Z",
+  "note": "跳过 NaN 的最大下标 0",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_nanargmin_axis",
+  "op": "nanargmin",
+  "inputs": [
+   "cases/funcs_nanargmin_axis_a.npy"
+  ],
+  "expect": "cases/funcs_nanargmin_axis_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:23:24Z",
+  "note": "按轴的最小下标 → [2,1]",
+  "args": {
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_nanargmax_axis0",
+  "op": "nanargmax",
+  "inputs": [
+   "cases/funcs_nanargmax_axis0_a.npy"
+  ],
+  "expect": "cases/funcs_nanargmax_axis0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:23:24Z",
+  "note": "按轴 0 的最大下标 → [1,1,1]",
+  "args": {
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_pad_stat_len1",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_stat_len1_a.npy"
+  ],
+  "expect": "cases/funcs_pad_stat_len1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:25:43Z",
+  "note": "stat_length=1:前侧 max(1)、后侧 max(2)",
+  "args": {
+   "pads": [
+    [
+     2,
+     2
+    ]
+   ],
+   "mode": "maximum",
+   "statLength": 1
+  },
+  "out_shape": [
+   9
+  ]
+ },
+ {
+  "name": "funcs_pad_stat_len2_mean",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_stat_len2_mean_a.npy"
+  ],
+  "expect": "cases/funcs_pad_stat_len2_mean_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:25:43Z",
+  "note": "mean stat_length=2:前 3、后 5.5",
+  "args": {
+   "pads": [
+    [
+     2,
+     2
+    ]
+   ],
+   "mode": "mean",
+   "statLength": 2
+  },
+  "out_shape": [
+   9
+  ]
+ },
+ {
+  "name": "funcs_pad_stat_len_2d",
+  "op": "pad",
+  "inputs": [
+   "cases/funcs_pad_stat_len_2d_a.npy"
+  ],
+  "expect": "cases/funcs_pad_stat_len_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:25:43Z",
+  "note": "2-D 按列取边缘 1 个",
+  "args": {
+   "pads": [
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "mode": "maximum",
+   "statLength": 1
+  },
+  "out_shape": [
+   4,
+   2
+  ]
+ },
+ {
+  "name": "funcs_cumsum_default",
+  "op": "cumsum",
+  "inputs": [
+   "cases/funcs_cumsum_default_a.npy"
+  ],
+  "expect": "cases/funcs_cumsum_default_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:25:43Z",
+  "note": "默认展平 + dtype 提升到 int64",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_cumsum_axis0",
+  "op": "cumsum",
+  "inputs": [
+   "cases/funcs_cumsum_axis0_a.npy"
+  ],
+  "expect": "cases/funcs_cumsum_axis0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:25:43Z",
+  "note": "按轴 0 前缀和",
+  "args": {
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_cumsum_axis1",
+  "op": "cumsum",
+  "inputs": [
+   "cases/funcs_cumsum_axis1_a.npy"
+  ],
+  "expect": "cases/funcs_cumsum_axis1_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:25:43Z",
+  "note": "按轴 1 前缀和",
+  "args": {
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_cumprod_default",
+  "op": "cumprod",
+  "inputs": [
+   "cases/funcs_cumprod_default_a.npy"
+  ],
+  "expect": "cases/funcs_cumprod_default_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:25:43Z",
+  "note": "默认展平前缀积",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_cumsum_f32",
+  "op": "cumsum",
+  "inputs": [
+   "cases/funcs_cumsum_f32_a.npy"
+  ],
+  "expect": "cases/funcs_cumsum_f32_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:25:43Z",
+  "note": "f32 保持 f32",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_ma_masked_invalid",
+  "op": "ma_masked_invalid",
+  "inputs": [
+   "cases/funcs_ma_masked_invalid_a.npy"
+  ],
+  "expect": "cases/funcs_ma_masked_invalid_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:29:10Z",
+  "note": "NaN/Inf 被标为无效 → 掩码数组",
+  "out_shape": [
+   5
+  ]
+ },
+ {
+  "name": "funcs_ma_masked_where",
+  "op": "ma_masked_where",
+  "inputs": [
+   "cases/funcs_ma_masked_where_c.npy",
+   "cases/funcs_ma_masked_where_a.npy"
+  ],
+  "expect": "cases/funcs_ma_masked_where_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:29:10Z",
+  "note": "条件为真处标为无效",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_ma_median",
+  "op": "ma_median",
+  "inputs": [
+   "cases/funcs_ma_median_a.npy",
+   "cases/funcs_ma_median_m.npy"
+  ],
+  "expect": "cases/funcs_ma_median_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:29:10Z",
+  "note": "跳过掩码的中位数 3",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_ma_var",
+  "op": "ma_var",
+  "inputs": [
+   "cases/funcs_ma_var_a.npy",
+   "cases/funcs_ma_var_m.npy"
+  ],
+  "expect": "cases/funcs_ma_var_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:29:10Z",
+  "note": "跳过掩码的方差 8/3",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_ma_std",
+  "op": "ma_std",
+  "inputs": [
+   "cases/funcs_ma_std_a.npy",
+   "cases/funcs_ma_std_m.npy"
+  ],
+  "expect": "cases/funcs_ma_std_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:29:10Z",
+  "note": "跳过掩码的标准差 sqrt(8/3)",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_ma_median_axis",
+  "op": "ma_median",
+  "inputs": [
+   "cases/funcs_ma_median_axis_a.npy",
+   "cases/funcs_ma_median_axis_m.npy"
+  ],
+  "expect": "cases/funcs_ma_median_axis_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:29:10Z",
+  "note": "按轴中位数 → [1,6]",
+  "args": {
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_ma_std_axis0",
+  "op": "ma_std",
+  "inputs": [
+   "cases/funcs_ma_std_axis0_a.npy",
+   "cases/funcs_ma_std_axis0_m.npy"
+  ],
+  "expect": "cases/funcs_ma_std_axis0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:29:10Z",
+  "note": "按轴 0 标准差 → [1,0]",
+  "args": {
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_ma_pred_equal",
+  "op": "ma_pred",
+  "inputs": [
+   "cases/funcs_ma_pred_equal_a.npy"
+  ],
+  "expect": "cases/funcs_ma_pred_equal_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:31:22Z",
+  "note": "masked_equal 的掩码",
+  "args": {
+   "mode": "equal",
+   "v1": 2.0
+  },
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_ma_pred_not_equal",
+  "op": "ma_pred",
+  "inputs": [
+   "cases/funcs_ma_pred_not_equal_a.npy"
+  ],
+  "expect": "cases/funcs_ma_pred_not_equal_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:31:22Z",
+  "note": "masked_not_equal 的掩码",
+  "args": {
+   "mode": "not_equal",
+   "v1": 2.0
+  },
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_ma_pred_less",
+  "op": "ma_pred",
+  "inputs": [
+   "cases/funcs_ma_pred_less_a.npy"
+  ],
+  "expect": "cases/funcs_ma_pred_less_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:31:22Z",
+  "note": "masked_less 的掩码",
+  "args": {
+   "mode": "less",
+   "v1": 3.0
+  },
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_ma_pred_greater",
+  "op": "ma_pred",
+  "inputs": [
+   "cases/funcs_ma_pred_greater_a.npy"
+  ],
+  "expect": "cases/funcs_ma_pred_greater_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:31:22Z",
+  "note": "masked_greater 的掩码",
+  "args": {
+   "mode": "greater",
+   "v1": 3.0
+  },
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_ma_pred_less_equal",
+  "op": "ma_pred",
+  "inputs": [
+   "cases/funcs_ma_pred_less_equal_a.npy"
+  ],
+  "expect": "cases/funcs_ma_pred_less_equal_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:31:22Z",
+  "note": "masked_less_equal 的掩码",
+  "args": {
+   "mode": "less_equal",
+   "v1": 3.0
+  },
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_ma_pred_greater_equal",
+  "op": "ma_pred",
+  "inputs": [
+   "cases/funcs_ma_pred_greater_equal_a.npy"
+  ],
+  "expect": "cases/funcs_ma_pred_greater_equal_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:31:22Z",
+  "note": "masked_greater_equal 的掩码",
+  "args": {
+   "mode": "greater_equal",
+   "v1": 3.0
+  },
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_ma_pred_inside",
+  "op": "ma_pred",
+  "inputs": [
+   "cases/funcs_ma_pred_inside_a.npy"
+  ],
+  "expect": "cases/funcs_ma_pred_inside_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:31:22Z",
+  "note": "masked_inside 的掩码",
+  "args": {
+   "mode": "inside",
+   "v1": 2.0,
+   "v2": 3.0
+  },
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_ma_pred_outside",
+  "op": "ma_pred",
+  "inputs": [
+   "cases/funcs_ma_pred_outside_a.npy"
+  ],
+  "expect": "cases/funcs_ma_pred_outside_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:31:22Z",
+  "note": "masked_outside 的掩码",
+  "args": {
+   "mode": "outside",
+   "v1": 2.0,
+   "v2": 3.0
+  },
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_fft_bluestein_1000",
+  "op": "fft",
+  "inputs": [
+   "cases/funcs_fft_bluestein_1000_a.npy"
+  ],
+  "expect": "cases/funcs_fft_bluestein_1000_out.npy",
+  "region": "rel",
+  "tol": 1e-10,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:44:26Z",
+  "note": "n=1000 非 2 的幂(Bluestein)"
+ },
+ {
+  "name": "funcs_fft_bluestein_999",
+  "op": "fft",
+  "inputs": [
+   "cases/funcs_fft_bluestein_999_a.npy"
+  ],
+  "expect": "cases/funcs_fft_bluestein_999_out.npy",
+  "region": "rel",
+  "tol": 1e-10,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:44:26Z",
+  "note": "n=999(质因数分解含 3*3*3*37)"
+ },
+ {
+  "name": "funcs_rfft_bluestein_1000",
+  "op": "rfft",
+  "inputs": [
+   "cases/funcs_rfft_bluestein_1000_a.npy"
+  ],
+  "expect": "cases/funcs_rfft_bluestein_1000_out.npy",
+  "region": "rel",
+  "tol": 1e-10,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:44:26Z",
+  "note": "实数半谱 n=1000(Bluestein)",
+  "out_shape": [
+   501
+  ]
+ },
+ {
+  "name": "funcs_array_split",
+  "op": "array_split",
+  "inputs": [
+   "cases/funcs_array_split_a.npy"
+  ],
+  "outputs": [
+   "cases/funcs_array_split_out0.npy",
+   "cases/funcs_array_split_out1.npy",
+   "cases/funcs_array_split_out2.npy",
+   "cases/funcs_array_split_out3.npy"
+  ],
+  "out_shapes": [
+   [
+    2
+   ],
+   [
+    2
+   ],
+   [
+    1
+   ],
+   [
+    1
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "不等分切 4 段(前 2 段多一个)",
+  "args": {
+   "sections": 4,
+   "axis": [
+    0
+   ]
+  }
+ },
+ {
+  "name": "funcs_split_at",
+  "op": "split_at",
+  "inputs": [
+   "cases/funcs_split_at_a.npy"
+  ],
+  "outputs": [
+   "cases/funcs_split_at_out0.npy",
+   "cases/funcs_split_at_out1.npy",
+   "cases/funcs_split_at_out2.npy"
+  ],
+  "out_shapes": [
+   [
+    2
+   ],
+   [
+    3
+   ],
+   [
+    1
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "按索引 [2,5] 切分",
+  "args": {
+   "splitIdx": [
+    2,
+    5
+   ],
+   "axis": [
+    0
+   ]
+  }
+ },
+ {
+  "name": "funcs_hsplit",
+  "op": "hsplit",
+  "inputs": [
+   "cases/funcs_hsplit_a.npy"
+  ],
+  "outputs": [
+   "cases/funcs_hsplit_out0.npy",
+   "cases/funcs_hsplit_out1.npy",
+   "cases/funcs_hsplit_out2.npy"
+  ],
+  "out_shapes": [
+   [
+    2,
+    1
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    2,
+    1
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "2-D 沿轴 1 切 3 段",
+  "args": {
+   "sections": 3
+  }
+ },
+ {
+  "name": "funcs_vsplit",
+  "op": "vsplit",
+  "inputs": [
+   "cases/funcs_vsplit_a.npy"
+  ],
+  "outputs": [
+   "cases/funcs_vsplit_out0.npy",
+   "cases/funcs_vsplit_out1.npy"
+  ],
+  "out_shapes": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    3
+   ]
+  ],
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "沿轴 0 切 2 段",
+  "args": {
+   "sections": 2
+  }
+ },
+ {
+  "name": "funcs_append_axis0",
+  "op": "append",
+  "inputs": [
+   "cases/funcs_append_axis0_a.npy",
+   "cases/funcs_append_axis0_v.npy"
+  ],
+  "expect": "cases/funcs_append_axis0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "沿轴 0 追加一行",
+  "args": {
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   3,
+   3
+  ]
+ },
+ {
+  "name": "funcs_append_flat",
+  "op": "append",
+  "inputs": [
+   "cases/funcs_append_flat_a.npy",
+   "cases/funcs_append_flat_v.npy"
+  ],
+  "expect": "cases/funcs_append_flat_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "axis=None 展平追加",
+  "out_shape": [
+   8
+  ]
+ },
+ {
+  "name": "funcs_insert_flat",
+  "op": "insert",
+  "inputs": [
+   "cases/funcs_insert_flat_a.npy",
+   "cases/funcs_insert_flat_v.npy"
+  ],
+  "expect": "cases/funcs_insert_flat_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "展平插入(axis=None)",
+  "args": {
+   "index": 2
+  },
+  "out_shape": [
+   7
+  ]
+ },
+ {
+  "name": "funcs_insert_axis0",
+  "op": "insert",
+  "inputs": [
+   "cases/funcs_insert_axis0_a.npy",
+   "cases/funcs_insert_axis0_v.npy"
+  ],
+  "expect": "cases/funcs_insert_axis0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "沿轴 0 插入一行",
+  "args": {
+   "index": 1,
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   3,
+   3
+  ]
+ },
+ {
+  "name": "funcs_delete_neg",
+  "op": "delete",
+  "inputs": [
+   "cases/funcs_delete_neg_a.npy"
+  ],
+  "expect": "cases/funcs_delete_neg_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "展平删除最后一个",
+  "args": {
+   "index": -1
+  },
+  "out_shape": [
+   5
+  ]
+ },
+ {
+  "name": "funcs_delete_axis0",
+  "op": "delete",
+  "inputs": [
+   "cases/funcs_delete_axis0_a.npy"
+  ],
+  "expect": "cases/funcs_delete_axis0_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "沿轴 0 删除第一行",
+  "args": {
+   "index": 0,
+   "axis": [
+    0
+   ]
+  },
+  "out_shape": [
+   1,
+   3
+  ]
+ },
+ {
+  "name": "funcs_column_stack",
+  "op": "column_stack",
+  "inputs": [
+   "cases/funcs_column_stack_a.npy",
+   "cases/funcs_column_stack_b.npy"
+  ],
+  "expect": "cases/funcs_column_stack_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "1-D 变列 → (2,2)",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_dstack",
+  "op": "dstack",
+  "inputs": [
+   "cases/funcs_dstack_a.npy",
+   "cases/funcs_dstack_b.npy"
+  ],
+  "expect": "cases/funcs_dstack_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "dstack → (1,2,2)",
+  "out_shape": [
+   1,
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_put_along_axis",
+  "op": "put_along_axis",
+  "inputs": [
+   "cases/funcs_put_along_axis_a.npy",
+   "cases/funcs_put_along_axis_i.npy",
+   "cases/funcs_put_along_axis_v.npy"
+  ],
+  "expect": "cases/funcs_put_along_axis_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "按 idx 沿轴写入",
+  "args": {
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   2,
+   3
+  ]
+ },
+ {
+  "name": "funcs_copyto",
+  "op": "copyto",
+  "inputs": [
+   "cases/funcs_copyto_d.npy",
+   "cases/funcs_copyto_s.npy"
+  ],
+  "expect": "cases/funcs_copyto_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:48:39Z",
+  "note": "copyto 原地覆盖",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_det",
+  "op": "det",
+  "inputs": [
+   "cases/funcs_det_a.npy"
+  ],
+  "expect": "cases/funcs_det_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "3x3 行列式 -84(LU 实现末位可能有差异)"
+ },
+ {
+  "name": "funcs_inv",
+  "op": "inv",
+  "inputs": [
+   "cases/funcs_inv_a.npy"
+  ],
+  "expect": "cases/funcs_inv_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "3x3 求逆(LU 实现末位可能有差异)"
+ },
+ {
+  "name": "funcs_solve",
+  "op": "solve",
+  "inputs": [
+   "cases/funcs_solve_a.npy",
+   "cases/funcs_solve_b.npy"
+  ],
+  "expect": "cases/funcs_solve_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "解 Ax=b(末位可能有差异)"
+ },
+ {
+  "name": "funcs_norm_fro",
+  "op": "norm",
+  "inputs": [
+   "cases/funcs_norm_fro_a.npy"
+  ],
+  "expect": "cases/funcs_norm_fro_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "矩阵 Frobenius 范数",
+  "args": {
+   "mode": "fro"
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_norm_vec2",
+  "op": "norm",
+  "inputs": [
+   "cases/funcs_norm_vec2_a.npy"
+  ],
+  "expect": "cases/funcs_norm_vec2_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "向量 2-范数 5",
+  "args": {
+   "mode": "2"
+  },
+  "out_shape": []
+ },
+ {
+  "name": "funcs_prod",
+  "op": "prod",
+  "inputs": [
+   "cases/funcs_prod_a.npy"
+  ],
+  "expect": "cases/funcs_prod_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "连乘 + 整型提升到 int64",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_around",
+  "op": "around",
+  "inputs": [
+   "cases/funcs_around_a.npy"
+  ],
+  "expect": "cases/funcs_around_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "保留 1 位",
+  "args": {
+   "decimals": 1
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_flatnonzero",
+  "op": "flatnonzero",
+  "inputs": [
+   "cases/funcs_flatnonzero_a.npy"
+  ],
+  "expect": "cases/funcs_flatnonzero_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "非零元素的平坦下标 [0,3]",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_argwhere",
+  "op": "argwhere",
+  "inputs": [
+   "cases/funcs_argwhere_a.npy"
+  ],
+  "expect": "cases/funcs_argwhere_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "非零位置 (2,2)",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_isreal",
+  "op": "isreal",
+  "inputs": [
+   "cases/funcs_isreal_a.npy"
+  ],
+  "expect": "cases/funcs_isreal_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "复数虚部为 0 才算实数",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_sinc",
+  "op": "sinc",
+  "inputs": [
+   "cases/funcs_sinc_a.npy"
+  ],
+  "expect": "cases/funcs_sinc_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "np.sinc(π 的乘法顺序不同 → 末位差异)"
+ },
+ {
+  "name": "funcs_tanh",
+  "op": "tanh",
+  "inputs": [
+   "cases/funcs_tanh_a.npy"
+  ],
+  "expect": "cases/funcs_tanh_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "双曲正切",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_convolve_full",
+  "op": "convolve",
+  "inputs": [
+   "cases/funcs_convolve_full_a.npy",
+   "cases/funcs_convolve_full_v.npy"
+  ],
+  "expect": "cases/funcs_convolve_full_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "卷积 full 模式",
+  "args": {
+   "mode": "full"
+  },
+  "out_shape": [
+   5
+  ]
+ },
+ {
+  "name": "funcs_convolve_same",
+  "op": "convolve",
+  "inputs": [
+   "cases/funcs_convolve_same_a.npy",
+   "cases/funcs_convolve_same_v.npy"
+  ],
+  "expect": "cases/funcs_convolve_same_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "卷积 same 模式",
+  "args": {
+   "mode": "same"
+  },
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_correlate_full",
+  "op": "correlate",
+  "inputs": [
+   "cases/funcs_correlate_full_a.npy",
+   "cases/funcs_correlate_full_v.npy"
+  ],
+  "expect": "cases/funcs_correlate_full_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "互相关 full 模式",
+  "args": {
+   "mode": "full"
+  },
+  "out_shape": [
+   5
+  ]
+ },
+ {
+  "name": "funcs_transpose_pkg",
+  "op": "transpose_pkg",
+  "inputs": [
+   "cases/funcs_transpose_pkg_a.npy"
+  ],
+  "expect": "cases/funcs_transpose_pkg_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "包级 transpose 便捷式",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_ravel",
+  "op": "ravel_pkg",
+  "inputs": [
+   "cases/funcs_ravel_a.npy"
+  ],
+  "expect": "cases/funcs_ravel_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T03:58:08Z",
+  "note": "展平",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_isin",
+  "op": "isin",
+  "inputs": [
+   "cases/funcs_isin_e.npy",
+   "cases/funcs_isin_t.npy"
+  ],
+  "expect": "cases/funcs_isin_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:03:04Z",
+  "note": "逐元素成员判断",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_isin_2d",
+  "op": "isin",
+  "inputs": [
+   "cases/funcs_isin_2d_e.npy",
+   "cases/funcs_isin_2d_t.npy"
+  ],
+  "expect": "cases/funcs_isin_2d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:03:04Z",
+  "note": "2-D 逐元素判断(形状保持)",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_intersect1d",
+  "op": "intersect1d",
+  "inputs": [
+   "cases/funcs_intersect1d_a.npy",
+   "cases/funcs_intersect1d_b.npy"
+  ],
+  "expect": "cases/funcs_intersect1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:03:04Z",
+  "note": "交集排序去重 [2,3]",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_union1d",
+  "op": "union1d",
+  "inputs": [
+   "cases/funcs_union1d_a.npy",
+   "cases/funcs_union1d_b.npy"
+  ],
+  "expect": "cases/funcs_union1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:03:04Z",
+  "note": "并集排序去重",
+  "out_shape": [
+   5
+  ]
+ },
+ {
+  "name": "funcs_setdiff1d",
+  "op": "setdiff1d",
+  "inputs": [
+   "cases/funcs_setdiff1d_a.npy",
+   "cases/funcs_setdiff1d_b.npy"
+  ],
+  "expect": "cases/funcs_setdiff1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:03:04Z",
+  "note": "差集 [1,5]",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_setxor1d",
+  "op": "setxor1d",
+  "inputs": [
+   "cases/funcs_setxor1d_a.npy",
+   "cases/funcs_setxor1d_b.npy"
+  ],
+  "expect": "cases/funcs_setxor1d_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:03:04Z",
+  "note": "对称差 [1,5,7]",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_trapz",
+  "op": "trapz",
+  "inputs": [
+   "cases/funcs_trapz_y.npy"
+  ],
+  "expect": "cases/funcs_trapz_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:03:04Z",
+  "note": "梯形积分 7.5"
+ },
+ {
+  "name": "funcs_trapz_dx",
+  "op": "trapz",
+  "inputs": [
+   "cases/funcs_trapz_dx_y.npy"
+  ],
+  "expect": "cases/funcs_trapz_dx_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:03:04Z",
+  "note": "dx=2 → 15",
+  "args": {
+   "d": 2.0
+  }
+ },
+ {
+  "name": "funcs_trapz_x",
+  "op": "trapz",
+  "inputs": [
+   "cases/funcs_trapz_x_y.npy",
+   "cases/funcs_trapz_x_x.npy"
+  ],
+  "expect": "cases/funcs_trapz_x_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:03:04Z",
+  "note": "非等距 → 17"
+ },
+ {
+  "name": "funcs_polyval",
+  "op": "polyval",
+  "inputs": [
+   "cases/funcs_polyval_p.npy",
+   "cases/funcs_polyval_x.npy"
+  ],
+  "expect": "cases/funcs_polyval_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:03:04Z",
+  "note": "2x²-x+3 → [3,4,9]",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_eigvalsh",
+  "op": "eigvalsh",
+  "inputs": [
+   "cases/funcs_eigvalsh_a.npy"
+  ],
+  "expect": "cases/funcs_eigvalsh_out.npy",
+  "region": "rel",
+  "tol": 1e-10,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:08:09Z",
+  "note": "对称矩阵特征值(升序)"
+ },
+ {
+  "name": "funcs_svdvals",
+  "op": "svdvals",
+  "inputs": [
+   "cases/funcs_svdvals_a.npy"
+  ],
+  "expect": "cases/funcs_svdvals_out.npy",
+  "region": "rel",
+  "tol": 1e-10,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:08:09Z",
+  "note": "奇异值(降序)"
+ },
+ {
+  "name": "funcs_norm_mat2",
+  "op": "norm",
+  "inputs": [
+   "cases/funcs_norm_mat2_a.npy"
+  ],
+  "expect": "cases/funcs_norm_mat2_out.npy",
+  "region": "rel",
+  "tol": 1e-10,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:08:09Z",
+  "note": "矩阵 2-范数(最大奇异值)",
+  "args": {
+   "mode": "2"
+  }
+ },
+ {
+  "name": "funcs_norm_mat_neg2",
+  "op": "norm",
+  "inputs": [
+   "cases/funcs_norm_mat_neg2_a.npy"
+  ],
+  "expect": "cases/funcs_norm_mat_neg2_out.npy",
+  "region": "rel",
+  "tol": 1e-10,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:08:09Z",
+  "note": "矩阵 -2 范数(最小奇异值)",
+  "args": {
+   "mode": "-2"
+  }
+ },
+ {
+  "name": "funcs_polyfit2",
+  "op": "polyfit",
+  "inputs": [
+   "cases/funcs_polyfit2_x.npy",
+   "cases/funcs_polyfit2_y.npy"
+  ],
+  "expect": "cases/funcs_polyfit2_out.npy",
+  "region": "rel",
+  "tol": 1e-10,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:11:08Z",
+  "note": "二次拟合 y=x²+x+1",
+  "args": {
+   "deg": 2
+  },
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_polyfit1",
+  "op": "polyfit",
+  "inputs": [
+   "cases/funcs_polyfit1_x.npy",
+   "cases/funcs_polyfit1_y.npy"
+  ],
+  "expect": "cases/funcs_polyfit1_out.npy",
+  "region": "rel",
+  "tol": 1e-10,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:11:08Z",
+  "note": "一次拟合 y=3x+2",
+  "args": {
+   "deg": 1
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_unwrap",
+  "op": "unwrap",
+  "inputs": [
+   "cases/funcs_unwrap_p.npy"
+  ],
+  "expect": "cases/funcs_unwrap_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:11:08Z",
+  "note": "默认 period=2π"
+ },
+ {
+  "name": "funcs_unwrap_period4",
+  "op": "unwrap",
+  "inputs": [
+   "cases/funcs_unwrap_period4_p.npy"
+  ],
+  "expect": "cases/funcs_unwrap_period4_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:11:08Z",
+  "note": "period=4",
+  "args": {
+   "d": 4.0
+  }
+ },
+ {
+  "name": "funcs_unwrap_2d",
+  "op": "unwrap",
+  "inputs": [
+   "cases/funcs_unwrap_2d_p.npy"
+  ],
+  "expect": "cases/funcs_unwrap_2d_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:11:08Z",
+  "note": "2-D 沿最后一轴,行间独立"
+ },
+ {
+  "name": "funcs_negative",
+  "op": "negative",
+  "inputs": [
+   "cases/funcs_negative_a.npy"
+  ],
+  "expect": "cases/funcs_negative_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:36:40Z",
+  "note": "取负(注意 -0.0 逐位保留)",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_square",
+  "op": "square",
+  "inputs": [
+   "cases/funcs_square_a.npy"
+  ],
+  "expect": "cases/funcs_square_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:36:40Z",
+  "note": "平方,保持 int32",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_reciprocal",
+  "op": "reciprocal",
+  "inputs": [
+   "cases/funcs_reciprocal_a.npy"
+  ],
+  "expect": "cases/funcs_reciprocal_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:36:40Z",
+  "note": "1/x",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_log2",
+  "op": "log2",
+  "inputs": [
+   "cases/funcs_log2_a.npy"
+  ],
+  "expect": "cases/funcs_log2_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:36:40Z",
+  "note": "以 2 为底对数",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_cbrt",
+  "op": "cbrt",
+  "inputs": [
+   "cases/funcs_cbrt_a.npy"
+  ],
+  "expect": "cases/funcs_cbrt_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:36:40Z",
+  "note": "立方根(保留负号,与 pow 不同)",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_arcsinh",
+  "op": "arcsinh",
+  "inputs": [
+   "cases/funcs_arcsinh_a.npy"
+  ],
+  "expect": "cases/funcs_arcsinh_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:36:40Z",
+  "note": "反双曲正弦",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_expm1_log1p",
+  "op": "expm1",
+  "inputs": [
+   "cases/funcs_expm1_log1p_a.npy"
+  ],
+  "expect": "cases/funcs_expm1_log1p_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:36:40Z",
+  "note": "exp(x)-1(小 x 更精确)",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_real",
+  "op": "real",
+  "inputs": [
+   "cases/funcs_real_a.npy"
+  ],
+  "expect": "cases/funcs_real_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:36:40Z",
+  "note": "复数取实部",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_imag",
+  "op": "imag",
+  "inputs": [
+   "cases/funcs_imag_a.npy"
+  ],
+  "expect": "cases/funcs_imag_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:36:40Z",
+  "note": "复数取虚部",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_absolute",
+  "op": "absolute",
+  "inputs": [
+   "cases/funcs_absolute_a.npy"
+  ],
+  "expect": "cases/funcs_absolute_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:45:41Z",
+  "note": "absolute = abs",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_any",
+  "op": "any_red",
+  "inputs": [
+   "cases/funcs_any_a.npy"
+  ],
+  "expect": "cases/funcs_any_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:45:41Z",
+  "note": "any 归约",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_any_axis",
+  "op": "any_red",
+  "inputs": [
+   "cases/funcs_any_axis_a.npy"
+  ],
+  "expect": "cases/funcs_any_axis_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:45:41Z",
+  "note": "any 按轴 → [True, False]",
+  "args": {
+   "axis": [
+    1
+   ]
+  },
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_invert_int",
+  "op": "invert",
+  "inputs": [
+   "cases/funcs_invert_int_a.npy"
+  ],
+  "expect": "cases/funcs_invert_int_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:45:41Z",
+  "note": "整型按位取反",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_invert_bool",
+  "op": "invert",
+  "inputs": [
+   "cases/funcs_invert_bool_a.npy"
+  ],
+  "expect": "cases/funcs_invert_bool_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:45:41Z",
+  "note": "bool 逻辑取反",
+  "out_shape": [
+   2
+  ]
+ },
+ {
+  "name": "funcs_cross",
+  "op": "cross",
+  "inputs": [
+   "cases/funcs_cross_a.npy",
+   "cases/funcs_cross_b.npy"
+  ],
+  "expect": "cases/funcs_cross_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:45:41Z",
+  "note": "3 维叉积",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_cross_batch",
+  "op": "cross",
+  "inputs": [
+   "cases/funcs_cross_batch_a.npy",
+   "cases/funcs_cross_batch_b.npy"
+  ],
+  "expect": "cases/funcs_cross_batch_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-23T04:45:41Z",
+  "note": "批量叉积(前导维广播)",
+  "out_shape": [
+   2,
+   3
+  ]
+ }
+]
