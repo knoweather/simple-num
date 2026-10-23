@@ -205,7 +205,7 @@ Legend: ✅ available · ⚠️ partial (see the note) · 🚧 not yet, planned.
 | random | bit-exact legacy `RandomState`/MT19937: `Seed`, `RandomSample`, `StandardNormal`, `Uniform`, `Normal`, `RandInt`, `Permutation`, `Shuffle` | `Generator`/PCG64 family 🚧, `Choice`/`Beta`/`Gamma`/`Poisson` etc. 🚧 |
 | fft | `FFT`/`IFFT`/`RFFT`/`IRFFT`/`FFTFreq` (radix-2 + Bluestein, any length), `FFTShift`/`IFFTShift` | N-D transforms 🚧, `FFT2` 🚧 |
 | masked arrays | `MaskedArray` (data+mask), `Filled`/`Compressed`/`Count`, masked `Sum`/`Mean`/`Min`/`Max`/`Median`/`Var`/`Std`, `MaskedAdd/Subtract/Multiply/Divide`, `MaskedInvalid`/`MaskedWhere`, predicates | `ma.corrcoef` 🚧 (see limitations), `masked_equal`-style constructors beyond the 8 provided ⚠️ |
-| I/O | `SaveNPY`/`LoadNPY` (+ bytes), `SaveZ`/`SaveZCompressed`/`LoadZ`, `FromBuffer` (zero-copy), `FromFile`/`ToFile`, `SaveTxt`/`LoadTxt` | `Memmap` 🚧, `Genfromtxt` 🚧, `usecols`/per-column dtypes 🚧 |
+| I/O | `SaveNPY`/`LoadNPY` (+ bytes), `SaveZ`/`SaveZCompressed`/`LoadZ`, `FromBuffer` (zero-copy), `FromFile`/`ToFile`, `SaveTxt`/`LoadTxt`, `Genfromtxt`/`GenfromtxtBytes` (delimiter, `skip_header`/`skip_footer`, `usecols`, missing → NaN) | `Memmap` 🚧, per-column dtypes 🚧 |
 | ufunc protocol | `BinaryOut`/`UnaryOut` (`out=`), `BinaryWhere`/`UnaryWhere` (`where=`), `Reduce`, `Accumulate`, `UfuncOuter` | `at`/`buffers`/`signature` keywords 🚧 |
 | string & datetime | construction, indexing, comparison, `datetime64` unit handling | string ufuncs 🚧, `timedelta64` arithmetic 🚧 |
 | iteration & broadcast objects | — | `nditer` 🚧, `vectorize`/`frompyfunc` 🚧, `broadcast_arrays` 🚧 |

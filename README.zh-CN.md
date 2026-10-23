@@ -184,7 +184,7 @@ wasm/                                                 WebAssembly 桥接与 JS �
 | 随机数 | 逐位复刻 legacy `RandomState`/MT19937：`Seed`、`RandomSample`、`StandardNormal`、`Uniform`、`Normal`、`RandInt`、`Permutation`、`Shuffle` | `Generator`/PCG64 系列 🚧、`Choice`/`Beta`/`Gamma`/`Poisson` 等 🚧 |
 | FFT | `FFT`/`IFFT`/`RFFT`/`IRFFT`/`FFTFreq`（radix-2 + Bluestein，任意长度）、`FFTShift`/`IFFTShift` | N 维变换 🚧、`FFT2` 🚧 |
 | 掩码数组 | `MaskedArray`（数据+掩码）、`Filled`/`Compressed`/`Count`、掩码 `Sum`/`Mean`/`Min`/`Max`/`Median`/`Var`/`Std`、`MaskedAdd/Subtract/Multiply/Divide`、`MaskedInvalid`/`MaskedWhere`、8 个谓词构造器 | `ma.corrcoef` 🚧（见限制说明）、更多 `masked_*` 构造器 ⚠️ |
-| I/O | `SaveNPY`/`LoadNPY`（含 bytes 版本）、`SaveZ`/`SaveZCompressed`/`LoadZ`、`FromBuffer`（零拷贝）、`FromFile`/`ToFile`、`SaveTxt`/`LoadTxt` | `Memmap` 🚧、`Genfromtxt` 🚧、`usecols`/逐列 dtype 🚧 |
+| I/O | `SaveNPY`/`LoadNPY`（含 bytes 版本）、`SaveZ`/`SaveZCompressed`/`LoadZ`、`FromBuffer`（零拷贝）、`FromFile`/`ToFile`、`SaveTxt`/`LoadTxt`、`Genfromtxt`/`GenfromtxtBytes`（分隔符、`skip_header`/`skip_footer`、`usecols`、缺失→NaN） | `Memmap` 🚧、逐列 dtype 🚧 |
 | ufunc 协议 | `BinaryOut`/`UnaryOut`（`out=`）、`BinaryWhere`/`UnaryWhere`（`where=`）、`Reduce`、`Accumulate`、`UfuncOuter` | `at`/`buffers`/`signature` 等关键字 🚧 |
 | 字符串与时间 | 构造、索引、比较、`datetime64` 单位处理 | 字符串 ufunc 🚧、`timedelta64` 运算 🚧 |
 | 迭代与广播对象 | — | `nditer` 🚧、`vectorize`/`frompyfunc` 🚧、`broadcast_arrays` 🚧 |
