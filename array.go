@@ -231,6 +231,32 @@ func FromBytes(buf []byte, dt Dtype, shape []int) (*Array, error) {
 	return &Array{buf: buf, shape: sh, st: cStrides(sh, dt.Itemsize), dtype: dt}, nil
 }
 
+// FromFloat64s 把 []float64 零拷贝包装成一维 f64 数组(shape=[len(x)])。
+// 数组与 x 共享底层内存:任一方的写入对另一方可见;调用方需保证 x 的生命周期
+// 覆盖数组的使用期。
+func FromFloat64s(x []float64) (*Array, error) {
+	if len(x) == 0 {
+		return &Array{shape: []int{0}, st: cStrides([]int{0}, 8), dtype: DFloat64}, nil
+	}
+	buf := unsafe.Slice((*byte)(unsafe.Pointer(unsafe.SliceData(x))), len(x)*8)
+	return FromBytes(buf, DFloat64, []int{len(x)})
+}
+
+// Float64s 返回底层 f64 数据的零拷贝一维视图(行主序)。
+// 仅当 dtype 为 float64、数组 C 连续且偏移按元素对齐时 ok=true;否则返回
+// nil,false,调用方可退回 Item/SetItem 等通用路径。写入视图会直接改写数组,
+// 反之亦然。
+func (a *Array) Float64s() ([]float64, bool) {
+	if a == nil || a.dtype.Kind != Float64 || a.dtype.Itemsize != 8 || !a.isCContig() || a.off%8 != 0 {
+		return nil, false
+	}
+	n := a.Size()
+	if n == 0 {
+		return []float64{}, true
+	}
+	return unsafe.Slice((*float64)(unsafe.Pointer(&a.buf[a.off])), n), true
+}
+
 // FromSlice 泛型构造:[]float64→f64、[]int64→i64、[]bool、[]int→i64 等。
 func FromSlice[T any](x []T) (*Array, error) {
 	var dt Dtype
