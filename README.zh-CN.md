@@ -180,7 +180,7 @@ wasm/                                                 WebAssembly 桥接与 JS �
 | 归约 | `Sum`/`Prod`/`Mean`/`Var`/`Std`/`Min`/`Max`/`ArgMin`/`ArgMax`/`Median`/`Cumsum`/`Cumprod`、`Average`（加权）、`PtP`、`Nan*` 全家（含 `NanProd`/`NanCumsum`/`NanToNum`），任意 `axis` + `keepdims` | — |
 | 统计 | `Percentile`（13 种 method 全支持）、`Quantile`、`Median`、`Histogram`、`Histogram2D`、`Bincount(weights)`、`Cov`、`CorrCoef`、`Diff` | 掩码数据的 `CorrCoef` 🚧 |
 | 排序与集合 | `Sort`、`Argsort`、`Partition`、`Argpartition`、`SearchSorted`、`Digitize`、`Unique`（含 `axis`）、`UniqueIdx`（返回下标/计数）、`IsIn`/`Intersect1D`/`Union1D`/`Setdiff1D`/`Setxor1D` | — |
-| 线性代数 | `Dot`、`MatMul`、`Inner`、`Outer`、`Einsum`、`Tensordot`、`Det`、`Inv`、`Solve`、`Norm`、`Eigvalsh`、`Eigh`、`Svd`、`Svdvals`、`Slogdet`、`Kron`、`QR`、`Cholesky`、`Pinv`、`Lstsq`（返回 x/residuals/rank/s） | 一般 `Eig`/`Eigvals`（非对称）🚧、复数求解 🚧 |
+| 线性代数 | `Dot`、`MatMul`、`Inner`、`Outer`、`Einsum`、`Tensordot`、`Det`、`Inv`、`Solve`、`Norm`、`Eigvalsh`/`Eigh`（对称）、`Eigvals`/`Eig`（一般矩阵，Hessenberg + 移位 QR，与 NumPy 一样返回复数）、`Svd`、`Svdvals`、`Slogdet`、`Kron`、`QR`、`Cholesky`、`Pinv`、`Lstsq`（返回 x/residuals/rank/s） | 复数矩阵的 `Solve`/`Inv` 🚧、`Tensorsolve` 🚧 |
 | 随机数 | 逐位复刻 legacy `RandomState`/MT19937：`Seed`、`RandomSample`、`StandardNormal`、`Uniform`、`Normal`、`RandInt`、`Permutation`、`Shuffle` | `Generator`/PCG64 系列 🚧、`Choice`/`Beta`/`Gamma`/`Poisson` 等 🚧 |
 | FFT | `FFT`/`IFFT`/`RFFT`/`IRFFT`/`FFTFreq`（radix-2 + Bluestein，任意长度）、`FFT2`/`IFFT2`、`FFTN`/`IFFTN`（任意轴子集）、`FFTShift`/`IFFTShift` | `RFFT2`/`RFFTN` 🚧 |
 | 掩码数组 | `MaskedArray`（数据+掩码）、`Filled`/`Compressed`/`Count`、掩码 `Sum`/`Mean`/`Min`/`Max`/`Median`/`Var`/`Std`、`MaskedAdd/Subtract/Multiply/Divide`、`MaskedInvalid`/`MaskedWhere`、8 个谓词构造器 | `ma.corrcoef` 🚧（见限制说明）、更多 `masked_*` 构造器 ⚠️ |
