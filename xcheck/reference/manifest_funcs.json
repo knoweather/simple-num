@@ -5676,5 +5676,96 @@
   "generator": "numpy 2.5.4",
   "generated": "2026-10-23T10:41:50Z",
   "note": "复数矩阵乘"
+ },
+ {
+  "name": "funcs_ihfft",
+  "op": "ihfft",
+  "inputs": [
+   "cases/funcs_ihfft_a.npy"
+  ],
+  "expect": "cases/funcs_ihfft_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-24T07:20:02Z",
+  "note": "实信号 → Hermitian 半谱(conj(rfft)/n)",
+  "out_shape": [
+   3
+  ]
+ },
+ {
+  "name": "funcs_hfft",
+  "op": "hfft",
+  "inputs": [
+   "cases/funcs_hfft_a.npy"
+  ],
+  "expect": "cases/funcs_hfft_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-24T07:20:02Z",
+  "note": "半谱 → 实信号(默认 2*(m-1))",
+  "out_shape": [
+   4
+  ]
+ },
+ {
+  "name": "funcs_matrix_rank",
+  "op": "matrix_rank",
+  "inputs": [
+   "cases/funcs_matrix_rank_a.npy"
+  ],
+  "expect": "cases/funcs_matrix_rank_out.npy",
+  "region": "bitwise",
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-24T07:20:02Z",
+  "note": "秩(SVD 阈值口径)",
+  "out_shape": []
+ },
+ {
+  "name": "funcs_cond",
+  "op": "cond",
+  "inputs": [
+   "cases/funcs_cond_a.npy"
+  ],
+  "expect": "cases/funcs_cond_out.npy",
+  "region": "rel",
+  "tol": 1e-10,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-24T07:20:02Z",
+  "note": "2 范数条件数"
+ },
+ {
+  "name": "funcs_multi_dot",
+  "op": "multi_dot",
+  "inputs": [
+   "cases/funcs_multi_dot_a.npy",
+   "cases/funcs_multi_dot_b.npy",
+   "cases/funcs_multi_dot_c.npy"
+  ],
+  "expect": "cases/funcs_multi_dot_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-24T07:20:02Z",
+  "note": "链式矩阵乘",
+  "out_shape": [
+   2,
+   2
+  ]
+ },
+ {
+  "name": "funcs_vdot",
+  "op": "vdot",
+  "inputs": [
+   "cases/funcs_vdot_a.npy",
+   "cases/funcs_vdot_b.npy"
+  ],
+  "expect": "cases/funcs_vdot_out.npy",
+  "region": "rel",
+  "tol": 1e-12,
+  "generator": "numpy 2.5.4",
+  "generated": "2026-10-24T07:20:02Z",
+  "note": "共轭内积 -2+1j"
  }
 ]

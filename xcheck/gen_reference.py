@@ -2303,6 +2303,35 @@ def _main_funcs() -> int:
     entries.append(_emit_rel("funcs_matmul_complex", "matmul", [("a", _cm), ("b", _cn)],
                              np.matmul(_cm, _cn), note="复数矩阵乘", tol=1e-12))
 
+# —— hfft/ihfft + matrix_rank/cond/multi_dot/vdot(Step 39)——
+    _hr = arr("f8", [1.0, 2.0, 3.0, 4.0])
+    _ih = np.fft.ihfft(_hr)
+    entries.append(_emit_rel("funcs_ihfft", "ihfft", [("a", _hr)], _ih,
+                             note="实信号 → Hermitian 半谱(conj(rfft)/n)", tol=1e-12,
+                             out_shape=np.shape(_ih)))
+    _hc = arr("c16", [1 + 0j, -1 + 1j, 2 + 0j])
+    _hf = np.fft.hfft(_hc)
+    entries.append(_emit_rel("funcs_hfft", "hfft", [("a", _hc)], _hf,
+                             note="半谱 → 实信号(默认 2*(m-1))", tol=1e-12,
+                             out_shape=np.shape(_hf)))
+    _rk = arr("f8", [[1.0, 2.0], [2.0, 4.0]])
+    entries.append(_emit_shape("funcs_matrix_rank", "matrix_rank", [("a", _rk)],
+                               np.asarray(np.linalg.matrix_rank(_rk), dtype="<i8"),
+                               note="秩(SVD 阈值口径)"))
+    _cf = arr("f8", [[1.0, 2.0], [3.0, 4.0]])
+    entries.append(_emit_rel("funcs_cond", "cond", [("a", _cf)],
+                             np.asarray(np.linalg.cond(_cf)), note="2 范数条件数", tol=1e-10))
+    _ma = arr("f8", [[0.0, 1.0, 2.0], [3.0, 4.0, 5.0]])
+    _mb = arr("f8", [[0.0, 1.0, 2.0, 3.0], [4.0, 5.0, 6.0, 7.0], [8.0, 9.0, 10.0, 11.0]])
+    _mc = arr("f8", [[0.0, 1.0], [2.0, 3.0], [4.0, 5.0], [6.0, 7.0]])
+    _md = np.linalg.multi_dot([_ma, _mb, _mc])
+    entries.append(_emit_rel("funcs_multi_dot", "multi_dot", [("a", _ma), ("b", _mb), ("c", _mc)],
+                             _md, note="链式矩阵乘", tol=1e-12, out_shape=np.shape(_md)))
+    _vx = arr("c16", [1 + 2j, 3 - 1j])
+    _vy = arr("c16", [2 - 1j, 0 + 2j])
+    entries.append(_emit_rel("funcs_vdot", "vdot", [("a", _vx), ("b", _vy)],
+                             np.asarray(np.vdot(_vx, _vy)), note="共轭内积 -2+1j", tol=1e-12))
+
 # 写 manifest_funcs.json(第五份;不碰旧四份 manifest 及其 npy)
     mf_path = os.path.join(REFDIR, "manifest_funcs.json")
     prev_gen = _load_prev_generated(mf_path)

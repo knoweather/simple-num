@@ -389,6 +389,40 @@ func init() {
 		},
 		"rfftn": func(ins []*num.Array, args caseArgs) (*num.Array, error) {
 			return num.RFFTN(ins[0], args.Axis)
+		}, // —— hfft/ihfft + 线代常用件(Step 39)——
+		"hfft": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.HFFT(ins[0], 0)
+		},
+		"ihfft": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.IHFFT(ins[0], 0)
+		},
+		"matrix_rank": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			r, err := num.MatrixRank(ins[0])
+			if err != nil {
+				return nil, err
+			}
+			out, err := num.New([]int{}, num.DInt64)
+			if err != nil {
+				return nil, err
+			}
+			return out, out.SetItem([]int{}, int64(r))
+		},
+		"cond": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			v, err := num.Cond(ins[0], "")
+			if err != nil {
+				return nil, err
+			}
+			out, err := num.New([]int{}, num.DFloat64)
+			if err != nil {
+				return nil, err
+			}
+			return out, out.SetItem([]int{}, v)
+		},
+		"multi_dot": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.MultiDot(ins...)
+		},
+		"vdot": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
+			return num.Vdot(ins[0], ins[1])
 		}, // —— ufunc 补充批(Step 31)——
 		"negative": func(ins []*num.Array, _ caseArgs) (*num.Array, error) {
 			return num.Negative(ins[0])

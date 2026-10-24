@@ -140,7 +140,7 @@ our result against those saved bytes. Where an operation is not bit-exact by
 nature (an FFT or an LU solve can differ in the last bits), the case declares a
 relative tolerance instead.
 
-- **NumPy reference cross-check** (`xcheck/`): **511 cases / 518 subtests**
+- **NumPy reference cross-check** (`xcheck/`): **517 cases / 524 subtests**
   produced by `xcheck/gen_reference.py`, covering integers/floats/complex,
   broadcasting, ±0/NaN/Inf, integer overflow, axis reductions, gather/mask
   indexing, multi-output ops and the whole function surface. Two comparison
@@ -201,9 +201,9 @@ Legend: ✅ available · ⚠️ partial (see the note) · 🚧 not yet, planned.
 | reductions | `Sum`/`Prod`/`Mean`/`Var`/`Std`/`Min`/`Max`/`ArgMin`/`ArgMax`/`Median`/`Cumsum`/`Cumprod`, `Average` (weights), `PtP`, all `Nan*` variants (incl. `NanProd`/`NanCumsum`/`NanToNum`), any `axis` + `keepdims` | — |
 | statistics | `Percentile` (all 13 methods), `Quantile`, `Median`, `Histogram`, `Histogram2D`, `Bincount(weights)`, `Cov`, `CorrCoef`, `Diff` | `CorrCoef` of masked data 🚧 |
 | sorting & sets | `Sort`, `Argsort`, `Partition`, `Argpartition`, `SearchSorted`, `Digitize`, `Unique` (+`axis`), `UniqueIdx` (returns index/counts), `IsIn`/`Intersect1D`/`Union1D`/`Setdiff1D`/`Setxor1D` | — |
-| linalg | `Dot`, `MatMul` (batched, real or complex), `Inner`, `Outer`, `Einsum`, `Tensordot`, `Det`, `Inv`/`Solve` (real and complex), `Norm`, `Eigvalsh`/`Eigh` (symmetric), `Eigvals`/`Eig` (general, Hessenberg + shifted QR, complex results like NumPy), `Svd`, `Svdvals`, `Slogdet`, `Kron`, `QR`, `Cholesky`, `Pinv`, `Lstsq` (returns x/residuals/rank/s) | `Tensorsolve` 🚧, N-D complex `dot` 🚧 |
+| linalg | `Dot`, `MatMul` (batched, real or complex), `Inner`, `Outer`, `Einsum`, `Tensordot`, `Det`, `Inv`/`Solve` (real and complex), `Norm`, `Cond`, `MatrixRank`, `MultiDot`, `Vdot`, `Eigvalsh`/`Eigh` (symmetric), `Eigvals`/`Eig` (general, Hessenberg + shifted QR, complex results like NumPy), `Svd`, `Svdvals`, `Slogdet`, `Kron`, `QR`, `Cholesky`, `Pinv`, `Lstsq` (returns x/residuals/rank/s) | `Tensorsolve` 🚧, N-D complex `dot` 🚧 |
 | random | bit-exact legacy `RandomState`/MT19937: `Seed`, `RandomSample`, `StandardNormal`, `Uniform`, `Normal`, `RandInt`, `Permutation`, `Shuffle` | `Generator`/PCG64 family 🚧, `Choice`/`Beta`/`Gamma`/`Poisson` etc. 🚧 |
-| fft | `FFT`/`IFFT`/`RFFT`/`IRFFT`/`FFTFreq` (radix-2 + Bluestein, any length), `FFT2`/`IFFT2`, `FFTN`/`IFFTN` (any axis subset), `RFFT2`/`IRFFT2`, `RFFTN`/`IRFFTN`, `FFTShift`/`IFFTShift` | `hfft`/`ihfft` 🚧 |
+| fft | `FFT`/`IFFT`/`RFFT`/`IRFFT`/`FFTFreq` (radix-2 + Bluestein, any length), `FFT2`/`IFFT2`, `FFTN`/`IFFTN` (any axis subset), `RFFT2`/`IRFFT2`, `RFFTN`/`IRFFTN`, `HFFT`/`IHFFT`, `FFTShift`/`IFFTShift` | — |
 | masked arrays | `MaskedArray` (data+mask), `Filled`/`Compressed`/`Count`, masked `Sum`/`Mean`/`Min`/`Max`/`Median`/`Var`/`Std`, `MaskedAdd/Subtract/Multiply/Divide`, `MaskedInvalid`/`MaskedWhere`, predicates | `ma.corrcoef` 🚧 (see limitations), `masked_equal`-style constructors beyond the 8 provided ⚠️ |
 | I/O | `SaveNPY`/`LoadNPY` (+ bytes), `SaveZ`/`SaveZCompressed`/`LoadZ`, `FromBuffer` (zero-copy), `FromFile`/`ToFile`, `SaveTxt`/`LoadTxt`, `Genfromtxt`/`GenfromtxtBytes` (delimiter, `skip_header`/`skip_footer`, `usecols`, missing → NaN) | `Memmap` 🚧, per-column dtypes 🚧 |
 | ufunc protocol | `BinaryOut`/`UnaryOut` (`out=`), `BinaryWhere`/`UnaryWhere` (`where=`), `Reduce`, `Accumulate`, `UfuncOuter` | `at`/`buffers`/`signature` keywords 🚧 |
