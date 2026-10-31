@@ -147,6 +147,15 @@ The panic value is an `error` that names the operation and wraps the usual
 sentinels, so `recover` plus `errors.Is(err, ErrShape)` still works. The
 error-returning API is unchanged and remains the default for library code.
 
+**Is `Array` itself generic? No, deliberately.** There is one `Array` type and
+the dtype is a runtime property, exactly like NumPy's single `ndarray`. Generics
+are used where they pay off — `FromSlice[T]`, `MustFromSlice[T]` and the
+`AddScalar[T Number]` family — and internally to generate one typed kernel per
+dtype. A parameterised `Array[T]` was rejected for two reasons: dtype promotion
+and casting across 18 dtypes would need either a copy of every operator per type
+parameter or pervasive type assertions, and Go does not allow methods to declare
+their own type parameters, which would break the chainable API.
+
 ## WASM
 
 ```sh

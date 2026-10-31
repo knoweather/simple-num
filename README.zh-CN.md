@@ -134,6 +134,12 @@ v := num.MustFromSlice([]float64{1, 2, 3, 4, 5, 6}).
 panic 的值是 `error`（带操作名、包住原有哨兵错误），所以 `recover` 之后仍可用
 `errors.Is(err, ErrShape)` 判定。返回 `(值, error)` 的标准 API 没变，仍是库代码的默认选择。
 
+**`Array` 本身不是泛型类型，这是有意的。** 库里只有一个 `Array`，dtype 是运行时属性 —— 与
+NumPy 的单个 `ndarray` 一致。泛型用在真正划算的地方：`FromSlice[T]`、`MustFromSlice[T]`
+与 `AddScalar[T Number]` 一族；内部则用泛型为每种 dtype 生成一份类型化内核。
+没有做成 `Array[T]` 的原因有两条：一是 18 种 dtype 之间的提升与转换，要么让每个算子写 18 份、
+要么到处塞类型断言；二是 Go 不允许方法自带类型参数，链式 API 会被打断。
+
 ## WASM
 
 ```sh
