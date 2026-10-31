@@ -292,6 +292,16 @@ func FromSlice[T any](x []T) (*Array, error) {
 		dt = DComplex64
 	case complex128:
 		dt = DComplex128
+	case string:
+		// 字符串按定宽 Unicode 落库:宽度取最长字符串的码元数(numpy 的 '<U<n>')
+		ss := any(x).([]string)
+		width := 0
+		for _, v := range ss {
+			if n := len([]rune(v)); n > width {
+				width = n
+			}
+		}
+		dt = DUnicode(width)
 	default:
 		return nil, fmt.Errorf("num: FromSlice[%T] 不支持: %w", zero, ErrDtype)
 	}

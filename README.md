@@ -115,6 +115,38 @@ Standard library only — `CGO_ENABLED=0 go build ./...` works on windows/amd64,
 linux/amd64, darwin/arm64 and windows/arm64 (cross-compilation is part of the
 release gate).
 
+## Generics, scalars and chained calls
+
+`FromSlice` is generic and the dtype follows the Go type, so nothing is silently
+widened: `[]int8` stays `int8`, `[]float32` stays `float32`, `[]complex128` stays
+`complex128`, and `[]string` becomes a fixed-width `U<n>` array. Every operator
+has a typed kernel per dtype, so `int8` arithmetic wraps exactly like NumPy.
+
+A scalar takes its dtype from the Go type it is written as:
+
+```go
+num.MustFromSlice([]int8{127}).MustAddScalar(int8(1)) // int8, wraps to -128
+num.MustFromSlice([]int8{127}).MustAddScalar(1)       // int64 (Go's 1 is int)
+```
+
+That differs from NumPy, where a Python scalar is "weak" and keeps the array's
+dtype. Here the dtype is visible in the Go code, which keeps results predictable.
+
+For scripts and one-off pipelines every operation also has a `Must*` form that
+panics on error and returns `*Array`, so calls chain left to right:
+
+```go
+v := num.MustFromSlice([]float64{1, 2, 3, 4, 5, 6}).
+	MustReshape(2, 3).
+	MustTranspose().
+	MustSumAll().
+	MustFloat() // 21
+```
+
+The panic value is an `error` that names the operation and wraps the usual
+sentinels, so `recover` plus `errors.Is(err, ErrShape)` still works. The
+error-returning API is unchanged and remains the default for library code.
+
 ## WASM
 
 ```sh

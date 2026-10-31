@@ -105,6 +105,35 @@ go get github.com/knoweather/simple-num
 只用标准库 —— `CGO_ENABLED=0 go build ./...` 可在 windows/amd64、linux/amd64、
 darwin/arm64、windows/arm64 上通过（交叉编译属于发布门槛的一部分）。
 
+## 泛型、标量与链式调用
+
+`FromSlice` 是泛型的，dtype 跟着 Go 类型走，不会静默升宽：`[]int8` 仍是 `int8`，
+`[]float32` 仍是 `float32`，`[]complex128` 仍是 `complex128`，`[]string` 落成定宽
+`U<n>`。每个算子对每种 dtype 都有类型化内核，所以 `int8` 的运算与 NumPy 一样按位回绕。
+
+标量的 dtype 由**写出来的 Go 类型**决定：
+
+```go
+num.MustFromSlice([]int8{127}).MustAddScalar(int8(1)) // int8，回绕成 -128
+num.MustFromSlice([]int8{127}).MustAddScalar(1)       // int64（Go 的 1 是 int）
+```
+
+这与 NumPy 的"弱标量"（Python 标量保持数组 dtype）不同；这里 dtype 在 Go 代码里可见，
+结果更可预测。
+
+脚本与一次性管道可以用 `Must*` 形式：出错直接 panic、成功返回 `*Array`，于是能从左到右连写：
+
+```go
+v := num.MustFromSlice([]float64{1, 2, 3, 4, 5, 6}).
+	MustReshape(2, 3).
+	MustTranspose().
+	MustSumAll().
+	MustFloat() // 21
+```
+
+panic 的值是 `error`（带操作名、包住原有哨兵错误），所以 `recover` 之后仍可用
+`errors.Is(err, ErrShape)` 判定。返回 `(值, error)` 的标准 API 没变，仍是库代码的默认选择。
+
 ## WASM
 
 ```sh

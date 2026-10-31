@@ -537,7 +537,7 @@ func arithFloats[T FloatKinds]() {
 
 // bothBool 两操作数是否都是 bool dtype(bool×bool 需要 numpy 特判路由)。
 func bothBool(x, y *Array) bool {
-	return x.Dtype().Kind == Bool && y.Dtype().Kind == Bool
+	return x != nil && y != nil && x.Dtype().Kind == Bool && y.Dtype().Kind == Bool
 }
 
 // isIntegerKind 整型族(bool 视作整型族成员:promote(bool,*)=整型阶梯)。
@@ -569,6 +569,9 @@ func asI8IfBoolBoth(x, y *Array) (*Array, *Array, error) {
 
 // Add x+y(numpy add)。bool×bool → bool(OR);datetime64 ± 整型走 路径。
 func Add(x, y *Array) (*Array, error) {
+	if x == nil || y == nil {
+		return nil, fmt.Errorf("num: add: 操作数为 nil: %w", ErrDtype)
+	}
 	if x.Dtype().Kind == Datetime64 || y.Dtype().Kind == Datetime64 {
 		return dtAdd(x, y, false)
 	}
@@ -581,6 +584,9 @@ func Add(x, y *Array) (*Array, error) {
 // Subtract x-y(numpy subtract)。bool×bool → ErrDtype(numpy 同拒,);
 // datetime64 - 整型走;datetime64 - datetime64 是 timedelta64(本库不做)。
 func Subtract(x, y *Array) (*Array, error) {
+	if x == nil || y == nil {
+		return nil, fmt.Errorf("num: subtract: 操作数为 nil: %w", ErrDtype)
+	}
 	if x.Dtype().Kind == Datetime64 || y.Dtype().Kind == Datetime64 {
 		if x.Dtype().Kind == Datetime64 && y.Dtype().Kind == Datetime64 {
 			return nil, fmt.Errorf("num: datetime64 - datetime64 → timedelta64(本库不做): %w", ErrDtype)

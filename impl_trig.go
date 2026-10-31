@@ -129,6 +129,9 @@ func trigFloatFor(k Kind) (Dtype, bool) {
 
 // trigDispatch 超越算子分发:整型/bool 输入按 numpy 解析预 Cast,再走引擎。
 func trigDispatch(op string, x *Array) (*Array, error) {
+	if x == nil {
+		return nil, fmt.Errorf("num: %s: 操作数为 nil: %w", op, ErrDtype)
+	}
 	if dt, ok := trigFloatFor(x.Dtype().Kind); ok {
 		var err error
 		if x, err = Cast(x, dt); err != nil {

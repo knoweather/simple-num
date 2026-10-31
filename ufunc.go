@@ -245,6 +245,9 @@ func normalizeOperand(a *Array, outSh []int, dt Dtype) (*Array, error) {
 
 // dispatchUnary 一元分发。晋级链:Fallback 按序取第一个已注册目标。
 func dispatchUnary(op string, a *Array) (*Array, error) {
+	if a == nil {
+		return nil, fmt.Errorf("num: ufunc %q: 操作数为 nil: %w", op, ErrDtype)
+	}
 	spec := unaryReg[op]
 	if spec == nil {
 		return nil, fmt.Errorf("num: ufunc %q 未注册: %w", op, ErrDtype)
@@ -280,6 +283,9 @@ func dispatchUnary(op string, a *Array) (*Array, error) {
 
 // dispatchBinary 二元分发:广播 → promote → ForceOut 覆盖 → 归一两操作数 → 内核。
 func dispatchBinary(op string, x, y *Array) (*Array, error) {
+	if x == nil || y == nil {
+		return nil, fmt.Errorf("num: ufunc %q: 操作数为 nil: %w", op, ErrDtype)
+	}
 	spec := binaryReg[op]
 	if spec == nil {
 		return nil, fmt.Errorf("num: ufunc %q 未注册: %w", op, ErrDtype)

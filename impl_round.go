@@ -1,5 +1,7 @@
 package num
 
+import "fmt"
+
 // :取整 4 算子(B 拥有):floor/ceil/trunc/rint。
 //
 // 语义基准(numpy 2.5.4 实测,):
@@ -62,6 +64,9 @@ func init() {
 
 // rintDispatch rint 分发:整型/bool 按 numpy 类型解析预 Cast(/§7 同表)。
 func rintDispatch(x *Array) (*Array, error) {
+	if x == nil {
+		return nil, fmt.Errorf("num: rint: 操作数为 nil: %w", ErrDtype)
+	}
 	if dt, ok := trigFloatFor(x.Dtype().Kind); ok {
 		var err error
 		if x, err = Cast(x, dt); err != nil {

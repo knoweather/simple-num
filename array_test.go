@@ -330,9 +330,13 @@ func TestFromSliceMatrix(t *testing.T) {
 	mustTypedSlice(t, []uint64{11}, DUint64)
 	mustTypedSlice(t, []float32{0.5}, DFloat32)
 	mustTypedSlice(t, []float64{0.5}, DFloat64)
-	// string → ErrDtype
-	if a, err := FromSlice([]string{"x"}); a != nil || err == nil {
-		t.Errorf("string FromSlice 应报暂未支持")
+	// string → 定宽 Unicode(宽度取最长码元数)
+	if a, err := FromSlice([]string{"ab", "c"}); err != nil {
+		t.Errorf("string FromSlice: %v", err)
+	} else if a.Dtype().Kind != Unicode || a.Dtype().Itemsize != 2*4 {
+		t.Errorf("string dtype = %s, want U2", a.Dtype())
+	} else if v, _ := a.Item(0); v != "ab" {
+		t.Errorf("string[0] = %v, want \"ab\"", v)
 	}
 }
 
