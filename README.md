@@ -147,14 +147,26 @@ The panic value is an `error` that names the operation and wraps the usual
 sentinels, so `recover` plus `errors.Is(err, ErrShape)` still works. The
 error-returning API is unchanged and remains the default for library code.
 
+**Generic methods.** Go 1.27 lets a method declare its own type parameters, so
+typed access needs no separate helper:
+
+```go
+xs, _ := a.As[float32]()      // whole array as []float32, converting if needed
+v, _ := a.At[float64](1, 2)   // one element as float64
+m := num.MustFromRows([][]float64{{1, 2, 3}, {4, 5, 6}})
+```
+
+Type parameters are not inferred from the result type, so they are written
+explicitly. Narrowing complex to real discards the imaginary part, matching
+NumPy's `ComplexWarning` behaviour.
+
 **Is `Array` itself generic? No, deliberately.** There is one `Array` type and
 the dtype is a runtime property, exactly like NumPy's single `ndarray`. Generics
-are used where they pay off — `FromSlice[T]`, `MustFromSlice[T]` and the
-`AddScalar[T Number]` family — and internally to generate one typed kernel per
-dtype. A parameterised `Array[T]` was rejected for two reasons: dtype promotion
-and casting across 18 dtypes would need either a copy of every operator per type
-parameter or pervasive type assertions, and Go does not allow methods to declare
-their own type parameters, which would break the chainable API.
+are used where they pay off — `FromSlice[T]`, `MustFromSlice[T]`, `As[T]`,
+`At[T]`, `FromRows[T]` and the `AddScalar[T Number]` family — and internally to
+generate one typed kernel per dtype. A parameterised `Array[T]` would need either
+a copy of every operator per type parameter or pervasive type assertions, since
+dtype promotion spans 18 kinds.
 
 ## WASM
 

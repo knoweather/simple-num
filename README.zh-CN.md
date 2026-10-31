@@ -134,11 +134,22 @@ v := num.MustFromSlice([]float64{1, 2, 3, 4, 5, 6}).
 panic 的值是 `error`（带操作名、包住原有哨兵错误），所以 `recover` 之后仍可用
 `errors.Is(err, ErrShape)` 判定。返回 `(值, error)` 的标准 API 没变，仍是库代码的默认选择。
 
+**泛型方法。** Go 1.27 起方法可以自带类型参数，所以类型化取值不需要额外辅助函数：
+
+```go
+xs, _ := a.As[float32]()      // 整数组转成 []float32（必要时逐元素转换）
+v, _ := a.At[float64](1, 2)   // 单个元素转成 float64
+m := num.MustFromRows([][]float64{{1, 2, 3}, {4, 5, 6}})
+```
+
+类型参数**不从返回值推断**（Go 的推断只看实参），所以要显式写。复数转实数按 NumPy 的
+`ComplexWarning` 口径丢弃虚部。
+
 **`Array` 本身不是泛型类型，这是有意的。** 库里只有一个 `Array`，dtype 是运行时属性 —— 与
-NumPy 的单个 `ndarray` 一致。泛型用在真正划算的地方：`FromSlice[T]`、`MustFromSlice[T]`
-与 `AddScalar[T Number]` 一族；内部则用泛型为每种 dtype 生成一份类型化内核。
-没有做成 `Array[T]` 的原因有两条：一是 18 种 dtype 之间的提升与转换，要么让每个算子写 18 份、
-要么到处塞类型断言；二是 Go 不允许方法自带类型参数，链式 API 会被打断。
+NumPy 的单个 `ndarray` 一致。泛型用在真正划算的地方：`FromSlice[T]`、`MustFromSlice[T]`、
+`As[T]`、`At[T]`、`FromRows[T]` 与 `AddScalar[T Number]` 一族；内部则用泛型为每种 dtype
+生成一份类型化内核。没有做成 `Array[T]`，是因为 18 种 dtype 之间的提升与转换要么让每个算子
+写 18 份、要么到处塞类型断言。
 
 ## WASM
 
